@@ -50,7 +50,7 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
         return Set(knownPeers.values)
     }
 
-    static var deviceName: String {
+    public static var deviceName: String {
         #if os(iOS) || os(tvOS)
             return UIDevice.current.name
         #else

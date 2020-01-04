@@ -1,0 +1,12 @@
+use_frameworks!
+inhibit_all_warnings!
+
+target 'ion-swift-client' do
+
+  platform :ios, '13.0'
+
+  pod 'IONSwift', :path => '../../../'
+  pod 'TableKit'
+  pod 'RxSwift'
+
+end

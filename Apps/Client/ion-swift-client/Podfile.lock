@@ -1,0 +1,33 @@
+PODS:
+  - IONSwift (0.0.1):
+    - IONSwift/AllModules (= 0.0.1)
+  - IONSwift/AllModules (0.0.1):
+    - IONSwift/IONModule
+  - IONSwift/Core (0.0.1)
+  - IONSwift/IONModule (0.0.1):
+    - IONSwift/Core
+  - RxSwift (5.0.1)
+  - TableKit (2.10.0)
+
+DEPENDENCIES:
+  - IONSwift (from `../../../`)
+  - RxSwift
+  - TableKit
+
+SPEC REPOS:
+  trunk:
+    - RxSwift
+    - TableKit
+
+EXTERNAL SOURCES:
+  IONSwift:
+    :path: "../../../"
+
+SPEC CHECKSUMS:
+  IONSwift: 5b87f39aebc825f9b183f3e4f8fcfe27f0ec4c7f
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  TableKit: 65645d0dd786e21dc61464da59ad770c60a07282
+
+PODFILE CHECKSUM: ecc25ef9735403e6ed715064fe8c5dbb327e7c75
+
+COCOAPODS: 1.8.4
