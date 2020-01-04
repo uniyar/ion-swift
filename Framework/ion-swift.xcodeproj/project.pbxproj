@@ -1,0 +1,802 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */; };
+		CA9EABA423C127EA003DAF51 /* ion_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABA323C127EA003DAF51 /* ion_swiftTests.swift */; };
+		CA9EABA623C127EA003DAF51 /* ion_swift.h in Headers */ = {isa = PBXBuildFile; fileRef = CA9EAB9823C127E9003DAF51 /* ion_swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA9EABE123C12871003DAF51 /* ReliabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB123C12870003DAF51 /* ReliabilityManager.swift */; };
+		CA9EABE223C12871003DAF51 /* ReliabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB123C12870003DAF51 /* ReliabilityManager.swift */; };
+		CA9EABE323C12871003DAF51 /* PacketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB223C12870003DAF51 /* PacketConnection.swift */; };
+		CA9EABE423C12871003DAF51 /* PacketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB223C12870003DAF51 /* PacketConnection.swift */; };
+		CA9EABE523C12871003DAF51 /* TransferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB323C12870003DAF51 /* TransferManager.swift */; };
+		CA9EABE623C12871003DAF51 /* TransferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB323C12870003DAF51 /* TransferManager.swift */; };
+		CA9EABE723C12871003DAF51 /* InTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB423C12870003DAF51 /* InTransfer.swift */; };
+		CA9EABE823C12871003DAF51 /* InTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB423C12870003DAF51 /* InTransfer.swift */; };
+		CA9EABE923C12871003DAF51 /* OutTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB523C12870003DAF51 /* OutTransfer.swift */; };
+		CA9EABEA23C12871003DAF51 /* OutTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB523C12870003DAF51 /* OutTransfer.swift */; };
+		CA9EABEB23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB723C12870003DAF51 /* MinimumSteinerTreeApproximation.swift */; };
+		CA9EABEC23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB723C12870003DAF51 /* MinimumSteinerTreeApproximation.swift */; };
+		CA9EABED23C12871003DAF51 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB823C12870003DAF51 /* Graph.swift */; };
+		CA9EABEE23C12871003DAF51 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB823C12870003DAF51 /* Graph.swift */; };
+		CA9EABEF23C12871003DAF51 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB923C12870003DAF51 /* Tree.swift */; };
+		CA9EABF023C12871003DAF51 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABB923C12870003DAF51 /* Tree.swift */; };
+		CA9EABF123C12871003DAF51 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBB23C12870003DAF51 /* Packets.swift */; };
+		CA9EABF223C12871003DAF51 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBB23C12870003DAF51 /* Packets.swift */; };
+		CA9EABF323C12871003DAF51 /* PipeForward.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBD23C12870003DAF51 /* PipeForward.swift */; };
+		CA9EABF423C12871003DAF51 /* PipeForward.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBD23C12870003DAF51 /* PipeForward.swift */; };
+		CA9EABF523C12871003DAF51 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBE23C12870003DAF51 /* Logging.swift */; };
+		CA9EABF623C12871003DAF51 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBE23C12870003DAF51 /* Logging.swift */; };
+		CA9EABF723C12871003DAF51 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBF23C12870003DAF51 /* Data.swift */; };
+		CA9EABF823C12871003DAF51 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABBF23C12870003DAF51 /* Data.swift */; };
+		CA9EABF923C12871003DAF51 /* SinglePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC023C12870003DAF51 /* SinglePacket.swift */; };
+		CA9EABFA23C12871003DAF51 /* SinglePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC023C12870003DAF51 /* SinglePacket.swift */; };
+		CA9EABFB23C12871003DAF51 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC123C12870003DAF51 /* UUID.swift */; };
+		CA9EABFC23C12871003DAF51 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC123C12870003DAF51 /* UUID.swift */; };
+		CA9EABFD23C12871003DAF51 /* StartStopHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC323C12870003DAF51 /* StartStopHelper.swift */; };
+		CA9EABFE23C12871003DAF51 /* StartStopHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC323C12870003DAF51 /* StartStopHelper.swift */; };
+		CA9EABFF23C12871003DAF51 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC423C12870003DAF51 /* Timer.swift */; };
+		CA9EAC0023C12871003DAF51 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC423C12870003DAF51 /* Timer.swift */; };
+		CA9EAC0123C12871003DAF51 /* RepeatedExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC523C12870003DAF51 /* RepeatedExecutor.swift */; };
+		CA9EAC0223C12871003DAF51 /* RepeatedExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC523C12870003DAF51 /* RepeatedExecutor.swift */; };
+		CA9EAC0323C12871003DAF51 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC623C12870003DAF51 /* PriorityQueue.swift */; };
+		CA9EAC0423C12871003DAF51 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC623C12870003DAF51 /* PriorityQueue.swift */; };
+		CA9EAC0523C12871003DAF51 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC723C12870003DAF51 /* Utils.swift */; };
+		CA9EAC0623C12871003DAF51 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC723C12870003DAF51 /* Utils.swift */; };
+		CA9EAC0723C12871003DAF51 /* MappingSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC823C12870003DAF51 /* MappingSequence.swift */; };
+		CA9EAC0823C12871003DAF51 /* MappingSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC823C12870003DAF51 /* MappingSequence.swift */; };
+		CA9EAC0923C12871003DAF51 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC923C12870003DAF51 /* Set.swift */; };
+		CA9EAC0A23C12871003DAF51 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABC923C12870003DAF51 /* Set.swift */; };
+		CA9EAC0B23C12871003DAF51 /* FloodingPacketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCB23C12871003DAF51 /* FloodingPacketManager.swift */; };
+		CA9EAC0C23C12871003DAF51 /* FloodingPacketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCB23C12871003DAF51 /* FloodingPacketManager.swift */; };
+		CA9EAC0D23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */; };
+		CA9EAC0E23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */; };
+		CA9EAC0F23C12871003DAF51 /* LinkStatePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */; };
+		CA9EAC1023C12871003DAF51 /* LinkStatePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */; };
+		CA9EAC1123C12871003DAF51 /* RoutingPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */; };
+		CA9EAC1223C12871003DAF51 /* RoutingPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */; };
+		CA9EAC1323C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */; };
+		CA9EAC1423C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */; };
+		CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */; };
+		CA9EAC1623C12871003DAF51 /* CompositeBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */; };
+		CA9EAC1723C12871003DAF51 /* ForwardingConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD123C12871003DAF51 /* ForwardingConnection.swift */; };
+		CA9EAC1823C12871003DAF51 /* ForwardingConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD123C12871003DAF51 /* ForwardingConnection.swift */; };
+		CA9EAC1923C12871003DAF51 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD223C12871003DAF51 /* Router.swift */; };
+		CA9EAC1A23C12871003DAF51 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD223C12871003DAF51 /* Router.swift */; };
+		CA9EAC1B23C12871003DAF51 /* DefaultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD323C12871003DAF51 /* DefaultRouter.swift */; };
+		CA9EAC1C23C12871003DAF51 /* DefaultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD323C12871003DAF51 /* DefaultRouter.swift */; };
+		CA9EAC1D23C12871003DAF51 /* MulticastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD423C12871003DAF51 /* MulticastConnection.swift */; };
+		CA9EAC1E23C12871003DAF51 /* MulticastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD423C12871003DAF51 /* MulticastConnection.swift */; };
+		CA9EAC1F23C12871003DAF51 /* ManagedModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD523C12871003DAF51 /* ManagedModule.swift */; };
+		CA9EAC2023C12871003DAF51 /* ManagedModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD523C12871003DAF51 /* ManagedModule.swift */; };
+		CA9EAC2123C12871003DAF51 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD623C12871003DAF51 /* Node.swift */; };
+		CA9EAC2223C12871003DAF51 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD623C12871003DAF51 /* Node.swift */; };
+		CA9EAC2323C12871003DAF51 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD823C12871003DAF51 /* Address.swift */; };
+		CA9EAC2423C12871003DAF51 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD823C12871003DAF51 /* Address.swift */; };
+		CA9EAC2523C12871003DAF51 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD923C12871003DAF51 /* Advertiser.swift */; };
+		CA9EAC2623C12871003DAF51 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD923C12871003DAF51 /* Advertiser.swift */; };
+		CA9EAC2723C12871003DAF51 /* UnderlyingConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDA23C12871003DAF51 /* UnderlyingConnection.swift */; };
+		CA9EAC2823C12871003DAF51 /* UnderlyingConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDA23C12871003DAF51 /* UnderlyingConnection.swift */; };
+		CA9EAC2923C12871003DAF51 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDB23C12871003DAF51 /* Browser.swift */; };
+		CA9EAC2A23C12871003DAF51 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDB23C12871003DAF51 /* Browser.swift */; };
+		CA9EAC2B23C12871003DAF51 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDC23C12871003DAF51 /* Module.swift */; };
+		CA9EAC2C23C12871003DAF51 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDC23C12871003DAF51 /* Module.swift */; };
+		CA9EAC2D23C12871003DAF51 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDD23C12871003DAF51 /* Connection.swift */; };
+		CA9EAC2E23C12871003DAF51 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDD23C12871003DAF51 /* Connection.swift */; };
+		CA9EAC2F23C12871003DAF51 /* LocalPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDE23C12871003DAF51 /* LocalPeer.swift */; };
+		CA9EAC3023C12871003DAF51 /* LocalPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDE23C12871003DAF51 /* LocalPeer.swift */; };
+		CA9EAC3123C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
+		CA9EAC3223C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
+		CA9EAC3323C12871003DAF51 /* RemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABE023C12871003DAF51 /* RemotePeer.swift */; };
+		CA9EAC3423C12871003DAF51 /* RemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABE023C12871003DAF51 /* RemotePeer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CA9EABA023C127EA003DAF51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA9EAB8C23C127E9003DAF51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA9EAB9423C127E9003DAF51;
+			remoteInfo = "ion-swift";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CA9EAB9523C127E9003DAF51 /* ion_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ion_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA9EAB9823C127E9003DAF51 /* ion_swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ion_swift.h; sourceTree = "<group>"; };
+		CA9EAB9923C127E9003DAF51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA9EAB9E23C127EA003DAF51 /* ion-swiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ion-swiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA9EABA323C127EA003DAF51 /* ion_swiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ion_swiftTests.swift; sourceTree = "<group>"; };
+		CA9EABA523C127EA003DAF51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA9EABB123C12870003DAF51 /* ReliabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReliabilityManager.swift; sourceTree = "<group>"; };
+		CA9EABB223C12870003DAF51 /* PacketConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketConnection.swift; sourceTree = "<group>"; };
+		CA9EABB323C12870003DAF51 /* TransferManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferManager.swift; sourceTree = "<group>"; };
+		CA9EABB423C12870003DAF51 /* InTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InTransfer.swift; sourceTree = "<group>"; };
+		CA9EABB523C12870003DAF51 /* OutTransfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutTransfer.swift; sourceTree = "<group>"; };
+		CA9EABB723C12870003DAF51 /* MinimumSteinerTreeApproximation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumSteinerTreeApproximation.swift; sourceTree = "<group>"; };
+		CA9EABB823C12870003DAF51 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		CA9EABB923C12870003DAF51 /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		CA9EABBB23C12870003DAF51 /* Packets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packets.swift; sourceTree = "<group>"; };
+		CA9EABBD23C12870003DAF51 /* PipeForward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipeForward.swift; sourceTree = "<group>"; };
+		CA9EABBE23C12870003DAF51 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		CA9EABBF23C12870003DAF51 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		CA9EABC023C12870003DAF51 /* SinglePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePacket.swift; sourceTree = "<group>"; };
+		CA9EABC123C12870003DAF51 /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
+		CA9EABC323C12870003DAF51 /* StartStopHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartStopHelper.swift; sourceTree = "<group>"; };
+		CA9EABC423C12870003DAF51 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		CA9EABC523C12870003DAF51 /* RepeatedExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatedExecutor.swift; sourceTree = "<group>"; };
+		CA9EABC623C12870003DAF51 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		CA9EABC723C12870003DAF51 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CA9EABC823C12870003DAF51 /* MappingSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingSequence.swift; sourceTree = "<group>"; };
+		CA9EABC923C12870003DAF51 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		CA9EABCB23C12871003DAF51 /* FloodingPacketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloodingPacketManager.swift; sourceTree = "<group>"; };
+		CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeAdvertiser.swift; sourceTree = "<group>"; };
+		CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkStatePacket.swift; sourceTree = "<group>"; };
+		CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingPackets.swift; sourceTree = "<group>"; };
+		CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkStateRoutingTable.swift; sourceTree = "<group>"; };
+		CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeBrowser.swift; sourceTree = "<group>"; };
+		CA9EABD123C12871003DAF51 /* ForwardingConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardingConnection.swift; sourceTree = "<group>"; };
+		CA9EABD223C12871003DAF51 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CA9EABD323C12871003DAF51 /* DefaultRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRouter.swift; sourceTree = "<group>"; };
+		CA9EABD423C12871003DAF51 /* MulticastConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastConnection.swift; sourceTree = "<group>"; };
+		CA9EABD523C12871003DAF51 /* ManagedModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedModule.swift; sourceTree = "<group>"; };
+		CA9EABD623C12871003DAF51 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		CA9EABD823C12871003DAF51 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		CA9EABD923C12871003DAF51 /* Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		CA9EABDA23C12871003DAF51 /* UnderlyingConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlyingConnection.swift; sourceTree = "<group>"; };
+		CA9EABDB23C12871003DAF51 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		CA9EABDC23C12871003DAF51 /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		CA9EABDD23C12871003DAF51 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		CA9EABDE23C12871003DAF51 /* LocalPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPeer.swift; sourceTree = "<group>"; };
+		CA9EABDF23C12871003DAF51 /* Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
+		CA9EABE023C12871003DAF51 /* RemotePeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemotePeer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA9EAB9223C127E9003DAF51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA9EAB9B23C127EA003DAF51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA9EAB8B23C127E9003DAF51 = {
+			isa = PBXGroup;
+			children = (
+				CA9EAB9723C127E9003DAF51 /* ion-swift */,
+				CA9EABA223C127EA003DAF51 /* ion-swiftTests */,
+				CA9EAB9623C127E9003DAF51 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA9EAB9623C127E9003DAF51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EAB9523C127E9003DAF51 /* ion_swift.framework */,
+				CA9EAB9E23C127EA003DAF51 /* ion-swiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA9EAB9723C127E9003DAF51 /* ion-swift */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EAB9823C127E9003DAF51 /* ion_swift.h */,
+				CA9EAB9923C127E9003DAF51 /* Info.plist */,
+				CA9EABAF23C1283A003DAF51 /* Core */,
+			);
+			path = "ion-swift";
+			sourceTree = "<group>";
+		};
+		CA9EABA223C127EA003DAF51 /* ion-swiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABA323C127EA003DAF51 /* ion_swiftTests.swift */,
+				CA9EABA523C127EA003DAF51 /* Info.plist */,
+			);
+			path = "ion-swiftTests";
+			sourceTree = "<group>";
+		};
+		CA9EABAF23C1283A003DAF51 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABD723C12871003DAF51 /* API */,
+				CA9EABBA23C12870003DAF51 /* Packets */,
+				CA9EABCA23C12871003DAF51 /* Routing */,
+				CA9EABB623C12870003DAF51 /* Algorithm */,
+				CA9EABB023C12870003DAF51 /* Connectivity */,
+				CA9EABBC23C12870003DAF51 /* Utils */,
+				CA9EABDD23C12871003DAF51 /* Connection.swift */,
+				CA9EABB423C12870003DAF51 /* InTransfer.swift */,
+				CA9EABDE23C12871003DAF51 /* LocalPeer.swift */,
+				CA9EABB523C12870003DAF51 /* OutTransfer.swift */,
+				CA9EABE023C12871003DAF51 /* RemotePeer.swift */,
+				CA9EABDF23C12871003DAF51 /* Transfer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CA9EABB023C12870003DAF51 /* Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABB123C12870003DAF51 /* ReliabilityManager.swift */,
+				CA9EABB223C12870003DAF51 /* PacketConnection.swift */,
+				CA9EABB323C12870003DAF51 /* TransferManager.swift */,
+			);
+			path = Connectivity;
+			sourceTree = "<group>";
+		};
+		CA9EABB623C12870003DAF51 /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABB723C12870003DAF51 /* MinimumSteinerTreeApproximation.swift */,
+				CA9EABB823C12870003DAF51 /* Graph.swift */,
+				CA9EABB923C12870003DAF51 /* Tree.swift */,
+			);
+			path = Algorithm;
+			sourceTree = "<group>";
+		};
+		CA9EABBA23C12870003DAF51 /* Packets */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABBB23C12870003DAF51 /* Packets.swift */,
+			);
+			path = Packets;
+			sourceTree = "<group>";
+		};
+		CA9EABBC23C12870003DAF51 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABBD23C12870003DAF51 /* PipeForward.swift */,
+				CA9EABBE23C12870003DAF51 /* Logging.swift */,
+				CA9EABBF23C12870003DAF51 /* Data.swift */,
+				CA9EABC023C12870003DAF51 /* SinglePacket.swift */,
+				CA9EABC123C12870003DAF51 /* UUID.swift */,
+				CA9EABC223C12870003DAF51 /* Timing */,
+				CA9EABC623C12870003DAF51 /* PriorityQueue.swift */,
+				CA9EABC723C12870003DAF51 /* Utils.swift */,
+				CA9EABC823C12870003DAF51 /* MappingSequence.swift */,
+				CA9EABC923C12870003DAF51 /* Set.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CA9EABC223C12870003DAF51 /* Timing */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABC323C12870003DAF51 /* StartStopHelper.swift */,
+				CA9EABC423C12870003DAF51 /* Timer.swift */,
+				CA9EABC523C12870003DAF51 /* RepeatedExecutor.swift */,
+			);
+			path = Timing;
+			sourceTree = "<group>";
+		};
+		CA9EABCA23C12871003DAF51 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABCB23C12871003DAF51 /* FloodingPacketManager.swift */,
+				CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */,
+				CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */,
+				CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */,
+				CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */,
+				CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */,
+				CA9EABD123C12871003DAF51 /* ForwardingConnection.swift */,
+				CA9EABD223C12871003DAF51 /* Router.swift */,
+				CA9EABD323C12871003DAF51 /* DefaultRouter.swift */,
+				CA9EABD423C12871003DAF51 /* MulticastConnection.swift */,
+				CA9EABD523C12871003DAF51 /* ManagedModule.swift */,
+				CA9EABD623C12871003DAF51 /* Node.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		CA9EABD723C12871003DAF51 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABD823C12871003DAF51 /* Address.swift */,
+				CA9EABD923C12871003DAF51 /* Advertiser.swift */,
+				CA9EABDA23C12871003DAF51 /* UnderlyingConnection.swift */,
+				CA9EABDB23C12871003DAF51 /* Browser.swift */,
+				CA9EABDC23C12871003DAF51 /* Module.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CA9EAB9023C127E9003DAF51 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA9EABA623C127EA003DAF51 /* ion_swift.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		CA9EAB9423C127E9003DAF51 /* ion-swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA9EABA923C127EA003DAF51 /* Build configuration list for PBXNativeTarget "ion-swift" */;
+			buildPhases = (
+				CA9EAB9023C127E9003DAF51 /* Headers */,
+				CA9EAB9123C127E9003DAF51 /* Sources */,
+				CA9EAB9223C127E9003DAF51 /* Frameworks */,
+				CA9EAB9323C127E9003DAF51 /* Resources */,
+				CA9EAC3523C12986003DAF51 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ion-swift";
+			productName = "ion-swift";
+			productReference = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CA9EAB9D23C127EA003DAF51 /* ion-swiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA9EABAC23C127EA003DAF51 /* Build configuration list for PBXNativeTarget "ion-swiftTests" */;
+			buildPhases = (
+				CA9EAB9A23C127EA003DAF51 /* Sources */,
+				CA9EAB9B23C127EA003DAF51 /* Frameworks */,
+				CA9EAB9C23C127EA003DAF51 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA9EABA123C127EA003DAF51 /* PBXTargetDependency */,
+			);
+			name = "ion-swiftTests";
+			productName = "ion-swiftTests";
+			productReference = CA9EAB9E23C127EA003DAF51 /* ion-swiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA9EAB8C23C127E9003DAF51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = kxpone;
+				TargetAttributes = {
+					CA9EAB9423C127E9003DAF51 = {
+						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
+					};
+					CA9EAB9D23C127EA003DAF51 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = CA9EAB8F23C127E9003DAF51 /* Build configuration list for PBXProject "ion-swift" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CA9EAB8B23C127E9003DAF51;
+			productRefGroup = CA9EAB9623C127E9003DAF51 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA9EAB9423C127E9003DAF51 /* ion-swift */,
+				CA9EAB9D23C127EA003DAF51 /* ion-swiftTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA9EAB9323C127E9003DAF51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA9EAB9C23C127EA003DAF51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CA9EAC3523C12986003DAF51 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat \"${SRCROOT}/ion-swift/\" --disable redundantSelf,strongOutlets  --swiftversion 5\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CA9EAB9123C127E9003DAF51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */,
+				CA9EAC2F23C12871003DAF51 /* LocalPeer.swift in Sources */,
+				CA9EAC1F23C12871003DAF51 /* ManagedModule.swift in Sources */,
+				CA9EABE123C12871003DAF51 /* ReliabilityManager.swift in Sources */,
+				CA9EAC2123C12871003DAF51 /* Node.swift in Sources */,
+				CA9EABE323C12871003DAF51 /* PacketConnection.swift in Sources */,
+				CA9EABFD23C12871003DAF51 /* StartStopHelper.swift in Sources */,
+				CA9EAC1323C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */,
+				CA9EAC2923C12871003DAF51 /* Browser.swift in Sources */,
+				CA9EABED23C12871003DAF51 /* Graph.swift in Sources */,
+				CA9EAC2B23C12871003DAF51 /* Module.swift in Sources */,
+				CA9EAC1D23C12871003DAF51 /* MulticastConnection.swift in Sources */,
+				CA9EABF523C12871003DAF51 /* Logging.swift in Sources */,
+				CA9EAC0323C12871003DAF51 /* PriorityQueue.swift in Sources */,
+				CA9EAC2D23C12871003DAF51 /* Connection.swift in Sources */,
+				CA9EAC0123C12871003DAF51 /* RepeatedExecutor.swift in Sources */,
+				CA9EAC2323C12871003DAF51 /* Address.swift in Sources */,
+				CA9EABE523C12871003DAF51 /* TransferManager.swift in Sources */,
+				CA9EAC2723C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
+				CA9EABE923C12871003DAF51 /* OutTransfer.swift in Sources */,
+				CA9EAC0D23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */,
+				CA9EAC1723C12871003DAF51 /* ForwardingConnection.swift in Sources */,
+				CA9EABFF23C12871003DAF51 /* Timer.swift in Sources */,
+				CA9EABFB23C12871003DAF51 /* UUID.swift in Sources */,
+				CA9EABF323C12871003DAF51 /* PipeForward.swift in Sources */,
+				CA9EAC2523C12871003DAF51 /* Advertiser.swift in Sources */,
+				CA9EABF723C12871003DAF51 /* Data.swift in Sources */,
+				CA9EAC0B23C12871003DAF51 /* FloodingPacketManager.swift in Sources */,
+				CA9EAC0723C12871003DAF51 /* MappingSequence.swift in Sources */,
+				CA9EAC3123C12871003DAF51 /* Transfer.swift in Sources */,
+				CA9EABEF23C12871003DAF51 /* Tree.swift in Sources */,
+				CA9EABE723C12871003DAF51 /* InTransfer.swift in Sources */,
+				CA9EAC1923C12871003DAF51 /* Router.swift in Sources */,
+				CA9EAC1B23C12871003DAF51 /* DefaultRouter.swift in Sources */,
+				CA9EABEB23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */,
+				CA9EAC1123C12871003DAF51 /* RoutingPackets.swift in Sources */,
+				CA9EAC0923C12871003DAF51 /* Set.swift in Sources */,
+				CA9EABF923C12871003DAF51 /* SinglePacket.swift in Sources */,
+				CA9EAC0523C12871003DAF51 /* Utils.swift in Sources */,
+				CA9EABF123C12871003DAF51 /* Packets.swift in Sources */,
+				CA9EAC0F23C12871003DAF51 /* LinkStatePacket.swift in Sources */,
+				CA9EAC3323C12871003DAF51 /* RemotePeer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA9EAB9A23C127EA003DAF51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA9EAC0E23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */,
+				CA9EAC1023C12871003DAF51 /* LinkStatePacket.swift in Sources */,
+				CA9EAC0C23C12871003DAF51 /* FloodingPacketManager.swift in Sources */,
+				CA9EAC0823C12871003DAF51 /* MappingSequence.swift in Sources */,
+				CA9EABEE23C12871003DAF51 /* Graph.swift in Sources */,
+				CA9EABE623C12871003DAF51 /* TransferManager.swift in Sources */,
+				CA9EAC0223C12871003DAF51 /* RepeatedExecutor.swift in Sources */,
+				CA9EABEA23C12871003DAF51 /* OutTransfer.swift in Sources */,
+				CA9EAC0423C12871003DAF51 /* PriorityQueue.swift in Sources */,
+				CA9EABF023C12871003DAF51 /* Tree.swift in Sources */,
+				CA9EAC2023C12871003DAF51 /* ManagedModule.swift in Sources */,
+				CA9EABFE23C12871003DAF51 /* StartStopHelper.swift in Sources */,
+				CA9EABE823C12871003DAF51 /* InTransfer.swift in Sources */,
+				CA9EABEC23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */,
+				CA9EABFC23C12871003DAF51 /* UUID.swift in Sources */,
+				CA9EAC2823C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
+				CA9EAC1223C12871003DAF51 /* RoutingPackets.swift in Sources */,
+				CA9EAC2C23C12871003DAF51 /* Module.swift in Sources */,
+				CA9EAC1423C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */,
+				CA9EAC1623C12871003DAF51 /* CompositeBrowser.swift in Sources */,
+				CA9EAC1823C12871003DAF51 /* ForwardingConnection.swift in Sources */,
+				CA9EAC2A23C12871003DAF51 /* Browser.swift in Sources */,
+				CA9EAC3223C12871003DAF51 /* Transfer.swift in Sources */,
+				CA9EABE423C12871003DAF51 /* PacketConnection.swift in Sources */,
+				CA9EAC2623C12871003DAF51 /* Advertiser.swift in Sources */,
+				CA9EABF623C12871003DAF51 /* Logging.swift in Sources */,
+				CA9EABF823C12871003DAF51 /* Data.swift in Sources */,
+				CA9EABFA23C12871003DAF51 /* SinglePacket.swift in Sources */,
+				CA9EAC2E23C12871003DAF51 /* Connection.swift in Sources */,
+				CA9EAC1A23C12871003DAF51 /* Router.swift in Sources */,
+				CA9EABF223C12871003DAF51 /* Packets.swift in Sources */,
+				CA9EAC0623C12871003DAF51 /* Utils.swift in Sources */,
+				CA9EABF423C12871003DAF51 /* PipeForward.swift in Sources */,
+				CA9EAC2223C12871003DAF51 /* Node.swift in Sources */,
+				CA9EAC1E23C12871003DAF51 /* MulticastConnection.swift in Sources */,
+				CA9EABE223C12871003DAF51 /* ReliabilityManager.swift in Sources */,
+				CA9EAC3023C12871003DAF51 /* LocalPeer.swift in Sources */,
+				CA9EAC3423C12871003DAF51 /* RemotePeer.swift in Sources */,
+				CA9EABA423C127EA003DAF51 /* ion_swiftTests.swift in Sources */,
+				CA9EAC1C23C12871003DAF51 /* DefaultRouter.swift in Sources */,
+				CA9EAC0A23C12871003DAF51 /* Set.swift in Sources */,
+				CA9EAC0023C12871003DAF51 /* Timer.swift in Sources */,
+				CA9EAC2423C12871003DAF51 /* Address.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CA9EABA123C127EA003DAF51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA9EAB9423C127E9003DAF51 /* ion-swift */;
+			targetProxy = CA9EABA023C127EA003DAF51 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CA9EABA723C127EA003DAF51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CA9EABA823C127EA003DAF51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CA9EABAA23C127EA003DAF51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T6L5U5HC92;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "ion-swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kxpone.ion-swift";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CA9EABAB23C127EA003DAF51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T6L5U5HC92;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "ion-swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kxpone.ion-swift";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CA9EABAD23C127EA003DAF51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T6L5U5HC92;
+				INFOPLIST_FILE = "ion-swiftTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kxpone.ion-swiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CA9EABAE23C127EA003DAF51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T6L5U5HC92;
+				INFOPLIST_FILE = "ion-swiftTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kxpone.ion-swiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CA9EAB8F23C127E9003DAF51 /* Build configuration list for PBXProject "ion-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9EABA723C127EA003DAF51 /* Debug */,
+				CA9EABA823C127EA003DAF51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA9EABA923C127EA003DAF51 /* Build configuration list for PBXNativeTarget "ion-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9EABAA23C127EA003DAF51 /* Debug */,
+				CA9EABAB23C127EA003DAF51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA9EABAC23C127EA003DAF51 /* Build configuration list for PBXNativeTarget "ion-swiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9EABAD23C127EA003DAF51 /* Debug */,
+				CA9EABAE23C127EA003DAF51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CA9EAB8C23C127E9003DAF51 /* Project object */;
+}
