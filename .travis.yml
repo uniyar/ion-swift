@@ -1,4 +1,0 @@
-language: swift
-xcode_project: Framework/ion-swift.xcodeproj
-xcode_scheme: ion-swiftTests
-xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone X
