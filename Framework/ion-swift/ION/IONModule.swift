@@ -8,4 +8,11 @@
 
 import Foundation
 
-class IONModule: Module {}
+class IONModule: Module {
+    init(type prefix: String, dispatchQueue: DispatchQueue) {
+        super.init(dispatchQueue: dispatchQueue)
+
+        self.browser = IONBrowser(type: prefix, dispatchQueue: dispatchQueue)
+        self.advertiser = IONAdvertiser(type: prefix, dispatchQueue: dispatchQueue)
+    }
+}

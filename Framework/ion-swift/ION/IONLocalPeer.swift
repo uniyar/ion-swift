@@ -1,35 +1,19 @@
 //
-//  LocalPeer.swift
-//  sReto
+//  IONLocalPeer.swift
+//  ion-swift
 //
-//  Created by Julian Asamer on 04/07/14.
-//  Copyright (c) 2014 - 2016 Chair for Applied Software Engineering
-//
-//  Licensed under the MIT License
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-//  The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness
-//  for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability,
-//  whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+//  Created by Ivan Manov on 05.01.2020.
+//  Copyright © 2020 kxpone. All rights reserved.
 //
 
-import Foundation
-
-#if os(iOS) || os(tvOS)
-    import UIKit
-#endif
+import UIKit
 
 /** Used to notify about discovered peers. */
-public typealias PeerDiscoveredClosure = (_ peer: RemotePeer) -> Void
+public typealias PeerDiscoveredClosure = (_ peer: IONRemotePeer) -> Void
 /** Used to notify about removed peers. */
-public typealias PeerRemovedClosure = (_ peer: RemotePeer) -> Void
+public typealias PeerRemovedClosure = (_ peer: IONRemotePeer) -> Void
 /** Used to notify about incoming connections peers. */
-public typealias ConnectionClosure = (_ peer: RemotePeer, _ connection: Connection) -> Void
+public typealias ConnectionClosure = (_ peer: IONRemotePeer, _ connection: Connection) -> Void
 
 /**
  * A LocalPeer advertises the local peer in the network and browses for other peers.
@@ -38,7 +22,9 @@ public typealias ConnectionClosure = (_ peer: RemotePeer, _ connection: Connecti
  *
  * The LocalPeer can also be used to establish multicast connections to multiple other peers.
  */
-open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
+public class IONLocalPeer {
+    // MARK: Public properties
+
     /** This peer's name. If not specified in the constructor, it has a the device name. */
     public let name: String
     /** This peer's unique identifier. If not specified in the constructor, it has a random value. */
@@ -46,35 +32,44 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
     /** The dispatch queue used to execute all networking operations and callbacks */
     public let dispatchQueue: DispatchQueue
     /** The set of peers currently reachable */
-    open var peers: Set<RemotePeer> {
+    open var peers: Set<IONRemotePeer> {
         return Set(knownPeers.values)
     }
 
     public static var deviceName: String {
-        #if os(iOS) || os(tvOS)
-            return UIDevice.current.name
-        #else
-            return Host.current().localizedName!
-        #endif
+        return UIDevice.current.name
     }
 
+    // MARK: Internal and Private properties
+
+    private var onPeerDiscovered: PeerDiscoveredClosure?
+    private var onPeerRemoved: PeerRemovedClosure?
+    var onConnection: ConnectionClosure?
+
+    private let router: IONRouter
+    private var knownPeers = [Node: IONRemotePeer]()
+    private var establishedConnections = [UUID: PacketConnection]()
+    private var incomingConnections = [UUID: PacketConnection]()
+
+    // MARK: Initialization methods
+
     /**
-     * Constructs a new LocalPeer object. A random identifier will be used for the LocalPeer.
+     * Constructs a new LocalPeer object. A vendor identifier will be used for the LocalPeer.
      * Note that a LocalPeer is not functional without modules. You can add modules later with the addModule method.
      * The main dispatch queue is used for all networking code.
      */
-    public convenience override init() {
-        self.init(name: LocalPeer.deviceName, identifier: randomUUID(), modules: [], dispatchQueue: DispatchQueue.main)
+    public convenience init() {
+        self.init(name: IONLocalPeer.deviceName, identifier: vendorUUID(), modules: [], dispatchQueue: DispatchQueue.main)
     }
 
     /**
-     * Constructs a new LocalPeer object. A random identifier will be used for the LocalPeer.
+     * Constructs a new LocalPeer object. A vendor identifier will be used for the LocalPeer.
      * Note that a LocalPeer is not functional without modules. You can add modules later with the addModule method.
      *
      * @param dispatchQueue The dispatchQueue used to run all networking code with. The dispatchQueue can be used to specifiy the thread that should be used.
      */
     public convenience init(dispatchQueue: DispatchQueue) {
-        self.init(name: LocalPeer.deviceName, identifier: randomUUID(), modules: [], dispatchQueue: dispatchQueue)
+        self.init(name: IONLocalPeer.deviceName, identifier: vendorUUID(), modules: [], dispatchQueue: dispatchQueue)
     }
 
     /**
@@ -84,7 +79,7 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
      * @param dispatchQueue The dispatchQueue used to run all networking code with. The dispatchQueue can be used to specifiy the thread that should be used.
      */
     public convenience init(modules: [Module], dispatchQueue: DispatchQueue) {
-        self.init(name: LocalPeer.deviceName, identifier: randomUUID(), modules: modules, dispatchQueue: dispatchQueue)
+        self.init(name: IONLocalPeer.deviceName, identifier: vendorUUID(), modules: modules, dispatchQueue: dispatchQueue)
     }
 
     /**
@@ -95,11 +90,11 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
      * @param dispatchQueue The dispatchQueue used to run all networking code with. The dispatchQueue can be used to specifiy the thread that should be used.
      */
     public convenience init(name: String, modules: [Module], dispatchQueue: DispatchQueue) {
-        self.init(name: name, identifier: randomUUID(), modules: modules, dispatchQueue: dispatchQueue)
+        self.init(name: name, identifier: vendorUUID(), modules: modules, dispatchQueue: dispatchQueue)
     }
 
     /**
-     * Constructs a new LocalPeer object. A random identifier will be used for the LocalPeer.
+     * Constructs a new LocalPeer object. A vendor identifier will be used for the LocalPeer.
      *
      * @param name The name used for the peer
      * @param localPeerIdentifier The identifier used for the peer
@@ -109,10 +104,8 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
     public init(name: String, identifier: UUID, modules: [Module], dispatchQueue: DispatchQueue) {
         self.name = name
         self.identifier = identifier
-        self.router = DefaultRouter(localIdentifier: identifier, localName: name, dispatchQueue: dispatchQueue, modules: modules)
+        self.router = IONRouter(localIdentifier: identifier, localName: name, dispatchQueue: dispatchQueue, modules: modules)
         self.dispatchQueue = dispatchQueue
-
-        super.init()
 
         self.router.delegate = self
     }
@@ -132,7 +125,8 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
      * @param onPeerDiscovered Called when a peer is discovered.
      * @param onPeerRemoved Called when a peer is removed.
      */
-    open func start(onPeerDiscovered: @escaping PeerDiscoveredClosure, onPeerRemoved: @escaping PeerRemovedClosure) {
+    open func start(onPeerDiscovered: @escaping PeerDiscoveredClosure,
+                    onPeerRemoved: @escaping PeerRemovedClosure) {
         self.onPeerDiscovered = onPeerDiscovered
         self.onPeerRemoved = onPeerRemoved
 
@@ -145,7 +139,10 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
      * @param onPeerRemoved Called when a peer is removed.
      * @param onIncomingConnection Called when a connection is available. Call accept on the peer to accept the connection.
      */
-    open func start(onPeerDiscovered: @escaping PeerDiscoveredClosure, onPeerRemoved: @escaping PeerRemovedClosure, onIncomingConnection: @escaping ConnectionClosure, displayName _: String?) {
+    open func start(onPeerDiscovered: @escaping PeerDiscoveredClosure,
+                    onPeerRemoved: @escaping PeerRemovedClosure,
+                    onIncomingConnection: @escaping ConnectionClosure,
+                    displayName _: String?) {
         self.onPeerDiscovered = onPeerDiscovered
         self.onPeerRemoved = onPeerRemoved
         self.onConnection = onIncomingConnection
@@ -184,34 +181,30 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
 
     /**
      * Establishes a multicast connection to a set of peers. The connection can only be used to send data, not to receive data.
-     * @param destinations The RemotePeers to establish a connection with.
+     * @param destinations The IONRemotePeers to establish a connection with.
      * @return A Connection object. It can be used to send data immediately (the transfers will be started once the connection was successfully established).
      */
-    open func connect(_ destinations: Set<RemotePeer>) -> Connection {
+    open func connect(_ destinations: Set<IONRemotePeer>) -> Connection {
         let destinations = Set(destinations.map { $0.node })
         let identifier = randomUUID()
         let packetConnection = PacketConnection(connection: nil, connectionIdentifier: identifier, destinations: destinations)
 
         self.establishedConnections[identifier] = packetConnection
 
-        let transferConnection = Connection(packetConnection: packetConnection, localIdentifier: self.identifier, dispatchQueue: self.dispatchQueue, isConnectionEstablisher: true, connectionManager: self)
+        let transferConnection = Connection(
+            packetConnection: packetConnection,
+            localIdentifier: self.identifier,
+            dispatchQueue: self.dispatchQueue,
+            isConnectionEstablisher: true,
+            connectionManager: self
+        )
+
         transferConnection.reconnect()
 
         return transferConnection
     }
 
-    // MARK: Internal and Private
-
-    fileprivate var onPeerDiscovered: PeerDiscoveredClosure?
-    fileprivate var onPeerRemoved: PeerRemovedClosure?
-    var onConnection: ConnectionClosure?
-
-    fileprivate let router: DefaultRouter
-    fileprivate var knownPeers = [Node: RemotePeer]()
-    fileprivate var establishedConnections = [UUID: PacketConnection]()
-    fileprivate var incomingConnections = [UUID: PacketConnection]()
-
-    fileprivate func startRouter() {
+    private func startRouter() {
         if self.router.modules.count == 0 {
             log(.high, warning: "You started the LocalPeer, but it does not have any modules. It cannot function without modules. See the LocalPeer class documentation for more information.")
         }
@@ -219,8 +212,15 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
         self.router.start()
     }
 
-    fileprivate func providePeer(_ node: Node) -> RemotePeer {
-        return self.knownPeers.getOrDefault(node, defaultValue: RemotePeer(node: node, localPeer: self, dispatchQueue: self.dispatchQueue))
+    private func providePeer(_ node: Node) -> IONRemotePeer {
+        return self.knownPeers.getOrDefault(
+            node,
+            defaultValue: IONRemotePeer(
+                node: node,
+                localPeer: self,
+                dispatchQueue: self.dispatchQueue
+            )
+        )
     }
 
     /**
@@ -232,7 +232,7 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
      * @param connection The connection that was established
      * @param connectionIdentifier The identifier of the connection
      * */
-    fileprivate func handleConnection(node: Node, connection: UnderlyingConnection, connectionIdentifier: UUID) {
+    private func handleConnection(node: Node, connection: UnderlyingConnection, connectionIdentifier: UUID) {
         let needsToReportPeer = self.knownPeers[node] == nil
 
         let peer = self.providePeer(node)
@@ -251,7 +251,7 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
     /**
      * Creates a new connection and calls the handling closure.
      */
-    fileprivate func createConnection(peer: RemotePeer, connection: UnderlyingConnection, connectionIdentifier: UUID) {
+    private func createConnection(peer: IONRemotePeer, connection: UnderlyingConnection, connectionIdentifier: UUID) {
         let packetConnection = PacketConnection(connection: connection, connectionIdentifier: connectionIdentifier, destinations: [peer.node])
         peer.connections[connectionIdentifier] = packetConnection
         self.incomingConnections[connectionIdentifier] = packetConnection
@@ -269,12 +269,22 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
         } else if let connectionClosure = self.onConnection {
             connectionClosure(peer, transferConnection)
         } else {
-            log(.high, warning: "An incoming connection was received, but onConnection is not set. Set it either in your LocalPeer instance (\(self)), or in the RemotePeer which established the connection (\(peer)).")
+            log(.high, warning: "An incoming connection was received, but onConnection is not set. Set it either in your LocalPeer instance (\(self)), or in the IONRemotePeer which established the connection (\(peer)).")
         }
     }
 
-    // MARK: RouterDelegate
+    func reconnect(_ peer: IONRemotePeer) {
+        for (_, packetConnection) in self.establishedConnections {
+            if packetConnection.destinations.contains(peer.node) {
+                self.establishUnderlyingConnection(packetConnection)
+            }
+        }
+    }
+}
 
+// MARK: RouterHandler protocol implementation
+
+extension IONLocalPeer: RouterHandler {
     internal func didFindNode(_: Router, node: Node) {
         if self.knownPeers[node] != nil {
             return
@@ -293,6 +303,7 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
         let peer = providePeer(node)
         self.knownPeers[node] = nil
         peer.onConnection = nil
+
         self.onPeerRemoved?(peer)
     }
 
@@ -315,9 +326,11 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
             log(.high, info: "Connection closed before receiving ManagedConnectionHandshake")
         })
     }
+}
 
-    // MARK: ConnectionDelegate
+// MARK: ConnectionManager protocol implementation
 
+extension IONLocalPeer: ConnectionManager {
     func establishUnderlyingConnection(_ packetConnection: PacketConnection) {
         self.router.establishMulticastConnection(destinations: packetConnection.destinations, onConnection: { connection in
             _ = writeSinglePacket(connection: connection, packet: ManagedConnectionHandshake(connectionIdentifier: packetConnection.connectionIdentifier), onSuccess: {
@@ -334,13 +347,5 @@ open class LocalPeer: NSObject, ConnectionManager, RouterHandler {
     func notifyConnectionClose(_ connection: PacketConnection) {
         self.establishedConnections[connection.connectionIdentifier] = nil
         self.incomingConnections[connection.connectionIdentifier] = nil
-    }
-
-    func reconnect(_ peer: RemotePeer) {
-        for (_, packetConnection) in self.establishedConnections {
-            if packetConnection.destinations.contains(peer.node) {
-                self.establishUnderlyingConnection(packetConnection)
-            }
-        }
     }
 }

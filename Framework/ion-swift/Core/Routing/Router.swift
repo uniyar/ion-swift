@@ -23,7 +23,7 @@ var broadcastDelaySettings: (shortDelay: Double, regularDelay: Double) = (0.5, 5
  *
  * In this implementation, this involves the following tasks:
  *
- * - Using of Reto Modules to discover direct neighbors and advertise the local peer (this is implemented in the DefaultRouter subclass).
+ * - Using of Reto Modules to discover direct neighbors and advertise the local peer (this is implemented in the IONRouter subclass).
  * - Distribution of routing information using a flooding algorithm.
  * - Building a link-state routing table based on that information.
  * - Computing reachability information about other nodes when new routing information is received and informing the delegate about changes in reachabilty

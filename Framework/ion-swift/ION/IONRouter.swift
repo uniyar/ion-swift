@@ -1,33 +1,28 @@
 //
-//  DefaultRouter.swift
-//  sReto
+//  IONRouter.swift
+//  ion-swift
 //
-//  Created by Julian Asamer on 12/08/14.
-//  Copyright (c) 2014 - 2016 Chair for Applied Software Engineering
-//
-//  Licensed under the MIT License
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-//  The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness
-//  for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability,
-//  whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+//  Created by Ivan Manov on 06.01.2020.
+//  Copyright © 2020 kxpone. All rights reserved.
 //
 
 import Foundation
 
-/** A DefaultRouter uses Reto Modules to discover other peers. */
-class DefaultRouter: Router, AdvertiserDelegate, BrowserDelegate {
+/// IONRouter uses Modules to discover other peers.
+class IONRouter: Router {
     let advertiser: CompositeAdvertiser
     let browser: CompositeBrowser
     var modules: [ManagedModule]
 
+    /// <#Description#>
+    /// - Parameters:
+    ///   - localIdentifier: <#localIdentifier description#>
+    ///   - localName: <#localName description#>
+    ///   - dispatchQueue: <#dispatchQueue description#>
+    ///   - modules: <#modules description#>
     init(localIdentifier: UUID, localName: String, dispatchQueue: DispatchQueue, modules: [Module]) {
         self.modules = modules.map { ManagedModule(module: $0, dispatchQueue: dispatchQueue) }
+
         self.advertiser = CompositeAdvertiser(advertisers: self.modules.map { $0.advertiser })
         self.browser = CompositeBrowser(browsers: self.modules.map { $0.browser })
 
@@ -37,16 +32,20 @@ class DefaultRouter: Router, AdvertiserDelegate, BrowserDelegate {
         self.browser.browserDelegate = self
     }
 
+    /// <#Description#>
     func start() {
         self.advertiser.startAdvertising(self.identifier)
         self.browser.startBrowsing()
     }
 
+    /// <#Description#>
     func stop() {
         self.advertiser.stopAdvertising()
         self.browser.stopBrowsing()
     }
 
+    /// <#Description#>
+    /// - Parameter module: <#module description#>
     func addModule(_ module: Module) {
         let newModule = ManagedModule(module: module, dispatchQueue: self.dispatchQueue)
 
@@ -55,6 +54,8 @@ class DefaultRouter: Router, AdvertiserDelegate, BrowserDelegate {
         self.modules.append(newModule)
     }
 
+    /// <#Description#>
+    /// - Parameter module: <#module description#>
     func removeModule(_ module: Module) {
         let removedModules = self.modules.filter { $0.module === module }
 
@@ -65,20 +66,28 @@ class DefaultRouter: Router, AdvertiserDelegate, BrowserDelegate {
 
         self.modules = self.modules.filter { $0.module !== module }
     }
+}
 
-    func didStartAdvertising(_: Advertiser) {}
-    func didStopAdvertising(_: Advertiser) {}
-    func handleConnection(_: Advertiser, connection underlyingConnection: UnderlyingConnection) {
-        self.handleDirectConnection(underlyingConnection)
-    }
-
+extension IONRouter: BrowserDelegate {
     func didStartBrowsing(_: Browser) {}
+
     func didStopBrowsing(_: Browser) {}
+
     func didDiscoverAddress(_: Browser, address: Address, identifier: UUID) {
         self.addAddress(identifier, nodeName: address.hostName, address: address)
     }
 
     func didRemoveAddress(_: Browser, address: Address, identifier: UUID) {
         self.removeAddress(identifier, nodeName: nil, address: address)
+    }
+}
+
+extension IONRouter: AdvertiserDelegate {
+    func didStartAdvertising(_: Advertiser) {}
+
+    func didStopAdvertising(_: Advertiser) {}
+
+    func handleConnection(_: Advertiser, connection underlyingConnection: UnderlyingConnection) {
+        self.handleDirectConnection(underlyingConnection)
     }
 }

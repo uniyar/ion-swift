@@ -12,11 +12,5 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        _ = IONPeer(
-            appId: "example",
-            peerName: UIDevice.current.name,
-            dispatchQueue: .main
-        )
     }
 }

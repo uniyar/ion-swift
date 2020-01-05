@@ -11,20 +11,20 @@ import Network
 
 class IONBrowser: Browser {
     var isBrowsing: Bool = false
-    var browserDelegate: BrowserDelegate?
+    weak var browserDelegate: BrowserDelegate?
 
     let browser: NWBrowser
-    let queue: DispatchQueue
+    let dispatchQueue: DispatchQueue
 
-    init(type prefix: String, queue: DispatchQueue) {
+    init(type prefix: String, dispatchQueue: DispatchQueue) {
         let parameters = NWParameters()
         parameters.includePeerToPeer = true
 
         self.browser = NWBrowser(
-            for: .bonjour(type: "_" + prefix + "._tcp", domain: nil),
+            for: .bonjour(type: "_\(prefix)._tcp", domain: nil),
             using: parameters
         )
-        self.queue = queue
+        self.dispatchQueue = dispatchQueue
         self.handleUpdates()
     }
 
@@ -74,7 +74,7 @@ class IONBrowser: Browser {
     // MARK: Browser protocol methods
 
     func startBrowsing() {
-        self.browser.start(queue: self.queue)
+        self.browser.start(queue: self.dispatchQueue)
         self.browserDelegate?.didStartBrowsing(self)
     }
 
