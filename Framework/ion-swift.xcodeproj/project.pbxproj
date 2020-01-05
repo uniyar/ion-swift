@@ -110,6 +110,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CA34993C23C253CC001DEDEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA34991623C2532F001DEDEB;
+			remoteInfo = "ion-swift-example";
+		};
 		CA9EABA023C127EA003DAF51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA9EAB8C23C127E9003DAF51 /* Project object */;
@@ -127,6 +134,7 @@
 		CA3498F923C23BE9001DEDEB /* IONConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONConnection.swift; sourceTree = "<group>"; };
 		CA3498FA23C23BE9001DEDEB /* IONPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONPeer.swift; sourceTree = "<group>"; };
 		CA34990B23C23CF4001DEDEB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
+		CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ion-swift-example.xcodeproj"; path = "../Apps/Client/ion-swift-example/ion-swift-example.xcodeproj"; sourceTree = "<group>"; };
 		CA9EAB9523C127E9003DAF51 /* ion_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ion_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA9EAB9823C127E9003DAF51 /* ion_swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ion_swift.h; sourceTree = "<group>"; };
 		CA9EAB9923C127E9003DAF51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -232,9 +240,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA34993823C253CC001DEDEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA34993D23C253CC001DEDEB /* ion-swift-example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CA9EAB8B23C127E9003DAF51 = {
 			isa = PBXGroup;
 			children = (
+				CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */,
 				CA9EAB9723C127E9003DAF51 /* ion-swift */,
 				CA9EABA223C127EA003DAF51 /* ion-swiftTests */,
 				CA9EAB9623C127E9003DAF51 /* Products */,
@@ -459,6 +476,12 @@
 			mainGroup = CA9EAB8B23C127E9003DAF51;
 			productRefGroup = CA9EAB9623C127E9003DAF51 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CA34993823C253CC001DEDEB /* Products */;
+					ProjectRef = CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CA9EAB9423C127E9003DAF51 /* ion-swift */,
@@ -466,6 +489,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CA34993D23C253CC001DEDEB /* ion-swift-example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "ion-swift-example.app";
+			remoteRef = CA34993C23C253CC001DEDEB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA9EAB9323C127E9003DAF51 /* Resources */ = {

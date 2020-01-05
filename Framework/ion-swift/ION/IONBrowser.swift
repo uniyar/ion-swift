@@ -17,15 +17,18 @@ class IONBrowser: Browser {
     let queue: DispatchQueue
 
     init(type prefix: String, queue: DispatchQueue) {
+        let parameters = NWParameters()
+        parameters.includePeerToPeer = true
+
         self.browser = NWBrowser(
-            for: .bonjour(type: prefix + "._tcp", domain: nil),
-            using: NWParameters()
+            for: .bonjour(type: "_" + prefix + "._tcp", domain: nil),
+            using: parameters
         )
         self.queue = queue
-        self.handleChanges()
+        self.handleUpdates()
     }
-    
-    private func handleChanges() {
+
+    private func handleUpdates() {
         self.browser.browseResultsChangedHandler = { results, changes in
             changes.forEach { change in
                 switch change {
@@ -48,6 +51,24 @@ class IONBrowser: Browser {
             let endpoints = results.map { $0.endpoint }
             print(endpoints)
         }
+
+        self.browser.stateUpdateHandler = { newState in
+            switch newState {
+            case .ready:
+                self.isBrowsing = true
+            case let .failed(error):
+                print("Browser failed with \(error), restarting...")
+                self.isBrowsing = false
+                self.restartBrowsing()
+            default:
+                self.isBrowsing = false
+            }
+        }
+    }
+
+    func restartBrowsing() {
+        self.stopBrowsing()
+        self.startBrowsing()
     }
 
     // MARK: Browser protocol methods

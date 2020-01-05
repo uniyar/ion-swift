@@ -18,7 +18,7 @@
 //  whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
 //
 
-import Foundation
+import UIKit
 
 extension Foundation.UUID {
     init(uuid: UUID) {
@@ -66,6 +66,11 @@ public struct UUID: Comparable, Hashable, CustomStringConvertible {
 /** Constructs a random UUID. */
 public func randomUUID() -> UUID {
     return fromUUID(Foundation.UUID())
+}
+
+/** Constructs a random UUID. */
+public func vendorUUID() -> UUID {
+    return fromUUID(UIDevice.current.identifierForVendor ?? Foundation.UUID())
 }
 
 /** Converts an Foundation.UUID to a UUID. */
