@@ -1,11 +1,10 @@
 PODS:
   - IONSwift (0.0.1):
-    - IONSwift/AllModules (= 0.0.1)
-  - IONSwift/AllModules (0.0.1):
-    - IONSwift/IONModule
+    - IONSwift/ION (= 0.0.1)
   - IONSwift/Core (0.0.1)
-  - IONSwift/IONModule (0.0.1):
+  - IONSwift/ION (0.0.1):
     - IONSwift/Core
+    - RxSwift
   - RxSwift (5.0.1)
   - TableKit (2.10.0)
 
@@ -24,7 +23,7 @@ EXTERNAL SOURCES:
     :path: "../../../"
 
 SPEC CHECKSUMS:
-  IONSwift: 5b87f39aebc825f9b183f3e4f8fcfe27f0ec4c7f
+  IONSwift: cc212200690b5a0d5dc5294334e739f1665a465a
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   TableKit: 65645d0dd786e21dc61464da59ad770c60a07282
 

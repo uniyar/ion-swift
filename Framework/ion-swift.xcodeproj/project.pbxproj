@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA3498FB23C23BE9001DEDEB /* IONAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F523C23BE9001DEDEB /* IONAddress.swift */; };
+		CA3498FC23C23BE9001DEDEB /* IONAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F523C23BE9001DEDEB /* IONAddress.swift */; };
+		CA3498FD23C23BE9001DEDEB /* IONModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F623C23BE9001DEDEB /* IONModule.swift */; };
+		CA3498FE23C23BE9001DEDEB /* IONModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F623C23BE9001DEDEB /* IONModule.swift */; };
+		CA3498FF23C23BE9001DEDEB /* IONBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F723C23BE9001DEDEB /* IONBrowser.swift */; };
+		CA34990023C23BE9001DEDEB /* IONBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F723C23BE9001DEDEB /* IONBrowser.swift */; };
+		CA34990123C23BE9001DEDEB /* IONAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */; };
+		CA34990223C23BE9001DEDEB /* IONAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */; };
+		CA34990323C23BE9001DEDEB /* IONConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F923C23BE9001DEDEB /* IONConnection.swift */; };
+		CA34990423C23BE9001DEDEB /* IONConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F923C23BE9001DEDEB /* IONConnection.swift */; };
+		CA34990523C23BE9001DEDEB /* IONPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONPeer.swift */; };
+		CA34990623C23BE9001DEDEB /* IONPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONPeer.swift */; };
 		CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */; };
 		CA9EABA423C127EA003DAF51 /* ion_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABA323C127EA003DAF51 /* ion_swiftTests.swift */; };
 		CA9EABA623C127EA003DAF51 /* ion_swift.h in Headers */ = {isa = PBXBuildFile; fileRef = CA9EAB9823C127E9003DAF51 /* ion_swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,6 +119,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA3498F523C23BE9001DEDEB /* IONAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONAddress.swift; sourceTree = "<group>"; };
+		CA3498F623C23BE9001DEDEB /* IONModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONModule.swift; sourceTree = "<group>"; };
+		CA3498F723C23BE9001DEDEB /* IONBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONBrowser.swift; sourceTree = "<group>"; };
+		CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONAdvertiser.swift; sourceTree = "<group>"; };
+		CA3498F923C23BE9001DEDEB /* IONConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONConnection.swift; sourceTree = "<group>"; };
+		CA3498FA23C23BE9001DEDEB /* IONPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONPeer.swift; sourceTree = "<group>"; };
 		CA9EAB9523C127E9003DAF51 /* ion_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ion_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA9EAB9823C127E9003DAF51 /* ion_swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ion_swift.h; sourceTree = "<group>"; };
 		CA9EAB9923C127E9003DAF51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +194,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA3498F423C23BE9001DEDEB /* ION */ = {
+			isa = PBXGroup;
+			children = (
+				CA3498FA23C23BE9001DEDEB /* IONPeer.swift */,
+				CA3498F623C23BE9001DEDEB /* IONModule.swift */,
+				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
+				CA3498F723C23BE9001DEDEB /* IONBrowser.swift */,
+				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
+				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
+			);
+			path = ION;
+			sourceTree = "<group>";
+		};
+		CA34990823C23BFB001DEDEB /* IONTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IONTests;
+			sourceTree = "<group>";
+		};
+		CA34990923C23BFB001DEDEB /* CoreTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreTests;
+			sourceTree = "<group>";
+		};
 		CA9EAB8B23C127E9003DAF51 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +245,7 @@
 				CA9EAB9823C127E9003DAF51 /* ion_swift.h */,
 				CA9EAB9923C127E9003DAF51 /* Info.plist */,
 				CA9EABAF23C1283A003DAF51 /* Core */,
+				CA3498F423C23BE9001DEDEB /* ION */,
 			);
 			path = "ion-swift";
 			sourceTree = "<group>";
@@ -207,6 +253,8 @@
 		CA9EABA223C127EA003DAF51 /* ion-swiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				CA34990923C23BFB001DEDEB /* CoreTests */,
+				CA34990823C23BFB001DEDEB /* IONTests */,
 				CA9EABA323C127EA003DAF51 /* ion_swiftTests.swift */,
 				CA9EABA523C127EA003DAF51 /* Info.plist */,
 			);
@@ -452,6 +500,8 @@
 				CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */,
 				CA9EAC2F23C12871003DAF51 /* LocalPeer.swift in Sources */,
 				CA9EAC1F23C12871003DAF51 /* ManagedModule.swift in Sources */,
+				CA34990123C23BE9001DEDEB /* IONAdvertiser.swift in Sources */,
+				CA3498FB23C23BE9001DEDEB /* IONAddress.swift in Sources */,
 				CA9EABE123C12871003DAF51 /* ReliabilityManager.swift in Sources */,
 				CA9EAC2123C12871003DAF51 /* Node.swift in Sources */,
 				CA9EABE323C12871003DAF51 /* PacketConnection.swift in Sources */,
@@ -461,8 +511,11 @@
 				CA9EABED23C12871003DAF51 /* Graph.swift in Sources */,
 				CA9EAC2B23C12871003DAF51 /* Module.swift in Sources */,
 				CA9EAC1D23C12871003DAF51 /* MulticastConnection.swift in Sources */,
+				CA34990323C23BE9001DEDEB /* IONConnection.swift in Sources */,
 				CA9EABF523C12871003DAF51 /* Logging.swift in Sources */,
+				CA3498FD23C23BE9001DEDEB /* IONModule.swift in Sources */,
 				CA9EAC0323C12871003DAF51 /* PriorityQueue.swift in Sources */,
+				CA3498FF23C23BE9001DEDEB /* IONBrowser.swift in Sources */,
 				CA9EAC2D23C12871003DAF51 /* Connection.swift in Sources */,
 				CA9EAC0123C12871003DAF51 /* RepeatedExecutor.swift in Sources */,
 				CA9EAC2323C12871003DAF51 /* Address.swift in Sources */,
@@ -470,6 +523,7 @@
 				CA9EAC2723C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
 				CA9EABE923C12871003DAF51 /* OutTransfer.swift in Sources */,
 				CA9EAC0D23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */,
+				CA34990523C23BE9001DEDEB /* IONPeer.swift in Sources */,
 				CA9EAC1723C12871003DAF51 /* ForwardingConnection.swift in Sources */,
 				CA9EABFF23C12871003DAF51 /* Timer.swift in Sources */,
 				CA9EABFB23C12871003DAF51 /* UUID.swift in Sources */,
@@ -509,11 +563,14 @@
 				CA9EAC0423C12871003DAF51 /* PriorityQueue.swift in Sources */,
 				CA9EABF023C12871003DAF51 /* Tree.swift in Sources */,
 				CA9EAC2023C12871003DAF51 /* ManagedModule.swift in Sources */,
+				CA3498FC23C23BE9001DEDEB /* IONAddress.swift in Sources */,
 				CA9EABFE23C12871003DAF51 /* StartStopHelper.swift in Sources */,
 				CA9EABE823C12871003DAF51 /* InTransfer.swift in Sources */,
 				CA9EABEC23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */,
+				CA34990623C23BE9001DEDEB /* IONPeer.swift in Sources */,
 				CA9EABFC23C12871003DAF51 /* UUID.swift in Sources */,
 				CA9EAC2823C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
+				CA34990023C23BE9001DEDEB /* IONBrowser.swift in Sources */,
 				CA9EAC1223C12871003DAF51 /* RoutingPackets.swift in Sources */,
 				CA9EAC2C23C12871003DAF51 /* Module.swift in Sources */,
 				CA9EAC1423C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */,
@@ -532,12 +589,15 @@
 				CA9EAC0623C12871003DAF51 /* Utils.swift in Sources */,
 				CA9EABF423C12871003DAF51 /* PipeForward.swift in Sources */,
 				CA9EAC2223C12871003DAF51 /* Node.swift in Sources */,
+				CA34990423C23BE9001DEDEB /* IONConnection.swift in Sources */,
 				CA9EAC1E23C12871003DAF51 /* MulticastConnection.swift in Sources */,
 				CA9EABE223C12871003DAF51 /* ReliabilityManager.swift in Sources */,
 				CA9EAC3023C12871003DAF51 /* LocalPeer.swift in Sources */,
 				CA9EAC3423C12871003DAF51 /* RemotePeer.swift in Sources */,
 				CA9EABA423C127EA003DAF51 /* ion_swiftTests.swift in Sources */,
+				CA34990223C23BE9001DEDEB /* IONAdvertiser.swift in Sources */,
 				CA9EAC1C23C12871003DAF51 /* DefaultRouter.swift in Sources */,
+				CA3498FE23C23BE9001DEDEB /* IONModule.swift in Sources */,
 				CA9EAC0A23C12871003DAF51 /* Set.swift in Sources */,
 				CA9EAC0023C12871003DAF51 /* Timer.swift in Sources */,
 				CA9EAC2423C12871003DAF51 /* Address.swift in Sources */,
