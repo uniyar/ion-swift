@@ -19,6 +19,7 @@
 		CA34990423C23BE9001DEDEB /* IONConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F923C23BE9001DEDEB /* IONConnection.swift */; };
 		CA34990523C23BE9001DEDEB /* IONPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONPeer.swift */; };
 		CA34990623C23BE9001DEDEB /* IONPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONPeer.swift */; };
+		CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA34990B23C23CF4001DEDEB /* Network.framework */; };
 		CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */; };
 		CA9EABA423C127EA003DAF51 /* ion_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABA323C127EA003DAF51 /* ion_swiftTests.swift */; };
 		CA9EABA623C127EA003DAF51 /* ion_swift.h in Headers */ = {isa = PBXBuildFile; fileRef = CA9EAB9823C127E9003DAF51 /* ion_swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -125,6 +126,7 @@
 		CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONAdvertiser.swift; sourceTree = "<group>"; };
 		CA3498F923C23BE9001DEDEB /* IONConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONConnection.swift; sourceTree = "<group>"; };
 		CA3498FA23C23BE9001DEDEB /* IONPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONPeer.swift; sourceTree = "<group>"; };
+		CA34990B23C23CF4001DEDEB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		CA9EAB9523C127E9003DAF51 /* ion_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ion_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA9EAB9823C127E9003DAF51 /* ion_swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ion_swift.h; sourceTree = "<group>"; };
 		CA9EAB9923C127E9003DAF51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,12 +224,21 @@
 			path = CoreTests;
 			sourceTree = "<group>";
 		};
+		CA34990A23C23CF4001DEDEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA34990B23C23CF4001DEDEB /* Network.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CA9EAB8B23C127E9003DAF51 = {
 			isa = PBXGroup;
 			children = (
 				CA9EAB9723C127E9003DAF51 /* ion-swift */,
 				CA9EABA223C127EA003DAF51 /* ion-swiftTests */,
 				CA9EAB9623C127E9003DAF51 /* Products */,
+				CA34990A23C23CF4001DEDEB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
