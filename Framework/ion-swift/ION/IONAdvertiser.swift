@@ -25,7 +25,12 @@ class IONAdvertiser: Advertiser {
     }
 
     private func prepareListener() {
-        let parameters = NWParameters()
+        // Customize TCP options to enable keepalives.
+        let tcpOptions = NWProtocolTCP.Options()
+        tcpOptions.enableKeepalive = true
+        tcpOptions.keepaliveIdle = 2
+
+        let parameters = NWParameters(tls: NWProtocolTLS.Options(), tcp: tcpOptions)
         parameters.includePeerToPeer = true
 
         // Create the listener object.
@@ -47,12 +52,16 @@ class IONAdvertiser: Advertiser {
                 print("Listener ready on \(String(describing: listener.port))")
                 self.isAdvertising = true
             case let .failed(error):
-                print("Listener failed with \(error), restarting")
+                print("Listener failed with \(error), restarting...")
                 self.isAdvertising = false
                 self.restartAdvertising()
             default:
                 self.isAdvertising = false
             }
+        }
+
+        listener.newConnectionHandler = { newConnection in
+            print(newConnection)
         }
     }
 

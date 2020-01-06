@@ -20,6 +20,8 @@
 		CA34990523C23BE9001DEDEB /* IONLocalPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */; };
 		CA34990623C23BE9001DEDEB /* IONLocalPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */; };
 		CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA34990B23C23CF4001DEDEB /* Network.framework */; };
+		CA3FEADE23C2B0FD0093A432 /* IONRemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */; };
+		CA3FEADF23C2B0FD0093A432 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
 		CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
 		CA97DBA023C2A16700516B64 /* IONRemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */; };
 		CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */; };
@@ -591,6 +593,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA9EAC0E23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */,
+				CA3FEADF23C2B0FD0093A432 /* IONRouter.swift in Sources */,
 				CA9EAC1023C12871003DAF51 /* LinkStatePacket.swift in Sources */,
 				CA9EAC0C23C12871003DAF51 /* FloodingPacketManager.swift in Sources */,
 				CA9EAC0823C12871003DAF51 /* MappingSequence.swift in Sources */,
@@ -621,6 +624,7 @@
 				CA9EABF623C12871003DAF51 /* Logging.swift in Sources */,
 				CA9EABF823C12871003DAF51 /* Data.swift in Sources */,
 				CA9EABFA23C12871003DAF51 /* SinglePacket.swift in Sources */,
+				CA3FEADE23C2B0FD0093A432 /* IONRemotePeer.swift in Sources */,
 				CA9EAC2E23C12871003DAF51 /* Connection.swift in Sources */,
 				CA9EAC1A23C12871003DAF51 /* Router.swift in Sources */,
 				CA9EABF223C12871003DAF51 /* Packets.swift in Sources */,

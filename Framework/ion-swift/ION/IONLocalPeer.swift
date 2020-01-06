@@ -216,7 +216,7 @@ public class IONLocalPeer {
             log(.high, warning: "An incoming connection was received, but onConnection is not set. Set it either in your LocalPeer instance (\(self)), or in the IONRemotePeer which established the connection (\(peer)).")
         }
     }
-    
+
     /// <#Description#>
     /// - Parameter peer: <#peer description#>
     private func reconnect(_ peer: IONRemotePeer) {
@@ -253,14 +253,14 @@ extension IONLocalPeer: RouterHandler {
         self.onPeerRemoved?(peer)
     }
 
-    /**
-     * Handles an incoming connection.
-     *
-     * @param router The router which reported the connection
-     * @param node The node which established the connection
-     * @param connection The connection that was established
-     * */
-    internal func handleConnection(_: Router, node: Node, connection: UnderlyingConnection) {
+    /// Handles an incoming connection.
+    /// - Parameters:
+    ///   - router: The router which reported the connection
+    ///   - node: The node which established the connection
+    ///   - connection: The connection that was established
+    internal func handleConnection(_: Router,
+                                   node: Node,
+                                   connection: UnderlyingConnection) {
         log(.high, info: "Handling incoming connection...")
         _ = readSinglePacket(connection: connection, onPacket: { data in
             if let packet = ManagedConnectionHandshake.deserialize(data) {
