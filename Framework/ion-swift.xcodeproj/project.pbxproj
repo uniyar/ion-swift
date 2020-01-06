@@ -209,9 +209,9 @@
 				CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */,
 				CA97DB9D23C2993800516B64 /* IONRouter.swift */,
 				CA3498F623C23BE9001DEDEB /* IONModule.swift */,
-				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
 				CA3498F723C23BE9001DEDEB /* IONBrowser.swift */,
 				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
+				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
 				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
 			);
 			path = ION;

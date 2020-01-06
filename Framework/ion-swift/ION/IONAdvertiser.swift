@@ -25,16 +25,8 @@ class IONAdvertiser: Advertiser {
     }
 
     private func prepareListener() {
-        // Customize TCP options to enable keepalives.
-        let tcpOptions = NWProtocolTCP.Options()
-        tcpOptions.enableKeepalive = true
-        tcpOptions.keepaliveIdle = 2
-
-        let parameters = NWParameters(tls: NWProtocolTLS.Options(), tcp: tcpOptions)
-        parameters.includePeerToPeer = true
-
         // Create the listener object.
-        guard let listener = try? NWListener(using: parameters) else {
+        guard let listener = try? NWListener(using: IONLocalPeer.dafaultParemeters) else {
             print("Failed to create listener")
             return
         }

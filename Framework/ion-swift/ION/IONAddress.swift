@@ -7,13 +7,24 @@
 //
 
 import Foundation
+import Network
 
 class IONAddress: Address {
-    var cost: Int = 0
-
+    var cost: Int = 0 // TODO: Connection metrics
     var hostName: String = ""
 
+    let endpoint: NWEndpoint
+    let dispatchQueue: DispatchQueue
+
+    init(hostName: String,
+         endpoint: NWEndpoint,
+         dispatchQueue: DispatchQueue) {
+        self.hostName = hostName
+        self.endpoint = endpoint
+        self.dispatchQueue = dispatchQueue
+    }
+
     func createConnection() -> UnderlyingConnection {
-        return IONConnection()
+        return IONConnection(endpoint: self.endpoint, dispatchQueue: self.dispatchQueue)
     }
 }

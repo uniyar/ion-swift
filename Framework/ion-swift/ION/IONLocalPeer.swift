@@ -6,6 +6,7 @@
 //  Copyright © 2020 kxpone. All rights reserved.
 //
 
+import Network
 import UIKit
 
 /// Used to notify about discovered peers.
@@ -20,6 +21,19 @@ public typealias ConnectionClosure = (_ peer: IONRemotePeer, _ connection: Conne
 /// The LocalPeer can also be used to establish multicast connections to multiple other peers.
 public class IONLocalPeer {
     // MARK: Public properties
+
+    static var dafaultParemeters: NWParameters {
+        let tcpOptions = NWProtocolTCP.Options()
+        tcpOptions.enableKeepalive = true
+        tcpOptions.keepaliveIdle = 2
+
+        let tlsOptions = NWProtocolTLS.Options()
+
+        let parameters = NWParameters(tls: tlsOptions, tcp: tcpOptions)
+        parameters.includePeerToPeer = true
+
+        return parameters
+    }
 
     /// This peer's name. If not specified in the constructor, it has a the device name.
     public let name: String
