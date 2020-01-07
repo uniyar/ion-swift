@@ -106,6 +106,7 @@
 		CA9EAC2E23C12871003DAF51 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDD23C12871003DAF51 /* Connection.swift */; };
 		CA9EAC3123C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
 		CA9EAC3223C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
+		CAF129F823C412C000E87103 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -646,6 +647,7 @@
 				CA34990423C23BE9001DEDEB /* IONConnection.swift in Sources */,
 				CA9EAC1E23C12871003DAF51 /* MulticastConnection.swift in Sources */,
 				CA9EABE223C12871003DAF51 /* ReliabilityManager.swift in Sources */,
+				CAF129F823C412C000E87103 /* NWParameters+Passcode.swift in Sources */,
 				CA9EABA423C127EA003DAF51 /* ion_swiftTests.swift in Sources */,
 				CA34990223C23BE9001DEDEB /* IONAdvertiser.swift in Sources */,
 				CA3498FE23C23BE9001DEDEB /* IONModule.swift in Sources */,
