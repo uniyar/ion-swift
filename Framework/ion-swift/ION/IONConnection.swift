@@ -38,7 +38,7 @@ class IONConnection: UnderlyingConnection {
             switch newState {
             case .ready:
                 self.isConnected = true
-//                print("\(connection) established")
+                print("-- Connection: \(connection) established")
 
                 // When the connection is ready, start receiving messages.
                 self.receiveNextMessage()
@@ -47,7 +47,7 @@ class IONConnection: UnderlyingConnection {
                 self.delegate?.didConnect(self)
             case let .failed(error):
                 self.isConnected = false
-                print("\(connection) failed with \(error)")
+                print("-- Connection \(connection) failed with \(error)")
 
                 // Close the connection upon a failure.
                 self.close(error as AnyObject)
@@ -70,6 +70,7 @@ class IONConnection: UnderlyingConnection {
 
         connection.receiveMessage { data, _, isComplete, error in
             if isComplete, let data = data, error != nil {
+                print("-- IONConnection: Did receive data: " + (String(data: data, encoding: .utf8) ?? "nil"))
                 self.delegate?.didReceiveData(self, data: data)
             } else if error == nil {
                 // Continue to receive more messages until you receive and error.
@@ -105,14 +106,11 @@ class IONConnection: UnderlyingConnection {
 
         guard let connection = connection else { return }
 
-//      TODO: Context based routing
-//      let context = NWConnection.ContentContext(identifier: "route",
-//                                                  metadata: nil)
-
         connection.send(
             content: data,
             completion: .contentProcessed { error in
                 if error == nil {
+                    print("-- IONConnection: Did send data")
                     self.delegate?.didSendData(self)
                 }
             }

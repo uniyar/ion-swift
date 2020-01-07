@@ -127,7 +127,11 @@ class Node: Hashable, PacketHandler {
     }
 
     func handleRoutingConnection(_ connection: UnderlyingConnection) {
-        let packetConnection = PacketConnection(connection: connection, connectionIdentifier: UUID_ZERO, destinations: [])
+        let packetConnection = PacketConnection(
+            connection: connection,
+            connectionIdentifier: UUID_ZERO,
+            destinations: []
+        )
         self.setupRoutingConnection(packetConnection)
         self.router.onNeighborReachable(self)
     }

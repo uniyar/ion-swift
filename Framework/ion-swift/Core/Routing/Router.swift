@@ -180,7 +180,8 @@ class Router {
                 onSuccess: {
                     log(.low, info: "Connection was established.")
                     onConnection(underlyingConnection)
-                }, onFail: {
+                },
+                onFail: {
                     log(.medium, error: "Failed to establish direct connection.")
                     onFail()
                 }
@@ -202,7 +203,10 @@ class Router {
                 if let packet = LinkHandshake.deserialize(data) {
                     switch packet.connectionPurpose {
                     case .routingConnection:
-                        self.provideNode(packet.peerIdentifier, nodeName: packet.peerName).handleRoutingConnection(connection)
+                        self.provideNode(
+                            packet.peerIdentifier,
+                            nodeName: packet.peerName
+                        ).handleRoutingConnection(connection)
                     case .routedConnection:
                         self.handleHopConnection(connection: connection)
                     default:
@@ -349,7 +353,10 @@ class Router {
             onConnection: { outgoingConnection in
                 let connection = self.createForkingConnection(incomingConnection, outgoingConnection)
                 if destinations.contains(self.identifier) {
-                    self.handleMulticastConnection(sourcePeerIdentifier: sourcePeerIdentifier, connection: connection)
+                    self.handleMulticastConnection(
+                        sourcePeerIdentifier: sourcePeerIdentifier,
+                        connection: connection
+                    )
                 }
 
                 self.connectionsAwaitingForwardedConnections =
@@ -415,9 +422,13 @@ class Router {
                         }
                     },
                     onSuccess: {
-                        _ = writeSinglePacket(connection: connection, packet: RoutedConnectionEstablishedConfirmationPacket(source: self.identifier), onSuccess: {
-                            onConnection(connection)
-                        }, onFail: onFail)
+                        _ = writeSinglePacket(
+                            connection: connection,
+                            packet: RoutedConnectionEstablishedConfirmationPacket(source: self.identifier),
+                            onSuccess: {
+                                onConnection(connection)
+                            }, onFail: onFail
+                        )
                     },
                     onFail: {
                         log(.medium, error: "Did not receive all confirmation packets.")

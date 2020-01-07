@@ -349,12 +349,12 @@
 		CA9EABBC23C12870003DAF51 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CA9EABC223C12870003DAF51 /* Timing */,
 				CA9EABBD23C12870003DAF51 /* PipeForward.swift */,
 				CA9EABBE23C12870003DAF51 /* Logging.swift */,
 				CA9EABBF23C12870003DAF51 /* Data.swift */,
 				CA9EABC023C12870003DAF51 /* SinglePacket.swift */,
 				CA9EABC123C12870003DAF51 /* UUID.swift */,
-				CA9EABC223C12870003DAF51 /* Timing */,
 				CA9EABC623C12870003DAF51 /* PriorityQueue.swift */,
 				CA9EABC723C12870003DAF51 /* Utils.swift */,
 				CA9EABC823C12870003DAF51 /* MappingSequence.swift */,

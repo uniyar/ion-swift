@@ -272,15 +272,22 @@ extension IONLocalPeer: RouterHandler {
                           node: Node,
                           connection: UnderlyingConnection) {
         log(.high, info: "Handling incoming connection...")
-        _ = readSinglePacket(connection: connection, onPacket: { data in
-            if let packet = ManagedConnectionHandshake.deserialize(data) {
-                self.handleConnection(node: node, connection: connection, connectionIdentifier: packet.connectionIdentifier)
-            } else {
-                log(.low, info: "Expected ManagedConnectionHandshake.")
+        _ = readSinglePacket(
+            connection: connection,
+            onPacket: { data in
+                if let packet = ManagedConnectionHandshake.deserialize(data) {
+                    self.handleConnection(
+                        node: node,
+                        connection: connection,
+                        connectionIdentifier: packet.connectionIdentifier
+                    )
+                } else {
+                    log(.low, info: "Expected ManagedConnectionHandshake.")
+                }
+            }, onFail: {
+                log(.high, info: "Connection closed before receiving ManagedConnectionHandshake")
             }
-        }, onFail: {
-            log(.high, info: "Connection closed before receiving ManagedConnectionHandshake")
-        })
+        )
     }
 }
 

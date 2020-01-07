@@ -59,13 +59,13 @@ class IONAdvertiser: Advertiser {
             }) {
                 newConnection.start(queue: self.dispatchQueue)
                 self.connections.append(newConnection)
-            }
 
-            if let delegate = self.advertiserDelegate {
-                let connection = IONConnection(endpoint: newConnection.endpoint, dispatchQueue: self.dispatchQueue)
-                delegate.handleConnection(self, connection: connection)
-            } else {
-                log(.high, error: "Received incoming connection, but there's no delegate set.")
+                if let delegate = self.advertiserDelegate {
+                    let connection = IONConnection(endpoint: newConnection.endpoint, dispatchQueue: self.dispatchQueue)
+                    delegate.handleConnection(self, connection: connection)
+                } else {
+                    log(.high, error: "Received incoming connection, but there's no delegate set.")
+                }
             }
         }
     }

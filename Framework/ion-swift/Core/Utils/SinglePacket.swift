@@ -44,8 +44,16 @@ func readSinglePacket(connection: UnderlyingConnection,
  * @param onSuccess A closure to call when the specified number of packets was received.
  * @param failBlock A closure to call when reading the packets failed for any reason.
  */
-func readPackets(connection: UnderlyingConnection, packetCount: Int, onPacket packetHandler: @escaping (DataReader) -> Void, onSuccess successBlock: @escaping () -> Void, onFail failBlock: @escaping () -> Void) -> SinglePacketReader {
-    return SinglePacketReader(connection: connection, packetCount: packetCount, onPacket: packetHandler, onSuccess: successBlock, onFail: failBlock)
+func readPackets(connection: UnderlyingConnection,
+                 packetCount: Int,
+                 onPacket packetHandler: @escaping (DataReader) -> Void,
+                 onSuccess successBlock: @escaping () -> Void,
+                 onFail failBlock: @escaping () -> Void) -> SinglePacketReader {
+    return SinglePacketReader(connection: connection,
+                              packetCount: packetCount,
+                              onPacket: packetHandler,
+                              onSuccess: successBlock,
+                              onFail: failBlock)
 }
 
 class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
@@ -55,7 +63,11 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
     let successBlock: () -> Void
     let failBlock: () -> Void
     var packetsReceived = 0
-    init(connection: UnderlyingConnection, packetCount: Int, onPacket packetHandler: @escaping (DataReader) -> Void, onSuccess successBlock: @escaping () -> Void, onFail failBlock: @escaping () -> Void) {
+    init(connection: UnderlyingConnection,
+         packetCount: Int,
+         onPacket packetHandler: @escaping (DataReader) -> Void,
+         onSuccess successBlock: @escaping () -> Void,
+         onFail failBlock: @escaping () -> Void) {
         self.underlyingConnection = connection
         self.packetCount = packetCount
         self.packetHandler = packetHandler
@@ -66,15 +78,20 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
         connection.delegate = self
     }
 
-    func didConnect(_: UnderlyingConnection) {}
+    func didConnect(_ connection: UnderlyingConnection) {
+        print("Did connect: \(connection)")
+    }
 
-    func didClose(_: UnderlyingConnection, error _: AnyObject?) {
+    func didClose(_ connection: UnderlyingConnection, error _: AnyObject?) {
+        print("Did close: \(connection)")
         self.underlyingConnection?.delegate = nil
         self.underlyingConnection = nil
         self.failBlock()
     }
 
-    func didReceiveData(_: UnderlyingConnection, data: Data) {
+    func didReceiveData(_ connection: UnderlyingConnection, data: Data) {
+        print("Did receive data from: \(connection)")
+
         self.packetsReceived += 1
 
         if self.packetsReceived == self.packetCount {
@@ -89,7 +106,9 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
         }
     }
 
-    func didSendData(_: UnderlyingConnection) {}
+    func didSendData(_ connection: UnderlyingConnection) {
+        print("Did send data from: \(connection)")
+    }
 }
 
 /**
@@ -100,8 +119,14 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
  * @param successBlock A closure to call when the packet was written successfully.
  * @param failBlock A closure to call when sending the data failed for any reason.
  */
-func writeSinglePacket(connection: UnderlyingConnection, packet: Packet, onSuccess successBlock: @escaping () -> Void, onFail failBlock: @escaping () -> Void) -> SinglePacketWriter {
-    return SinglePacketWriter(connection: connection, packet: packet, successBlock: successBlock, failBlock: failBlock)
+func writeSinglePacket(connection: UnderlyingConnection,
+                       packet: Packet,
+                       onSuccess successBlock: @escaping () -> Void,
+                       onFail failBlock: @escaping () -> Void) -> SinglePacketWriter {
+    return SinglePacketWriter(connection: connection,
+                              packet: packet,
+                              successBlock: successBlock,
+                              failBlock: failBlock)
 }
 
 class SinglePacketWriter: NSObject, UnderlyingConnectionDelegate {
@@ -110,7 +135,10 @@ class SinglePacketWriter: NSObject, UnderlyingConnectionDelegate {
     let failBlock: () -> Void
     let packet: Packet
 
-    init(connection: UnderlyingConnection, packet: Packet, successBlock: @escaping () -> Void, failBlock: @escaping () -> Void) {
+    init(connection: UnderlyingConnection,
+         packet: Packet,
+         successBlock: @escaping () -> Void,
+         failBlock: @escaping () -> Void) {
         self.underlyingConnection = connection
         self.successBlock = successBlock
         self.failBlock = failBlock
