@@ -22,6 +22,7 @@
 		CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA34990B23C23CF4001DEDEB /* Network.framework */; };
 		CA3FEADE23C2B0FD0093A432 /* IONRemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */; };
 		CA3FEADF23C2B0FD0093A432 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
+		CA4AC8F423C3CA7C00692C21 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
 		CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
 		CA97DBA023C2A16700516B64 /* IONRemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */; };
 		CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */; };
@@ -133,6 +134,7 @@
 		CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONLocalPeer.swift; sourceTree = "<group>"; };
 		CA34990B23C23CF4001DEDEB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ion-swift-example.xcodeproj"; path = "../Apps/Client/ion-swift-example/ion-swift-example.xcodeproj"; sourceTree = "<group>"; };
+		CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWParameters+Passcode.swift"; sourceTree = "<group>"; };
 		CA97DB9D23C2993800516B64 /* IONRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRouter.swift; sourceTree = "<group>"; };
 		CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRemotePeer.swift; sourceTree = "<group>"; };
 		CA9EAB9523C127E9003DAF51 /* ion_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ion_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +207,7 @@
 		CA3498F423C23BE9001DEDEB /* ION */ = {
 			isa = PBXGroup;
 			children = (
+				CA4AC8F623C3CF4700692C21 /* Extensions */,
 				CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */,
 				CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */,
 				CA97DB9D23C2993800516B64 /* IONRouter.swift */,
@@ -245,6 +248,14 @@
 				CA34993D23C253CC001DEDEB /* ion-swift-example.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CA4AC8F623C3CF4700692C21 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CA9EAB8B23C127E9003DAF51 = {
@@ -562,6 +573,7 @@
 				CA9EABE523C12871003DAF51 /* TransferManager.swift in Sources */,
 				CA9EAC2723C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
 				CA9EABE923C12871003DAF51 /* OutTransfer.swift in Sources */,
+				CA4AC8F423C3CA7C00692C21 /* NWParameters+Passcode.swift in Sources */,
 				CA9EAC0D23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */,
 				CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */,
 				CA34990523C23BE9001DEDEB /* IONLocalPeer.swift in Sources */,

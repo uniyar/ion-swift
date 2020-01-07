@@ -16,6 +16,7 @@ class IONAdvertiser: Advertiser {
     let type: String
     var listener: NWListener?
     let dispatchQueue: DispatchQueue
+    var connections: [NWConnection] = []
 
     init(type prefix: String, dispatchQueue: DispatchQueue) {
         self.type = "_\(prefix)._tcp"
@@ -53,7 +54,21 @@ class IONAdvertiser: Advertiser {
         }
 
         listener.newConnectionHandler = { newConnection in
-            print(newConnection)
+            if let connection = self.connections.first(where: {
+                $0.endpoint.hashValue == newConnection.endpoint.hashValue
+            }) {
+//                newConnection.cancel()
+            } else {
+                newConnection.start(queue: self.dispatchQueue)
+                self.connections.append(newConnection)
+            }
+
+//            connection.connect()
+//            self.dispatchQueue.async {
+//                print("New connection request: \(newConnection)")
+//                let connection = IONConnection(endpoint: newConnection.endpoint, dispatchQueue: self.dispatchQueue)
+//                self.advertiserDelegate?.handleConnection(self, connection: connection)
+//            }
         }
     }
 
@@ -64,7 +79,10 @@ class IONAdvertiser: Advertiser {
         self.advertiserDelegate?.didStopAdvertising(self)
 
         listener.start(queue: self.dispatchQueue)
-        self.advertiserDelegate?.didStartAdvertising(self)
+
+        self.dispatchQueue.async {
+            self.advertiserDelegate?.didStartAdvertising(self)
+        }
     }
 
     // MARK: Advertiser protocol methods
@@ -77,13 +95,17 @@ class IONAdvertiser: Advertiser {
 
         // Start listening, and request updates on the dispatchQueue.
         listener.start(queue: self.dispatchQueue)
-        self.advertiserDelegate?.didStartAdvertising(self)
+        self.dispatchQueue.async {
+            self.advertiserDelegate?.didStartAdvertising(self)
+        }
     }
 
     func stopAdvertising() {
         guard let listener = self.listener else { return }
 
         listener.cancel()
-        self.advertiserDelegate?.didStopAdvertising(self)
+        self.dispatchQueue.async {
+            self.advertiserDelegate?.didStopAdvertising(self)
+        }
     }
 }

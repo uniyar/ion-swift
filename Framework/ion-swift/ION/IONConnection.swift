@@ -51,6 +51,14 @@ class IONConnection: UnderlyingConnection {
 
                 // Close the connection upon a failure.
                 self.close(error as AnyObject)
+            case .setup:
+                print("\(connection) setup")
+            case .waiting:
+                print("\(connection) waiting")
+            case .cancelled:
+                print("\(connection) cancelled")
+            case .preparing:
+                print("\(connection) preparing")
             default:
                 break
             }
@@ -101,9 +109,13 @@ class IONConnection: UnderlyingConnection {
 //      let context = NWConnection.ContentContext(identifier: "route",
 //                                                  metadata: nil)
 
-        connection.send(content: data,
-                        completion: .contentProcessed { _ in
-                            self.delegate?.didSendData(self)
-        })
+        connection.send(
+            content: data,
+            completion: .contentProcessed { error in
+                if error == nil {
+                    self.delegate?.didSendData(self)
+                }
+            }
+        )
     }
 }

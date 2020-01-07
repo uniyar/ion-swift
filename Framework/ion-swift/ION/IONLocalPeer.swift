@@ -23,16 +23,7 @@ public class IONLocalPeer {
     // MARK: Public properties
 
     static var dafaultParemeters: NWParameters {
-        let tcpOptions = NWProtocolTCP.Options()
-        tcpOptions.enableKeepalive = true
-        tcpOptions.keepaliveIdle = 2
-
-        let tlsOptions = NWProtocolTLS.Options()
-
-        let parameters = NWParameters(tls: tlsOptions, tcp: tcpOptions)
-        parameters.includePeerToPeer = true
-
-        return parameters
+        return NWParameters(passcode: "ion")
     }
 
     /// This peer's name. If not specified in the constructor, it has a the device name.

@@ -145,17 +145,26 @@ class Router {
      * @param onConnection A callback called when the connection is established.
      * @param onFail A closure called when an error occurs.
      */
-    func establishDirectConnection(destination: Node, purpose: ConnectionPurpose, onConnection: @escaping (UnderlyingConnection) -> Void, onFail: @escaping () -> Void) {
+    func establishDirectConnection(destination: Node,
+                                   purpose: ConnectionPurpose,
+                                   onConnection: @escaping (UnderlyingConnection) -> Void,
+                                   onFail: @escaping () -> Void) {
         if let underlyingConnection = destination.bestAddress?.createConnection() {
             connections.append(underlyingConnection)
             underlyingConnection.connect()
 
-            _ = writeSinglePacket(connection: underlyingConnection, packet: LinkHandshake(peerIdentifier: self.identifier, peerName: name, connectionPurpose: purpose), onSuccess: {
-                log(.low, info: "Connection was established.")
-                onConnection(underlyingConnection)
-            }, onFail: {
-                log(.medium, error: "Failed to establish direct connection.")
-                onFail()
+            _ = writeSinglePacket(connection: underlyingConnection,
+                                  packet: LinkHandshake(
+                                      peerIdentifier: self.identifier,
+                                      peerName: name,
+                                      connectionPurpose: purpose
+                                  ),
+                                  onSuccess: {
+                                      log(.low, info: "Connection was established.")
+                                      onConnection(underlyingConnection)
+                                  }, onFail: {
+                                      log(.medium, error: "Failed to establish direct connection.")
+                                      onFail()
             })
         } else {
             log(.medium, error: "Failed to establish direct connection as no direct addresses are known for this node.")
@@ -205,7 +214,11 @@ class Router {
      * @param onConnection A closure that is called when the next hop connections were established.
      * @param onFail A closure that is called when the connection establishement process failed.
      */
-    func establishHopConnections(destinationIdentifiers: Set<UUID>, nextHopTree: Tree<UUID>, sourcePeerIdentifier: UUID, onConnection: @escaping (UnderlyingConnection) -> Void, onFail: @escaping () -> Void) {
+    func establishHopConnections(destinationIdentifiers: Set<UUID>,
+                                 nextHopTree: Tree<UUID>,
+                                 sourcePeerIdentifier: UUID,
+                                 onConnection: @escaping (UnderlyingConnection) -> Void,
+                                 onFail: @escaping () -> Void) {
         let multicastConnection: MulticastConnection? = (nextHopTree.subtrees.count > 1) ? MulticastConnection() : nil
         var establishmentFailed = false
 
@@ -284,10 +297,15 @@ class Router {
      * @param nextHopTree A tree rooted at the local peer representing the connections that still need to be established.
      * @param incomingConnection The connection from which data should be forwarded.
      */
-    func establishForwardingConnections(sourcePeerIdentifier: UUID, destinations: Set<UUID>, nextHopTree: Tree<UUID>, incomingConnection: UnderlyingConnection) {
+    func establishForwardingConnections(sourcePeerIdentifier: UUID,
+                                        destinations: Set<UUID>,
+                                        nextHopTree: Tree<UUID>,
+                                        incomingConnection: UnderlyingConnection) {
         self.connectionsAwaitingForwardedConnections.append(incomingConnection)
 
-        self.establishHopConnections(destinationIdentifiers: destinations, nextHopTree: nextHopTree, sourcePeerIdentifier: sourcePeerIdentifier,
+        self.establishHopConnections(destinationIdentifiers: destinations,
+                                     nextHopTree: nextHopTree,
+                                     sourcePeerIdentifier: sourcePeerIdentifier,
                                      onConnection: {
                                          outgoingConnection in
                                          let connection = self.createForkingConnection(incomingConnection, outgoingConnection)
@@ -304,7 +322,8 @@ class Router {
     }
 
     /** Creates a forking connection for an incoming and outgoing connection. */
-    func createForkingConnection(_ incomingConnection: UnderlyingConnection, _ outgoingConnection: UnderlyingConnection) -> UnderlyingConnection {
+    func createForkingConnection(_ incomingConnection: UnderlyingConnection,
+                                 _ outgoingConnection: UnderlyingConnection) -> UnderlyingConnection {
         let forkingConnection = ForkingConnection(incomingConnection: incomingConnection, outgoingConnection: outgoingConnection, onClose: self.removeForkingConnection)
         self.forkingConnections += forkingConnection
         return forkingConnection
@@ -325,7 +344,9 @@ class Router {
      * @param onConnection A closure that is called when the connection was fully established.
      * @param onFail A closure that is called when the connection establishment process fails.
      */
-    func establishMulticastConnection(destinations: Set<Node>, onConnection: @escaping (UnderlyingConnection) -> Void, onFail: @escaping () -> Void) {
+    func establishMulticastConnection(destinations: Set<Node>,
+                                      onConnection: @escaping (UnderlyingConnection) -> Void,
+                                      onFail: @escaping () -> Void) {
         let destinationIdentifiers = Set(destinations.map { $0.identifier })
         let nextHopTree = self.routingTable.getHopTree(destinationIdentifiers)
         var receivedConfirmations: Set<UUID> = []
@@ -364,7 +385,8 @@ class Router {
      * @param sourcepeerIdentifier The identifier of the peer that originally established the connection.
      * @param connection An underlying connection that should be handled.
      */
-    func handleMulticastConnection(sourcePeerIdentifier: UUID, connection: UnderlyingConnection) {
+    func handleMulticastConnection(sourcePeerIdentifier: UUID,
+                                   connection: UnderlyingConnection) {
         _ = writeSinglePacket(
             connection: connection,
             packet: RoutedConnectionEstablishedConfirmationPacket(source: self.identifier),

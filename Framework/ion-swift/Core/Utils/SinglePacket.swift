@@ -26,8 +26,14 @@ import Foundation
  * @param packetHandler A closure to call when the data was received.
  * @param failBlock A closure to call when reading the packet failed for any reason.
  */
-func readSinglePacket(connection: UnderlyingConnection, onPacket packetHandler: @escaping (DataReader) -> Void, onFail failBlock: @escaping () -> Void) -> SinglePacketReader {
-    return readPackets(connection: connection, packetCount: 1, onPacket: packetHandler, onSuccess: {}, onFail: failBlock)
+func readSinglePacket(connection: UnderlyingConnection,
+                      onPacket packetHandler: @escaping (DataReader) -> Void,
+                      onFail failBlock: @escaping () -> Void) -> SinglePacketReader {
+    return readPackets(connection: connection,
+                       packetCount: 1,
+                       onPacket: packetHandler,
+                       onSuccess: {},
+                       onFail: failBlock)
 }
 
 /**
