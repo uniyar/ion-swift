@@ -39,7 +39,7 @@ class Router {
     /** The dispatch queue used for networking related tasks. Delegate methods are also called on this queue. */
     let dispatchQueue: DispatchQueue
     /** The Router's delegate. */
-    weak var delegate: RouterHandler?
+    var delegate: RouterHandler?
     /** A map from a node's UUID to the node for all Nodes known to the Router */
     private var nodes = [UUID: Node]()
     /** The set of Nodes that are neighbors of the local peer. */
@@ -435,6 +435,7 @@ class Router {
             discoveredNode.reachableVia = (nextHop: nextHopNode, cost: Int(cost))
 
             log(.low, info: "\t\(discovered) (via \(nextHop), cost: \(cost))")
+
             self.delegate?.didFindNode(self, node: discoveredNode)
         }
 
@@ -450,6 +451,7 @@ class Router {
             unreachableNode.reachableVia = nil
 
             log(.low, info: "\t\(unreachable)")
+
             self.delegate?.didLoseNode(self, node: unreachableNode)
         }
 

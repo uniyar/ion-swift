@@ -80,7 +80,9 @@ public class IONLocalPeer {
         )
         self.dispatchQueue = dispatchQueue
 
-        self.router.delegate = self
+        self.dispatchQueue.async {
+            self.router.delegate = self
+        }
     }
 
     /// This method starts the local peer. This will advertise the local peer in the network, starts browsing for other peers, and accepts incoming connections.
@@ -236,7 +238,7 @@ public class IONLocalPeer {
 // MARK: RouterHandler protocol implementation
 
 extension IONLocalPeer: RouterHandler {
-    internal func didFindNode(_: Router, node: Node) {
+    func didFindNode(_: Router, node: Node) {
         if self.knownPeers[node] != nil {
             return
         }
@@ -246,11 +248,11 @@ extension IONLocalPeer: RouterHandler {
         self.onPeerDiscovered?(peer)
     }
 
-    internal func didImproveRoute(_: Router, node: Node) {
+    func didImproveRoute(_: Router, node: Node) {
         self.reconnect(self.providePeer(node))
     }
 
-    internal func didLoseNode(_: Router, node: Node) {
+    func didLoseNode(_: Router, node: Node) {
         let peer = providePeer(node)
         self.knownPeers[node] = nil
         peer.onConnection = nil

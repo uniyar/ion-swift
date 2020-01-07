@@ -38,7 +38,7 @@ class IONConnection: UnderlyingConnection {
             switch newState {
             case .ready:
                 self.isConnected = true
-                print("\(connection) established")
+//                print("\(connection) established")
 
                 // When the connection is ready, start receiving messages.
                 self.receiveNextMessage()
@@ -51,14 +51,14 @@ class IONConnection: UnderlyingConnection {
 
                 // Close the connection upon a failure.
                 self.close(error as AnyObject)
-            case .setup:
-                print("\(connection) setup")
-            case .waiting:
-                print("\(connection) waiting")
-            case .cancelled:
-                print("\(connection) cancelled")
-            case .preparing:
-                print("\(connection) preparing")
+//            case .setup:
+//                print("\(connection) setup")
+//            case .waiting:
+//                print("\(connection) waiting")
+//            case .cancelled:
+//                print("\(connection) cancelled")
+//            case .preparing:
+//                print("\(connection) preparing")
             default:
                 break
             }

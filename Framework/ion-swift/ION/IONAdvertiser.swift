@@ -54,26 +54,25 @@ class IONAdvertiser: Advertiser {
         }
 
         listener.newConnectionHandler = { newConnection in
-            if let connection = self.connections.first(where: {
+            if !self.connections.contains(where: {
                 $0.endpoint.hashValue == newConnection.endpoint.hashValue
             }) {
-//                newConnection.cancel()
-            } else {
                 newConnection.start(queue: self.dispatchQueue)
                 self.connections.append(newConnection)
             }
 
-//            connection.connect()
-//            self.dispatchQueue.async {
-//                print("New connection request: \(newConnection)")
-//                let connection = IONConnection(endpoint: newConnection.endpoint, dispatchQueue: self.dispatchQueue)
-//                self.advertiserDelegate?.handleConnection(self, connection: connection)
-//            }
+            if let delegate = self.advertiserDelegate {
+                let connection = IONConnection(endpoint: newConnection.endpoint, dispatchQueue: self.dispatchQueue)
+                delegate.handleConnection(self, connection: connection)
+            } else {
+                log(.high, error: "Received incoming connection, but there's no delegate set.")
+            }
         }
     }
 
     func restartAdvertising() {
         guard let listener = self.listener else { return }
+        self.connections.removeAll()
 
         listener.cancel()
         self.advertiserDelegate?.didStopAdvertising(self)
@@ -102,6 +101,7 @@ class IONAdvertiser: Advertiser {
 
     func stopAdvertising() {
         guard let listener = self.listener else { return }
+        self.connections.removeAll()
 
         listener.cancel()
         self.dispatchQueue.async {
