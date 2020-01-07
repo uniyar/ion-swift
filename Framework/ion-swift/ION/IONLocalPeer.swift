@@ -129,7 +129,12 @@ public class IONLocalPeer {
     open func connect(_ destinations: Set<IONRemotePeer>) -> Connection {
         let destinations = Set(destinations.map { $0.node })
         let identifier = randomUUID()
-        let packetConnection = PacketConnection(connection: nil, connectionIdentifier: identifier, destinations: destinations)
+
+        let packetConnection = PacketConnection(
+            connection: nil,
+            connectionIdentifier: identifier,
+            destinations: destinations
+        )
 
         self.establishedConnections[identifier] = packetConnection
 
@@ -192,11 +197,9 @@ public class IONLocalPeer {
     ///   - peer: peer description
     ///   - connection: connection description
     ///   - connectionIdentifier: connectionIdentifier description
-    private func createConnection(
-        peer: IONRemotePeer,
-        connection: UnderlyingConnection,
-        connectionIdentifier: UUID
-    ) {
+    private func createConnection(peer: IONRemotePeer,
+                                  connection: UnderlyingConnection,
+                                  connectionIdentifier: UUID) {
         let packetConnection = PacketConnection(
             connection: connection,
             connectionIdentifier: connectionIdentifier,
@@ -265,9 +268,9 @@ extension IONLocalPeer: RouterHandler {
     ///   - router: The router which reported the connection
     ///   - node: The node which established the connection
     ///   - connection: The connection that was established
-    internal func handleConnection(_: Router,
-                                   node: Node,
-                                   connection: UnderlyingConnection) {
+    func handleConnection(_: Router,
+                          node: Node,
+                          connection: UnderlyingConnection) {
         log(.high, info: "Handling incoming connection...")
         _ = readSinglePacket(connection: connection, onPacket: { data in
             if let packet = ManagedConnectionHandshake.deserialize(data) {
@@ -285,16 +288,25 @@ extension IONLocalPeer: RouterHandler {
 
 extension IONLocalPeer: ConnectionManager {
     func establishUnderlyingConnection(_ packetConnection: PacketConnection) {
-        self.router.establishMulticastConnection(destinations: packetConnection.destinations, onConnection: { connection in
-            _ = writeSinglePacket(connection: connection, packet: ManagedConnectionHandshake(connectionIdentifier: packetConnection.connectionIdentifier), onSuccess: {
-                packetConnection.swapUnderlyingConnection(connection)
-            },
-                                  onFail: {
-                log(.medium, error: "Failed to send ManagedConnectionHandshake.")
-            })
-        }, onFail: {
-            log(.medium, error: "Failed to establish connection.")
-        })
+        self.router.establishMulticastConnection(
+            destinations: packetConnection.destinations,
+            onConnection: { connection in
+                _ = writeSinglePacket(
+                    connection: connection,
+                    packet: ManagedConnectionHandshake(
+                        connectionIdentifier: packetConnection.connectionIdentifier
+                    ),
+                    onSuccess: {
+                        packetConnection.swapUnderlyingConnection(connection)
+                    },
+                    onFail: {
+                        log(.medium, error: "Failed to send ManagedConnectionHandshake.")
+                    }
+                )
+            }, onFail: {
+                log(.medium, error: "Failed to establish connection.")
+            }
+        )
     }
 
     func notifyConnectionClose(_ connection: PacketConnection) {

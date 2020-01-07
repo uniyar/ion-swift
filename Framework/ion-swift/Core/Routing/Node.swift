@@ -109,8 +109,7 @@ class Node: Hashable, PacketHandler {
         self.router.establishDirectConnection(
             destination: self,
             purpose: .routingConnection,
-            onConnection: {
-                connection in
+            onConnection: { connection in
                 let connectionIdentifier = randomUUID()
                 let packetConnection = PacketConnection(
                     connection: connection,
