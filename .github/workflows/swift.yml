@@ -1,0 +1,15 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run example
+      run: |
+        cd Framework
+        xcodebuild clean -project ion-swift.xcodeproj -scheme ion-swift-example -destination "platform=iOS Simulator,name=iPhone 11 Pro" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
