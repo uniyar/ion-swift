@@ -2,7 +2,7 @@
 ## Swift implementation
 
 #### Framework status:
-[![Build Status](https://app.bitrise.io/app/14cb38e60f97cfc3/status.svg?token=8mYSwhX4XyzQ0HG7PZesFQ)](https://app.bitrise.io/app/14cb38e60f97cfc3)
+![badge](https://action-badges.now.sh/kxpone/ion-swift)
 ![version](https://img.shields.io/badge/version-0.0.1-blue)
 ![iOS](https://img.shields.io/badge/platform_iOS-13.0-green)
 ![macOS](https://img.shields.io/badge/platform_macOS-10.15-green)
