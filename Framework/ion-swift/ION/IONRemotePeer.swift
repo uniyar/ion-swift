@@ -18,16 +18,16 @@ public class IONRemotePeer: NSObject {
     public let name: String?
     /// Set this property if you want to handle incoming connections on a per-peer basis.
     public var onConnection: PeerConnectionClosure?
-
+    /// Returns the UUID identifier as string to bridge to Objective-C Code
+    public var stringIdentifier: String {
+        return self.identifier.UUIDString
+    }
+    
     /// Establishes a connection to this peer.
     public func connect() -> Connection {
         return self.localPeer.connect([self])
     }
 
-    /// Returns the UUID identifier as string to bridge to Objective-C Code
-    public func stringIdentifier() -> String {
-        return self.identifier.UUIDString
-    }
 
     // MARK: Internal
 

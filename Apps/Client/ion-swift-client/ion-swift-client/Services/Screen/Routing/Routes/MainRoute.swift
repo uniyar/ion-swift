@@ -9,19 +9,13 @@
 import Foundation
 
 protocol MainRoute {
-    var mainTransition: Transition { get }
     func openMain()
 }
 
 extension MainRoute where Self: RouterProtocol {
-    var mainTransition: Transition {
-        return ModalTransition()
-    }
-
     func openMain() {
-        let transition = self.mainTransition
         if let mainVC = ScreenFactory.shared.prepareMain() {
-            open(mainVC, transition: transition)
+            open(mainVC, transition: ModalTransition())
         }
     }
 }

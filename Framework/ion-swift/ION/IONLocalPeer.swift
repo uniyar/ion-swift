@@ -102,7 +102,7 @@ public class IONLocalPeer {
     ///   - onIncomingConnection: Called when a connection is available. Call accept on the peer to accept the connection.
     public func start(onPeerDiscovered: @escaping PeerDiscoveredClosure,
                       onPeerRemoved: @escaping PeerRemovedClosure,
-                      onIncomingConnection: @escaping PeerConnectionClosure) {
+                      onIncomingConnection: @escaping PeerConnectionClosure = { _,_  in }) {
         self.onPeerDiscovered = onPeerDiscovered
         self.onPeerRemoved = onPeerRemoved
         self.onIncomingConnection = onIncomingConnection

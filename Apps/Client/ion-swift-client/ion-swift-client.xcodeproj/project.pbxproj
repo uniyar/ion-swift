@@ -26,7 +26,6 @@
 		CA39FA0D23B2CF9500D596D0 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA39FA0C23B2CF9500D596D0 /* StartViewModel.swift */; };
 		CA5BC00D23B14C2B005C484A /* IONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5BC00C23B14C2B005C484A /* IONManager.swift */; };
 		CA5BC00F23B14C96005C484A /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5BC00E23B14C96005C484A /* AppRepository.swift */; };
-		CA5BC01123B14D34005C484A /* IONProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5BC01023B14D34005C484A /* IONProvider.swift */; };
 		CAC76F0223B54B6B00BB1F11 /* Set+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0123B54B6B00BB1F11 /* Set+Array.swift */; };
 		CAC76F0823B5681800BB1F11 /* MainViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */; };
 		CAC76F0C23B5698B00BB1F11 /* NodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0A23B5698B00BB1F11 /* NodeTableViewCell.swift */; };
@@ -59,7 +58,6 @@
 		CA39FA0C23B2CF9500D596D0 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		CA5BC00C23B14C2B005C484A /* IONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONManager.swift; sourceTree = "<group>"; };
 		CA5BC00E23B14C96005C484A /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
-		CA5BC01023B14D34005C484A /* IONProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONProvider.swift; sourceTree = "<group>"; };
 		CAC76F0123B54B6B00BB1F11 /* Set+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Array.swift"; sourceTree = "<group>"; };
 		CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Table.swift"; sourceTree = "<group>"; };
 		CAC76F0A23B5698B00BB1F11 /* NodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTableViewCell.swift; sourceTree = "<group>"; };
@@ -116,8 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				CAC76F0923B5695800BB1F11 /* Cells */,
-				CAF16CD323B1477F006BECAA /* MainViewController.swift */,
-				CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */,
+				CA7AFC3D23F061D200550662 /* Controllers */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -135,18 +132,17 @@
 			isa = PBXGroup;
 			children = (
 				CA39F9F723B2BBEF00D596D0 /* Routes */,
-				CA39F9EB23B2BBEB00D596D0 /* Router */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
 		};
-		CA39F9EB23B2BBEB00D596D0 /* Router */ = {
+		CA39F9EB23B2BBEB00D596D0 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
 				CA39F9EC23B2BBEB00D596D0 /* Router.swift */,
 				CA39F9ED23B2BBEB00D596D0 /* Transitions */,
 			);
-			path = Router;
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		CA39F9ED23B2BBEB00D596D0 /* Transitions */ = {
@@ -172,8 +168,8 @@
 		CA39FA0323B2BD3D00D596D0 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				CA39FA0A23B2CF7900D596D0 /* View */,
 				CA39FA0B23B2CF8400D596D0 /* ViewModel */,
+				CA39FA0A23B2CF7900D596D0 /* View */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -198,7 +194,7 @@
 		CA39FA0A23B2CF7900D596D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CA39FA0423B2BD4A00D596D0 /* StartViewController.swift */,
+				CA7AFC3E23F061E700550662 /* Controllers */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,9 +219,33 @@
 			isa = PBXGroup;
 			children = (
 				CA5BC00C23B14C2B005C484A /* IONManager.swift */,
-				CA5BC01023B14D34005C484A /* IONProvider.swift */,
 			);
 			path = ION;
+			sourceTree = "<group>";
+		};
+		CA7AFC3C23F060EB00550662 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				CA39F9EB23B2BBEB00D596D0 /* Screen */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		CA7AFC3D23F061D200550662 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CAF16CD323B1477F006BECAA /* MainViewController.swift */,
+				CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CA7AFC3E23F061E700550662 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA39FA0423B2BD4A00D596D0 /* StartViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CAC76F0023B54B5A00BB1F11 /* Foundation */ = {
@@ -279,6 +299,7 @@
 		CAF16CCA23B145D3006BECAA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CA7AFC3C23F060EB00550662 /* Base */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,8 +374,8 @@
 		CAF16CD223B1476F006BECAA /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CA39F9E423B2BA5600D596D0 /* View */,
 				CA39F9E323B2BA3D00D596D0 /* ViewModel */,
+				CA39F9E423B2BA5600D596D0 /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -500,7 +521,6 @@
 				CAF16CB623B14536006BECAA /* AppDelegate.swift in Sources */,
 				CA5BC00D23B14C2B005C484A /* IONManager.swift in Sources */,
 				CAC76F0223B54B6B00BB1F11 /* Set+Array.swift in Sources */,
-				CA5BC01123B14D34005C484A /* IONProvider.swift in Sources */,
 				CA39F9F523B2BBEB00D596D0 /* Transition.swift in Sources */,
 				CA39FA0023B2BCEC00D596D0 /* ScreenFactory.swift in Sources */,
 				CAF16CD423B1477F006BECAA /* MainViewController.swift in Sources */,

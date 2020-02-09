@@ -9,28 +9,28 @@
 import IONSwift
 import RxSwift
 
-class IONManager: LocalPeer {
+class IONManager {
     static let shared = IONManager()
 
     private let disposeBag = DisposeBag()
 
-    let discoveredPeerSubject = PublishSubject<RemotePeer>()
-    let removedPeerSubject = PublishSubject<RemotePeer>()
-    let connectedPeerSubject = PublishSubject<(RemotePeer, Connection)>()
-//    let nodesSubject = PublishSubject<[IONSwift.UUID: Node]>()
+    let discoveredPeerSubject = PublishSubject<IONRemotePeer>()
+    let removedPeerSubject = PublishSubject<IONRemotePeer>()
 
     init() {
-        super.init(
-            name: LocalPeer.deviceName,
-            identifier: IONSwift.fromUUID(Foundation.UUID()),
-            modules: [
-//                IONProvider.shared.sioModule,
-            ],
+        self.setupION()
+    }
+
+    private func setupION() {
+        let localPeer = IONLocalPeer(
+            appId: AppRepository.shared.appIdentifier,
             dispatchQueue: DispatchQueue.main
         )
 
-//        self.start { _ in
-//            self.nodesSubject.onNext(self.nodes)
-//        }
+        localPeer.start(onPeerDiscovered: { remotePeer in
+            self.discoveredPeerSubject.onNext(remotePeer)
+        }, onPeerRemoved: { remotePeer in
+            self.removedPeerSubject.onNext(remotePeer)
+        })
     }
 }
