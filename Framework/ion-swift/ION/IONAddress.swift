@@ -10,7 +10,7 @@ import Foundation
 import Network
 
 class IONAddress: Address {
-    var cost: Int = 0 // TODO: Connection metrics
+    var cost: Int = 0
     var hostName: String = ""
 
     let endpoint: NWEndpoint

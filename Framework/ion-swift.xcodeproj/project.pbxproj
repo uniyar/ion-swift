@@ -23,6 +23,7 @@
 		CA3FEADE23C2B0FD0093A432 /* IONRemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */; };
 		CA3FEADF23C2B0FD0093A432 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
 		CA4AC8F423C3CA7C00692C21 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
+		CA7AFC3523F0522B00550662 /* FloodingPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFC3423F0522B00550662 /* FloodingPacket.swift */; };
 		CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
 		CA97DBA023C2A16700516B64 /* IONRemotePeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */; };
 		CA9EAB9F23C127EA003DAF51 /* ion_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9EAB9523C127E9003DAF51 /* ion_swift.framework */; };
@@ -75,9 +76,7 @@
 		CA9EAC0D23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */; };
 		CA9EAC0E23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */; };
 		CA9EAC0F23C12871003DAF51 /* LinkStatePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */; };
-		CA9EAC1023C12871003DAF51 /* LinkStatePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */; };
 		CA9EAC1123C12871003DAF51 /* RoutingPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */; };
-		CA9EAC1223C12871003DAF51 /* RoutingPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */; };
 		CA9EAC1323C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */; };
 		CA9EAC1423C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */; };
 		CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */; };
@@ -136,6 +135,7 @@
 		CA34990B23C23CF4001DEDEB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ion-swift-example.xcodeproj"; path = "../Apps/Client/ion-swift-example/ion-swift-example.xcodeproj"; sourceTree = "<group>"; };
 		CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWParameters+Passcode.swift"; sourceTree = "<group>"; };
+		CA7AFC3423F0522B00550662 /* FloodingPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodingPacket.swift; sourceTree = "<group>"; };
 		CA97DB9D23C2993800516B64 /* IONRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRouter.swift; sourceTree = "<group>"; };
 		CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRemotePeer.swift; sourceTree = "<group>"; };
 		CA9EAB9523C127E9003DAF51 /* ion_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ion_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +259,39 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CA7AFC3223F0521200550662 /* Packets */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */,
+				CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */,
+				CA7AFC3423F0522B00550662 /* FloodingPacket.swift */,
+			);
+			path = Packets;
+			sourceTree = "<group>";
+		};
+		CA7AFC3723F0526300550662 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABD523C12871003DAF51 /* ManagedModule.swift */,
+				CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */,
+				CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */,
+				CA9EABCB23C12871003DAF51 /* FloodingPacketManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CA7AFC3923F053A500550662 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA9EABBB23C12870003DAF51 /* Packets.swift */,
+				CA9EABDD23C12871003DAF51 /* Connection.swift */,
+				CA9EABDF23C12871003DAF51 /* Transfer.swift */,
+				CA9EABB423C12870003DAF51 /* InTransfer.swift */,
+				CA9EABB523C12870003DAF51 /* OutTransfer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		CA9EAB8B23C127E9003DAF51 = {
 			isa = PBXGroup;
 			children = (
@@ -305,15 +338,11 @@
 			isa = PBXGroup;
 			children = (
 				CA9EABD723C12871003DAF51 /* API */,
-				CA9EABBA23C12870003DAF51 /* Packets */,
+				CA7AFC3923F053A500550662 /* Models */,
 				CA9EABCA23C12871003DAF51 /* Routing */,
 				CA9EABB623C12870003DAF51 /* Algorithm */,
 				CA9EABB023C12870003DAF51 /* Connectivity */,
 				CA9EABBC23C12870003DAF51 /* Utils */,
-				CA9EABDD23C12871003DAF51 /* Connection.swift */,
-				CA9EABB423C12870003DAF51 /* InTransfer.swift */,
-				CA9EABB523C12870003DAF51 /* OutTransfer.swift */,
-				CA9EABDF23C12871003DAF51 /* Transfer.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -338,27 +367,19 @@
 			path = Algorithm;
 			sourceTree = "<group>";
 		};
-		CA9EABBA23C12870003DAF51 /* Packets */ = {
-			isa = PBXGroup;
-			children = (
-				CA9EABBB23C12870003DAF51 /* Packets.swift */,
-			);
-			path = Packets;
-			sourceTree = "<group>";
-		};
 		CA9EABBC23C12870003DAF51 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CA9EABC223C12870003DAF51 /* Timing */,
-				CA9EABBD23C12870003DAF51 /* PipeForward.swift */,
-				CA9EABBE23C12870003DAF51 /* Logging.swift */,
-				CA9EABBF23C12870003DAF51 /* Data.swift */,
-				CA9EABC023C12870003DAF51 /* SinglePacket.swift */,
-				CA9EABC123C12870003DAF51 /* UUID.swift */,
-				CA9EABC623C12870003DAF51 /* PriorityQueue.swift */,
-				CA9EABC723C12870003DAF51 /* Utils.swift */,
-				CA9EABC823C12870003DAF51 /* MappingSequence.swift */,
 				CA9EABC923C12870003DAF51 /* Set.swift */,
+				CA9EABC723C12870003DAF51 /* Utils.swift */,
+				CA9EABBF23C12870003DAF51 /* Data.swift */,
+				CA9EABC123C12870003DAF51 /* UUID.swift */,
+				CA9EABBE23C12870003DAF51 /* Logging.swift */,
+				CA9EABBD23C12870003DAF51 /* PipeForward.swift */,
+				CA9EABC023C12870003DAF51 /* SinglePacket.swift */,
+				CA9EABC623C12870003DAF51 /* PriorityQueue.swift */,
+				CA9EABC823C12870003DAF51 /* MappingSequence.swift */,
+				CA9EABC223C12870003DAF51 /* Timing */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -366,8 +387,8 @@
 		CA9EABC223C12870003DAF51 /* Timing */ = {
 			isa = PBXGroup;
 			children = (
-				CA9EABC323C12870003DAF51 /* StartStopHelper.swift */,
 				CA9EABC423C12870003DAF51 /* Timer.swift */,
+				CA9EABC323C12870003DAF51 /* StartStopHelper.swift */,
 				CA9EABC523C12870003DAF51 /* RepeatedExecutor.swift */,
 			);
 			path = Timing;
@@ -376,17 +397,13 @@
 		CA9EABCA23C12871003DAF51 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
-				CA9EABCB23C12871003DAF51 /* FloodingPacketManager.swift */,
-				CA9EABCC23C12871003DAF51 /* CompositeAdvertiser.swift */,
-				CA9EABCD23C12871003DAF51 /* LinkStatePacket.swift */,
-				CA9EABCE23C12871003DAF51 /* RoutingPackets.swift */,
-				CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */,
-				CA9EABD023C12871003DAF51 /* CompositeBrowser.swift */,
-				CA9EABD123C12871003DAF51 /* ForwardingConnection.swift */,
 				CA9EABD223C12871003DAF51 /* Router.swift */,
-				CA9EABD423C12871003DAF51 /* MulticastConnection.swift */,
-				CA9EABD523C12871003DAF51 /* ManagedModule.swift */,
 				CA9EABD623C12871003DAF51 /* Node.swift */,
+				CA9EABD423C12871003DAF51 /* MulticastConnection.swift */,
+				CA9EABCF23C12871003DAF51 /* LinkStateRoutingTable.swift */,
+				CA9EABD123C12871003DAF51 /* ForwardingConnection.swift */,
+				CA7AFC3223F0521200550662 /* Packets */,
+				CA7AFC3723F0526300550662 /* Helpers */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -596,6 +613,7 @@
 				CA9EAC0923C12871003DAF51 /* Set.swift in Sources */,
 				CA9EABF923C12871003DAF51 /* SinglePacket.swift in Sources */,
 				CA9EAC0523C12871003DAF51 /* Utils.swift in Sources */,
+				CA7AFC3523F0522B00550662 /* FloodingPacket.swift in Sources */,
 				CA9EABF123C12871003DAF51 /* Packets.swift in Sources */,
 				CA9EAC0F23C12871003DAF51 /* LinkStatePacket.swift in Sources */,
 			);
@@ -607,7 +625,6 @@
 			files = (
 				CA9EAC0E23C12871003DAF51 /* CompositeAdvertiser.swift in Sources */,
 				CA3FEADF23C2B0FD0093A432 /* IONRouter.swift in Sources */,
-				CA9EAC1023C12871003DAF51 /* LinkStatePacket.swift in Sources */,
 				CA9EAC0C23C12871003DAF51 /* FloodingPacketManager.swift in Sources */,
 				CA9EAC0823C12871003DAF51 /* MappingSequence.swift in Sources */,
 				CA9EABEE23C12871003DAF51 /* Graph.swift in Sources */,
@@ -625,7 +642,6 @@
 				CA9EABFC23C12871003DAF51 /* UUID.swift in Sources */,
 				CA9EAC2823C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
 				CA34990023C23BE9001DEDEB /* IONBrowser.swift in Sources */,
-				CA9EAC1223C12871003DAF51 /* RoutingPackets.swift in Sources */,
 				CA9EAC2C23C12871003DAF51 /* Module.swift in Sources */,
 				CA9EAC1423C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */,
 				CA9EAC1623C12871003DAF51 /* CompositeBrowser.swift in Sources */,

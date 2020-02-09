@@ -52,7 +52,11 @@ struct LinkStatePacket: Packet {
     }
 
     func serialize() -> Data {
-        let data = DataWriter(length: type(of: self).getLength() + self.neighbors.count * (MemoryLayout<UUID>.size + MemoryLayout<Int32>.size))
+        let data = DataWriter(
+            length: type(of: self).getLength() + self.neighbors.count *
+                (MemoryLayout<UUID>.size + MemoryLayout<Int32>.size)
+        )
+
         data.add(type(of: self).getType().rawValue)
         data.add(self.peerIdentifier)
         data.add(Int32(self.neighbors.count))
