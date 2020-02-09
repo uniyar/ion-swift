@@ -88,10 +88,13 @@ class IONConnection {
     private func receiveNextMessage() {
         let connection = self.connection
 
-        connection.receiveMessage { data, _, isComplete, error in
-            if isComplete, error != nil {
-                print("-- IONConnection: Did receive data: " + (String(data: data ?? Data(), encoding: .utf8) ?? "nil"))
-                self.delegate?.didReceiveData(self, data: data ?? Data())
+        connection.receive(
+            minimumIncompleteLength: 0,
+            maximumLength: self.recommendedPacketSize
+        ) { data, _, _, error in
+            if error == nil, let data = data {
+                print("-- IONConnection: Did receive data")
+                self.delegate?.didReceiveData(self, data: data)
             }
 
             if error == nil {
