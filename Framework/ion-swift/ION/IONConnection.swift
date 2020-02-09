@@ -9,64 +9,45 @@
 import Foundation
 import Network
 
-class IONConnection: UnderlyingConnection {
-    var delegate: UnderlyingConnectionDelegate?
-    var isConnected: Bool = false
-    var recommendedPacketSize: Int = 0
-
-    let endpoint: NWEndpoint
+class IONConnection {
+    var connection: NWConnection?
     let dispatchQueue: DispatchQueue
 
-    var connection: NWConnection?
-    var description: String {
-        return "Connection: {endpoint: \(self.endpoint), isConnected: \(self.isConnected))}"
+    // MARK: --- UnderlyingConnectionDelegate
+
+    var delegate: UnderlyingConnectionDelegate?
+    var isConnected: Bool {
+        return self.connection?.state == .ready
     }
 
-    init(endpoint: NWEndpoint,
+    var recommendedPacketSize: Int = 0
+
+    // ---
+
+    let initiatedConnection: Bool
+
+    // Create an outbound connection when the peer initiates a session.
+    init(with endpoint: NWEndpoint,
          dispatchQueue: DispatchQueue) {
-        self.endpoint = endpoint
+        self.initiatedConnection = true
+        let connection = NWConnection(to: endpoint, using: IONLocalPeer.dafaultParemeters)
         self.dispatchQueue = dispatchQueue
-
-        self.connection = NWConnection(to: endpoint, using: IONLocalPeer.dafaultParemeters)
-        self.handleUpdates()
+        self.connection = connection
     }
 
-    private func handleUpdates() {
-        guard let connection = connection else { return }
+    // Handle an inbound connection when the peer receives a session.
+    init(with connection: NWConnection,
+         dispatchQueue: DispatchQueue) {
+        self.initiatedConnection = false
+        self.dispatchQueue = dispatchQueue
+        self.connection = connection
+    }
 
-        connection.stateUpdateHandler = { newState in
-            switch newState {
-            case .ready:
-                self.isConnected = true
-                print("-- Connection: \(connection) established")
-
-                // When the connection is ready, start receiving messages.
-                self.receiveNextMessage()
-
-                // Notify your delegate that the connection is ready.
-                self.delegate?.didConnect(self)
-            case let .failed(error):
-                self.isConnected = false
-                print("-- Connection \(connection) failed with \(error)")
-
-                // Close the connection upon a failure.
-                self.close(error as AnyObject)
-//            case .setup:
-//                print("\(connection) setup")
-//            case .waiting:
-//                print("\(connection) waiting")
-//            case .cancelled:
-//                print("\(connection) cancelled")
-//            case .preparing:
-//                print("\(connection) preparing")
-            default:
-                break
-            }
+    // Receive a message, deliver it to your delegate, and continue receiving more messages.
+    func receiveNextMessage() {
+        guard let connection = connection else {
+            return
         }
-    }
-
-    private func receiveNextMessage() {
-        guard let connection = connection else { return }
 
         connection.receiveMessage { data, _, isComplete, error in
             if isComplete, let data = data, error != nil {
@@ -78,32 +59,60 @@ class IONConnection: UnderlyingConnection {
             }
         }
     }
+}
 
-    // MARK: UnderlyingConnection protocol implementation methods
+// MARK: UnderlyingConnectionDelegate
 
+extension IONConnection: UnderlyingConnection {
     func connect() {
-        guard let connection = connection else { return }
+        guard let connection = connection else {
+            return
+        }
+
+        connection.stateUpdateHandler = { newState in
+            switch newState {
+            case .ready:
+                print("\(connection) established")
+
+                // When the connection is ready, start receiving messages.
+                self.receiveNextMessage()
+
+                // Notify your delegate that the connection is ready.
+                if let delegate = self.delegate {
+                    delegate.didConnect(self)
+                }
+            case let .failed(error):
+                let message = "\(connection) failed with \(error)"
+                print(message)
+
+                // Cancel the connection upon a failure.
+                connection.cancel()
+
+                // Notify your delegate that the connection failed.
+                if let delegate = self.delegate {
+                    delegate.didClose(self, error: NSError(domain: message, code: 500, userInfo: nil))
+                }
+            default:
+                break
+            }
+        }
 
         // Start the connection establishment.
         connection.start(queue: self.dispatchQueue)
     }
 
     func close() {
-        self.close(nil)
-    }
-
-    func close(_ error: AnyObject? = nil) {
         guard let connection = connection else { return }
 
         connection.cancel()
         self.connection = nil
 
-        self.delegate?.didClose(self, error: error)
+        if let delegate = self.delegate {
+            delegate.didClose(self, error: NSError(domain: "Closed manually", code: 500, userInfo: nil))
+        }
     }
 
     func writeData(_ data: Data) {
-        if self.isConnected == false { return }
-
         guard let connection = connection else { return }
 
         connection.send(

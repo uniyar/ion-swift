@@ -14,7 +14,7 @@ extension NWParameters {
         // Customize TCP options to enable keepalives.
         let tcpOptions = NWProtocolTCP.Options()
         tcpOptions.enableKeepalive = true
-        tcpOptions.keepaliveIdle = 5
+        tcpOptions.keepaliveIdle = 2
 
         // Create parameters with custom TLS and TCP options.
         self.init(tls: NWParameters.tlsOptions(passcode: passcode), tcp: tcpOptions)

@@ -109,18 +109,6 @@ public class IONLocalPeer {
         self.onConnection = nil
     }
 
-    /// Add a module to this LocalPeer. The module will be started immediately if the LocalPeer is already started.
-    /// - Parameter module: The module that should be added.
-    open func addModule(_ module: Module) {
-        self.router.addModule(module)
-    }
-
-    /// Remove a module from this LocalPeer.
-    /// - Parameter module: The module that should be removed.
-    open func removeModule(_ module: Module) {
-        self.router.addModule(module)
-    }
-
     // MARK: Establishing multicast connections
 
     /// Establishes a multicast connection to a set of peers. The connection can only be used to send data, not to receive data.

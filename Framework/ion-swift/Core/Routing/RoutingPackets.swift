@@ -53,7 +53,11 @@ struct LinkHandshake: Packet {
 
         let peerIdentifier = data.getUUID()
         let connectionPurpose = ConnectionPurpose(rawValue: data.getInteger())
-        let peerName = String(data: data.getData(data.remaining()), encoding: String.Encoding.utf8)!
+
+        let remainingData = data.remaining()
+        let data = data.getData(remainingData)
+
+        let peerName = String(data: data, encoding: String.Encoding.utf8) ?? "unknown peer"
 
         return connectionPurpose.map { LinkHandshake(peerIdentifier: peerIdentifier, peerName: peerName, connectionPurpose: $0) }
     }

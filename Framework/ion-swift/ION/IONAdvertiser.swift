@@ -16,7 +16,7 @@ class IONAdvertiser: Advertiser {
     let type: String
     var listener: NWListener?
     let dispatchQueue: DispatchQueue
-    var connections: [NWConnection] = []
+    var connections: [IONConnection] = []
 
     init(type prefix: String, dispatchQueue: DispatchQueue) {
         self.type = "_\(prefix)._tcp"
@@ -54,18 +54,13 @@ class IONAdvertiser: Advertiser {
         }
 
         listener.newConnectionHandler = { newConnection in
-            if !self.connections.contains(where: {
-                $0.endpoint.hashValue == newConnection.endpoint.hashValue
-            }) {
-                newConnection.start(queue: self.dispatchQueue)
-                self.connections.append(newConnection)
-
-                if let delegate = self.advertiserDelegate {
-                    let connection = IONConnection(endpoint: newConnection.endpoint, dispatchQueue: self.dispatchQueue)
-                    delegate.handleConnection(self, connection: connection)
-                } else {
-                    log(.high, error: "Received incoming connection, but there's no delegate set.")
-                }
+            if let delegate = self.advertiserDelegate {
+                let connection = IONConnection(with: newConnection, dispatchQueue: self.dispatchQueue)
+                self.connections.append(connection)
+                delegate.handleConnection(self, connection: connection)
+                connection.connect()
+            } else {
+                log(.high, error: "Received incoming connection, but there's no delegate set.")
             }
         }
     }

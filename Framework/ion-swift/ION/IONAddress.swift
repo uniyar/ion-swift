@@ -25,6 +25,6 @@ class IONAddress: Address {
     }
 
     func createConnection() -> UnderlyingConnection {
-        return IONConnection(endpoint: self.endpoint, dispatchQueue: self.dispatchQueue)
+        return IONConnection(with: self.endpoint, dispatchQueue: self.dispatchQueue)
     }
 }
