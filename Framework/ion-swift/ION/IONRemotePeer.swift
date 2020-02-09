@@ -8,49 +8,34 @@
 
 import Foundation
 
-/**
- * A RemotePeer represents another peer in the network.
- *
- * You do not construct RemotePeer instances yourself, they are provided to you by the LocalPeer.
- *
- * This class can be used to establish and accept connections to/from those peers.
- * */
-open class IONRemotePeer: NSObject {
-    /** This peer's unique identifier. */
+/// A RemotePeer represents another peer in the network.
+/// You do not construct RemotePeer instances yourself, they are provided to you by the LocalPeer.
+/// This class can be used to establish and accept connections to/from those peers.
+public class IONRemotePeer: NSObject {
+    /// This peer's unique identifier.
     public let identifier: UUID
-
-    /** This peer's name. */
+    /// This peer's name.
     public let name: String?
+    /// Set this property if you want to handle incoming connections on a per-peer basis.
+    public var onConnection: PeerConnectionClosure?
 
-    /**
-     * Set this property if you want to handle incoming connections on a per-peer basis.
-     */
-    open var onConnection: ConnectionClosure?
-
-    /**
-     * Establishes a connection to this peer.
-     *
-     * @return A Connection to this peer.
-     */
-    open func connect() -> Connection {
+    /// Establishes a connection to this peer.
+    public func connect() -> Connection {
         return self.localPeer.connect([self])
     }
 
-    /**
-     * Returns the UUID identifier as string to bridge to Objective-C Code
-     * @return the UUID identifier as string
-     */
-    open func stringIdentifier() -> String {
+    /// Returns the UUID identifier as string to bridge to Objective-C Code
+    public func stringIdentifier() -> String {
         return self.identifier.UUIDString
     }
 
     // MARK: Internal
 
-    /** The node representing this peer on the routing level */
+    /// The node representing this peer on the routing level
     let node: Node
-    /** The LocalPeer that created this peer */
+    /// The LocalPeer that created this peer
     let localPeer: IONLocalPeer
-    /** Stores all connections established by this peer */
+    /// Stores all connections established by this peer
     var connections: [UUID: PacketConnection] = [:]
 
     /**

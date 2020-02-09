@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         }, onPeerRemoved: { peer in
             print("Removed: " + peer.identifier.UUIDString)
         }) { peer, _ in
-            print("Connection from peer: " + peer.identifier.UUIDString)
+            print("Incoming onnection from peer: " + peer.identifier.UUIDString)
         }
     }
 }

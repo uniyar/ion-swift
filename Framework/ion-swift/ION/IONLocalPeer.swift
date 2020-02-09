@@ -14,7 +14,7 @@ public typealias PeerDiscoveredClosure = (_ peer: IONRemotePeer) -> Void
 /// Used to notify about removed peers.
 public typealias PeerRemovedClosure = (_ peer: IONRemotePeer) -> Void
 /// Used to notify about incoming connections peers.
-public typealias ConnectionClosure = (_ peer: IONRemotePeer, _ connection: Connection) -> Void
+public typealias PeerConnectionClosure = (_ peer: IONRemotePeer, _ connection: Connection) -> Void
 
 /// A LocalPeer advertises the local peer in the network and browses for other peers.
 /// It requires one or more Modules to accomplish this. Two Modules that come with Reto are the WlanModule and the RemoteP2P module.
@@ -23,7 +23,7 @@ public class IONLocalPeer {
     // MARK: Public properties
 
     static var dafaultParemeters: NWParameters {
-        return NWParameters(passcode: "ion") // NWParameters.defaultParams() //
+        return NWParameters(passcode: "ion") // NWParameters.defaultParams()
     }
 
     /// This peer's name. If not specified in the constructor, it has a the device name.
@@ -35,23 +35,31 @@ public class IONLocalPeer {
     /// The dispatch queue used to execute all networking operations and callbacks
     public let dispatchQueue: DispatchQueue
     /// The set of peers currently reachable
-    open var peers: Set<IONRemotePeer> {
-        return Set(knownPeers.values)
+    public var peers: Set<IONRemotePeer> {
+        return Set(self.knownPeers.values)
     }
 
+    /// Human readable device name
     public static var deviceName: String {
         return UIDevice.current.name
     }
 
-    // MARK: Internal and Private properties
+    // MARK: Private properties
 
+    /// Peer discovery closure
     private var onPeerDiscovered: PeerDiscoveredClosure?
+    /// Peer removed closure
     private var onPeerRemoved: PeerRemovedClosure?
-    var onConnection: ConnectionClosure?
+    /// On incoming connection closure
+    private var onIncomingConnection: PeerConnectionClosure?
 
+    /// ION router
     private let router: IONRouter
+    /// Known remote peers dictionary
     private var knownPeers = [Node: IONRemotePeer]()
+    /// Established connections dictionary
     private var establishedConnections = [UUID: PacketConnection]()
+    /// Incoming connections dictionary
     private var incomingConnections = [UUID: PacketConnection]()
 
     // MARK: Initialization methods
@@ -85,28 +93,30 @@ public class IONLocalPeer {
         }
     }
 
+    // MARK: Public methods
+
     /// This method starts the local peer. This will advertise the local peer in the network, starts browsing for other peers, and accepts incoming connections.
     /// - Parameters:
     ///   - onPeerDiscovered: Called when a peer is discovered.
     ///   - onPeerRemoved: Called when a peer is removed.
     ///   - onIncomingConnection: Called when a connection is available. Call accept on the peer to accept the connection.
-    open func start(onPeerDiscovered: @escaping PeerDiscoveredClosure,
-                    onPeerRemoved: @escaping PeerRemovedClosure,
-                    onIncomingConnection: @escaping ConnectionClosure) {
+    public func start(onPeerDiscovered: @escaping PeerDiscoveredClosure,
+                      onPeerRemoved: @escaping PeerRemovedClosure,
+                      onIncomingConnection: @escaping PeerConnectionClosure) {
         self.onPeerDiscovered = onPeerDiscovered
         self.onPeerRemoved = onPeerRemoved
-        self.onConnection = onIncomingConnection
+        self.onIncomingConnection = onIncomingConnection
 
         self.startRouter()
     }
 
     /// Stops advertising and browsing.
-    open func stop() {
+    public func stop() {
         self.router.stop()
 
         self.onPeerDiscovered = nil
         self.onPeerRemoved = nil
-        self.onConnection = nil
+        self.onIncomingConnection = nil
     }
 
     // MARK: Establishing multicast connections
@@ -114,7 +124,7 @@ public class IONLocalPeer {
     /// Establishes a multicast connection to a set of peers. The connection can only be used to send data, not to receive data.
     /// Returns a Connection object. It can be used to send data immediately (the transfers will be started once the connection was successfully established).
     /// - Parameter destinations: The IONRemotePeers to establish a connection with.
-    open func connect(_ destinations: Set<IONRemotePeer>) -> Connection {
+    public func connect(_ destinations: Set<IONRemotePeer>) -> Connection {
         let destinations = Set(destinations.map { $0.node })
         let identifier = randomUUID()
 
@@ -139,10 +149,15 @@ public class IONLocalPeer {
         return transferConnection
     }
 
+    // MARK: Private methods
+
+    /// Start ION router
     private func startRouter() {
         self.router.start()
     }
 
+    /// Wrap target node to ION remote peer object
+    /// - Parameter node: node to wrap
     private func providePeer(_ node: Node) -> IONRemotePeer {
         return self.knownPeers.getOrDefault(
             node,
@@ -160,7 +175,9 @@ public class IONLocalPeer {
     ///   - node: The node which established the connection
     ///   - connection:  The connection that was established
     ///   - connectionIdentifier: The identifier of the connection
-    private func handleConnection(node: Node, connection: UnderlyingConnection, connectionIdentifier: UUID) {
+    private func handleConnection(node: Node,
+                                  connection: UnderlyingConnection,
+                                  connectionIdentifier: UUID) {
         let needsToReportPeer = self.knownPeers[node] == nil
 
         let peer = self.providePeer(node)
@@ -204,15 +221,15 @@ public class IONLocalPeer {
 
         if let connectionClosure = peer.onConnection {
             connectionClosure(peer, transferConnection)
-        } else if let connectionClosure = self.onConnection {
+        } else if let connectionClosure = self.onIncomingConnection {
             connectionClosure(peer, transferConnection)
         } else {
             log(.high, warning: "An incoming connection was received, but onConnection is not set. Set it either in your LocalPeer instance (\(self)), or in the IONRemotePeer which established the connection (\(peer)).")
         }
     }
 
-    /// <#Description#>
-    /// - Parameter peer: <#peer description#>
+    /// Reconnect to target remote peer
+    /// - Parameter peer: target remote peer
     private func reconnect(_ peer: IONRemotePeer) {
         for (_, packetConnection) in self.establishedConnections {
             if packetConnection.destinations.contains(peer.node) {
@@ -225,7 +242,7 @@ public class IONLocalPeer {
 // MARK: RouterHandler protocol implementation
 
 extension IONLocalPeer: RouterHandler {
-    func didFindNode(_: Router, node: Node) {
+    internal func didFindNode(_: Router, node: Node) {
         if self.knownPeers[node] != nil {
             return
         }
@@ -235,11 +252,11 @@ extension IONLocalPeer: RouterHandler {
         self.onPeerDiscovered?(peer)
     }
 
-    func didImproveRoute(_: Router, node: Node) {
+    internal func didImproveRoute(_: Router, node: Node) {
         self.reconnect(self.providePeer(node))
     }
 
-    func didLoseNode(_: Router, node: Node) {
+    internal func didLoseNode(_: Router, node: Node) {
         let peer = providePeer(node)
         self.knownPeers[node] = nil
         peer.onConnection = nil
@@ -247,14 +264,9 @@ extension IONLocalPeer: RouterHandler {
         self.onPeerRemoved?(peer)
     }
 
-    /// Handles an incoming connection.
-    /// - Parameters:
-    ///   - router: The router which reported the connection
-    ///   - node: The node which established the connection
-    ///   - connection: The connection that was established
-    func handleConnection(_: Router,
-                          node: Node,
-                          connection: UnderlyingConnection) {
+    internal func handleConnection(_: Router,
+                                   node: Node,
+                                   connection: UnderlyingConnection) {
         log(.high, info: "Handling incoming connection...")
         _ = readSinglePacket(
             connection: connection,
@@ -278,7 +290,7 @@ extension IONLocalPeer: RouterHandler {
 // MARK: ConnectionManager protocol implementation
 
 extension IONLocalPeer: ConnectionManager {
-    func establishUnderlyingConnection(_ packetConnection: PacketConnection) {
+    internal func establishUnderlyingConnection(_ packetConnection: PacketConnection) {
         self.router.establishMulticastConnection(
             destinations: packetConnection.destinations,
             onConnection: { connection in
@@ -300,7 +312,7 @@ extension IONLocalPeer: ConnectionManager {
         )
     }
 
-    func notifyConnectionClose(_ connection: PacketConnection) {
+    internal func notifyConnectionClose(_ connection: PacketConnection) {
         self.establishedConnections[connection.connectionIdentifier] = nil
         self.incomingConnections[connection.connectionIdentifier] = nil
     }

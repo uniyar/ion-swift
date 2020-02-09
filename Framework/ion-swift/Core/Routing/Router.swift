@@ -12,6 +12,12 @@ protocol RouterHandler: AnyObject {
     func didFindNode(_ router: Router, node: Node)
     func didImproveRoute(_ router: Router, node: Node)
     func didLoseNode(_ router: Router, node: Node)
+
+    /// Handles an incoming connection.
+    /// - Parameters:
+    ///   - router: The router which reported the connection
+    ///   - node: The node which established the connection
+    ///   - connection: The connection that was established
     func handleConnection(_ router: Router, node: Node, connection: UnderlyingConnection)
 }
 

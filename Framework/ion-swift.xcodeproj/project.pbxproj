@@ -208,7 +208,6 @@
 		CA3498F423C23BE9001DEDEB /* ION */ = {
 			isa = PBXGroup;
 			children = (
-				CA4AC8F623C3CF4700692C21 /* Extensions */,
 				CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */,
 				CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */,
 				CA97DB9D23C2993800516B64 /* IONRouter.swift */,
@@ -217,6 +216,7 @@
 				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
 				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
 				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
+				CA4AC8F623C3CF4700692C21 /* Extensions */,
 			);
 			path = ION;
 			sourceTree = "<group>";
