@@ -17,9 +17,6 @@ class IONBrowser: Browser {
     let dispatchQueue: DispatchQueue
 
     init(type prefix: String, dispatchQueue: DispatchQueue) {
-//        let parameters = NWParameters()
-//        parameters.includePeerToPeer = true
-
         self.browser = NWBrowser(
             for: .bonjour(type: "_\(prefix)._tcp", domain: nil),
             using: IONLocalPeer.dafaultParemeters

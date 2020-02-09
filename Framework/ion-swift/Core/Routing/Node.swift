@@ -99,9 +99,9 @@ class Node: Hashable, PacketHandler {
     // MARK: Routing Connections (for routing information exchange)
 
     func establishRoutingConnection() {
-        if !self.isResponsibleForEstablishingRoutingConnection {
-            return
-        }
+//        if !self.isResponsibleForEstablishingRoutingConnection {
+//            return
+//        }
         if self.routingConnection?.isConnected ?? false {
             return
         }

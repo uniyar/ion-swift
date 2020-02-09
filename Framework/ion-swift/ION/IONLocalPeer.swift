@@ -23,7 +23,7 @@ public class IONLocalPeer {
     // MARK: Public properties
 
     static var dafaultParemeters: NWParameters {
-        return NWParameters(passcode: "ion")
+        return NWParameters(passcode: "ion") // NWParameters.defaultParams() //
     }
 
     /// This peer's name. If not specified in the constructor, it has a the device name.
@@ -76,7 +76,7 @@ public class IONLocalPeer {
             localIdentifier: identifier,
             localName: name,
             dispatchQueue: dispatchQueue,
-            modules: [ionModule]
+            module: ionModule
         )
         self.dispatchQueue = dispatchQueue
 
@@ -140,10 +140,6 @@ public class IONLocalPeer {
     }
 
     private func startRouter() {
-        if self.router.modules.count == 0 {
-            log(.high, warning: "You started the LocalPeer, but it does not have any modules. It cannot function without modules. See the LocalPeer class documentation for more information.")
-        }
-
         self.router.start()
     }
 

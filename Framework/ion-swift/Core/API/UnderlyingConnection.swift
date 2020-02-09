@@ -37,6 +37,8 @@ public protocol UnderlyingConnectionDelegate: AnyObject {
     func didSendData(_ connection: UnderlyingConnection)
 }
 
+public typealias ConnectionHandler = (_ connected: Bool, _ error: AnyObject?) -> Void
+
 /**
  * An UnderlyingConnection is a Connection with the minimal necessary functionality that allows the implementation of Reto connections on top of it.
  * It is called UnderlyingConnection to differentiate it from Reto's high-level Connection class, which offers many additional features.
@@ -49,6 +51,8 @@ public protocol UnderlyingConnection: AnyObject {
     var isConnected: Bool { get }
     /** Reto sends packets which may vary in size. This property may return an ideal packet size that should be used if possible. */
     var recommendedPacketSize: Int { get }
+
+    var connectionHandler: ConnectionHandler? { get set }
 
     /** Connects the connection. */
     func connect()

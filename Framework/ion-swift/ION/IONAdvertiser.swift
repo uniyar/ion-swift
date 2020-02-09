@@ -56,9 +56,27 @@ class IONAdvertiser: Advertiser {
         listener.newConnectionHandler = { newConnection in
             if let delegate = self.advertiserDelegate {
                 let connection = IONConnection(with: newConnection, dispatchQueue: self.dispatchQueue)
-                self.connections.append(connection)
-                delegate.handleConnection(self, connection: connection)
                 connection.connect()
+                connection.connectionHandler = { connected, _ in
+                    if connected {
+                        delegate.handleConnection(self, connection: connection)
+                    } else {
+                        connection.connect()
+                    }
+                }
+
+//                if let existingConnection = self.connections.first(where: { $0.connection?. == newConnection.endpoint }) {
+//                    if existingConnection.isConnected {
+//                        existingConnection.connect()
+//                    }
+//                } else {
+//                    self.connections.append(connection)
+//                    connection.connect()
+//                }
+//                connection.connectionHandler = { succeed, _ in
+//                    if succeed {
+//                    }
+//                }
             } else {
                 log(.high, error: "Received incoming connection, but there's no delegate set.")
             }

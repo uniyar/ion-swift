@@ -25,6 +25,8 @@ import Foundation
  * Data received from any subconnection is reported to the delegate.
  */
 class MulticastConnection: UnderlyingConnection, UnderlyingConnectionDelegate {
+    var connectionHandler: ConnectionHandler?
+
     /** The subconnections used with this connection */
     var subconnections: [UnderlyingConnection] = []
 

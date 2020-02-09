@@ -10,6 +10,25 @@ import CryptoKit
 import Network
 
 extension NWParameters {
+    static func defaultParams() -> NWParameters {
+        // First, create the TLS options.
+        let tlsOptions = NWProtocolTLS.Options()
+
+        // Always disable resumption for the probes to measure the
+        // full handshake time. You should not disable resumption
+        // for general use in your app.
+        let securityOptions = tlsOptions.securityProtocolOptions
+        sec_protocol_options_set_tls_resumption_enabled(securityOptions, true)
+
+        // Create the parameters based on the probe type.
+        let parameters: NWParameters
+        sec_protocol_options_set_min_tls_protocol_version(securityOptions, .TLSv13)
+        sec_protocol_options_set_max_tls_protocol_version(securityOptions, .TLSv13)
+        parameters = NWParameters(tls: tlsOptions)
+
+        return parameters
+    }
+
     convenience init(passcode: String) {
         // Customize TCP options to enable keepalives.
         let tcpOptions = NWProtocolTCP.Options()
@@ -39,6 +58,7 @@ extension NWParameters {
                                                 stringToDispatchData("ion-swift")! as __DispatchData)
         sec_protocol_options_append_tls_ciphersuite(tlsOptions.securityProtocolOptions,
                                                     tls_ciphersuite_t(rawValue: TLS_PSK_WITH_AES_128_GCM_SHA256)!)
+
         return tlsOptions
     }
 

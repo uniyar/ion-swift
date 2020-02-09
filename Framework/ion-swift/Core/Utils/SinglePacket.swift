@@ -63,6 +63,7 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
     let successBlock: () -> Void
     let failBlock: () -> Void
     var packetsReceived = 0
+
     init(connection: UnderlyingConnection,
          packetCount: Int,
          onPacket packetHandler: @escaping (DataReader) -> Void,
@@ -77,6 +78,8 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
         super.init()
         connection.delegate = self
     }
+
+    // MARK: UnderlyingConnectionDelegate
 
     func didConnect(_ connection: UnderlyingConnection) {
         print("Did connect: \(connection)")

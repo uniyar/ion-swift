@@ -28,6 +28,8 @@ import Foundation
  * from the incoming connection to an additional outgoing connection and vice versa. Delegate methods will not be called for any events related to the outgoing connection.
  */
 class ForkingConnection: NSObject, UnderlyingConnection, UnderlyingConnectionDelegate {
+    var connectionHandler: ConnectionHandler?
+
     /** The ForkingConnection's incoming connection. */
     let incomingConnection: UnderlyingConnection
     /** The ForkingConnection's outgoing connection */

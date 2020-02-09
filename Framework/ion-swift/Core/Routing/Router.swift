@@ -167,25 +167,33 @@ class Router {
                                    onConnection: @escaping (UnderlyingConnection) -> Void,
                                    onFail: @escaping () -> Void) {
         if let underlyingConnection = destination.bestAddress?.createConnection() {
-            connections.append(underlyingConnection)
-            underlyingConnection.connect()
-
-            _ = writeSinglePacket(
-                connection: underlyingConnection,
-                packet: LinkHandshake(
-                    peerIdentifier: self.identifier,
-                    peerName: name,
-                    connectionPurpose: purpose
-                ),
-                onSuccess: {
-                    log(.low, info: "Connection was established.")
-                    onConnection(underlyingConnection)
-                },
-                onFail: {
-                    log(.medium, error: "Failed to establish direct connection.")
-                    onFail()
+            self.connections.append(underlyingConnection)
+            underlyingConnection.connectionHandler = { connected, _ in
+                if connected, underlyingConnection.isConnected {
+                    _ = writeSinglePacket(
+                        connection: underlyingConnection,
+                        packet: LinkHandshake(
+                            peerIdentifier: self.identifier,
+                            peerName: self.name,
+                            connectionPurpose: purpose
+                        ),
+                        onSuccess: {
+                            log(.low, info: "Connection was established.")
+                            onConnection(underlyingConnection)
+                        },
+                        onFail: {
+                            log(.medium, error: "Failed to establish direct connection.")
+                            onFail()
+                        }
+                    )
+                } else {
+                    self.establishDirectConnection(destination: destination,
+                                                   purpose: purpose,
+                                                   onConnection: onConnection,
+                                                   onFail: onFail)
                 }
-            )
+            }
+            underlyingConnection.connect()
         } else {
             log(.medium, error: "Failed to establish direct connection as no direct addresses are known for this node.")
             onFail()
@@ -197,6 +205,8 @@ class Router {
      * Depending on the ConnectionPurpose received, the connection is either used as a routing connection, or handled as a hop connection.
      */
     func handleDirectConnection(_ connection: UnderlyingConnection) {
+//        if !connection.isConnected { return  }
+
         _ = readSinglePacket(
             connection: connection,
             onPacket: { data in

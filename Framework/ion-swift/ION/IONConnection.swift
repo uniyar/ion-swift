@@ -10,17 +10,18 @@ import Foundation
 import Network
 
 class IONConnection {
-    var connection: NWConnection?
+    let connection: NWConnection
+    var connectionHandler: ConnectionHandler?
     let dispatchQueue: DispatchQueue
 
     // MARK: --- UnderlyingConnectionDelegate
 
     var delegate: UnderlyingConnectionDelegate?
     var isConnected: Bool {
-        return self.connection?.state == .ready
+        return self.connection.state == .ready
     }
 
-    var recommendedPacketSize: Int = 0
+    var recommendedPacketSize: Int = 1024
 
     // ---
 
@@ -33,6 +34,8 @@ class IONConnection {
         let connection = NWConnection(to: endpoint, using: IONLocalPeer.dafaultParemeters)
         self.dispatchQueue = dispatchQueue
         self.connection = connection
+
+        self.handleConnectipnUpdates()
     }
 
     // Handle an inbound connection when the peer receives a session.
@@ -41,33 +44,12 @@ class IONConnection {
         self.initiatedConnection = false
         self.dispatchQueue = dispatchQueue
         self.connection = connection
+
+        self.handleConnectipnUpdates()
     }
 
-    // Receive a message, deliver it to your delegate, and continue receiving more messages.
-    func receiveNextMessage() {
-        guard let connection = connection else {
-            return
-        }
-
-        connection.receiveMessage { data, _, isComplete, error in
-            if isComplete, let data = data, error != nil {
-                print("-- IONConnection: Did receive data: " + (String(data: data, encoding: .utf8) ?? "nil"))
-                self.delegate?.didReceiveData(self, data: data)
-            } else if error == nil {
-                // Continue to receive more messages until you receive and error.
-                self.receiveNextMessage()
-            }
-        }
-    }
-}
-
-// MARK: UnderlyingConnectionDelegate
-
-extension IONConnection: UnderlyingConnection {
-    func connect() {
-        guard let connection = connection else {
-            return
-        }
+    private func handleConnectipnUpdates() {
+        let connection = self.connection
 
         connection.stateUpdateHandler = { newState in
             switch newState {
@@ -81,6 +63,8 @@ extension IONConnection: UnderlyingConnection {
                 if let delegate = self.delegate {
                     delegate.didConnect(self)
                 }
+
+                self.connectionHandler?(true, nil)
             case let .failed(error):
                 let message = "\(connection) failed with \(error)"
                 print(message)
@@ -92,20 +76,45 @@ extension IONConnection: UnderlyingConnection {
                 if let delegate = self.delegate {
                     delegate.didClose(self, error: NSError(domain: message, code: 500, userInfo: nil))
                 }
+
+                self.connectionHandler?(false, message as AnyObject)
             default:
                 break
             }
         }
+    }
+
+    // Receive a message, deliver it to your delegate, and continue receiving more messages.
+    private func receiveNextMessage() {
+        let connection = self.connection
+
+        connection.receiveMessage { data, _, isComplete, error in
+            if isComplete, error != nil {
+                print("-- IONConnection: Did receive data: " + (String(data: data ?? Data(), encoding: .utf8) ?? "nil"))
+                self.delegate?.didReceiveData(self, data: data ?? Data())
+            }
+
+            if error == nil {
+                // Continue to receive more messages until you receive and error.
+                self.receiveNextMessage()
+            }
+        }
+    }
+}
+
+// MARK: UnderlyingConnectionDelegate
+
+extension IONConnection: UnderlyingConnection {
+    func connect() {
+        if self.isConnected { return }
 
         // Start the connection establishment.
-        connection.start(queue: self.dispatchQueue)
+        self.connection.start(queue: self.dispatchQueue)
     }
 
     func close() {
-        guard let connection = connection else { return }
-
-        connection.cancel()
-        self.connection = nil
+        self.connectionHandler = nil
+        self.connection.cancel()
 
         if let delegate = self.delegate {
             delegate.didClose(self, error: NSError(domain: "Closed manually", code: 500, userInfo: nil))
@@ -113,9 +122,9 @@ extension IONConnection: UnderlyingConnection {
     }
 
     func writeData(_ data: Data) {
-        guard let connection = connection else { return }
+        if !self.isConnected { return }
 
-        connection.send(
+        self.connection.send(
             content: data,
             completion: .contentProcessed { error in
                 if error == nil {

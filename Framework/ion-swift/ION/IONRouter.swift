@@ -10,9 +10,9 @@ import Foundation
 
 /// IONRouter uses Modules to discover other peers.
 class IONRouter: Router {
-    let advertiser: CompositeAdvertiser
-    let browser: CompositeBrowser
-    var modules: [ManagedModule]
+    let advertiser: Advertiser
+    let browser: Browser
+    let ionModule: IONModule
 
     /// <#Description#>
     /// - Parameters:
@@ -20,11 +20,11 @@ class IONRouter: Router {
     ///   - localName: <#localName description#>
     ///   - dispatchQueue: <#dispatchQueue description#>
     ///   - modules: <#modules description#>
-    init(localIdentifier: UUID, localName: String, dispatchQueue: DispatchQueue, modules: [Module]) {
-        self.modules = modules.map { ManagedModule(module: $0, dispatchQueue: dispatchQueue) }
+    init(localIdentifier: UUID, localName: String, dispatchQueue: DispatchQueue, module: IONModule) {
+        self.ionModule = module
 
-        self.advertiser = CompositeAdvertiser(advertisers: self.modules.map { $0.advertiser })
-        self.browser = CompositeBrowser(browsers: self.modules.map { $0.browser })
+        self.advertiser = self.ionModule.advertiser
+        self.browser = self.ionModule.browser
 
         super.init(identifier: localIdentifier, name: localName, dispatchQueue: dispatchQueue)
 
@@ -42,29 +42,6 @@ class IONRouter: Router {
     func stop() {
         self.advertiser.stopAdvertising()
         self.browser.stopBrowsing()
-    }
-
-    /// <#Description#>
-    /// - Parameter module: <#module description#>
-    func addModule(_ module: Module) {
-        let newModule = ManagedModule(module: module, dispatchQueue: self.dispatchQueue)
-
-        self.advertiser.addAdvertiser(newModule.advertiser)
-        self.browser.addBrowser(newModule.browser)
-        self.modules.append(newModule)
-    }
-
-    /// <#Description#>
-    /// - Parameter module: <#module description#>
-    func removeModule(_ module: Module) {
-        let removedModules = self.modules.filter { $0.module === module }
-
-        for removedModule in removedModules {
-            self.advertiser.removeAdvertiser(removedModule.advertiser)
-            self.browser.removeBrowser(removedModule.browser)
-        }
-
-        self.modules = self.modules.filter { $0.module !== module }
     }
 }
 
