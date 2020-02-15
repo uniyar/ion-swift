@@ -113,4 +113,22 @@ class MetricsTests: XCTestCase {
         
         XCTAssertEqual(metricValue5, 1, accuracy: .leastNormalMagnitude)
     }
+    
+    func testPriorities() {
+        let priorities: [MetricParameterPriority] = [
+            MetricParameterPriority(type: .bandwidth, value: 100),
+            MetricParameterPriority(type: .loss, value: 50),
+            MetricParameterPriority(type: .computation, value: 100),
+            MetricParameterPriority(type: .time, value: 100)
+        ]
+        
+        if let coeffs = Metric.coefficients(from: priorities) {
+            XCTAssertEqual(coeffs[0].value, 0.2857143, accuracy: .leastNormalMagnitude)
+            XCTAssertEqual(coeffs[1].value, 0.14285715, accuracy: .leastNormalMagnitude)
+
+            XCTAssertTrue(Metric.check(coeffs))
+        } else {
+            XCTAssertNil(nil)
+        }
+    }
 }

@@ -21,6 +21,13 @@ struct MetricCoefficient {
     let value: Float
 }
 
+/// Subjective priority in percent based on parameter contribution into metric
+struct MetricParameterPriority {
+    let type: MetricParameterType
+    /// Range: 0..100. In percents. If higher then parameter contribution would be also higher.
+    let value: Int
+}
+
 protocol MetricParameter {
     var type: MetricParameterType { get }
     var value: Float { get }
@@ -40,49 +47,5 @@ class Metric {
         }
 
         return 0
-    }
-
-    /// Check coefficients vector is balanced
-    static func check(_ coefficients: [MetricCoefficient]) -> Bool {
-        let sum: Float = coefficients.map { $0.value }.reduce(0, +)
-
-        return sum >= 0 && sum <= 1
-    }
-
-    /// Check parameters vector is valid
-    static func check(_ parameters: [MetricParameter]) -> Bool {
-        return parameters.allSatisfy { $0.value <= 1 && $0.value >= 0 }
-    }
-
-    /// Check coefficients and parameters vectors are full and return their pairs
-    private static func retreivePairs(
-        of coefficients: [MetricCoefficient],
-        to parameters: [MetricParameter]
-    ) -> [(MetricCoefficient, MetricParameter)]? {
-        if !Metric.check(coefficients) || !Metric.check(parameters) { return nil }
-
-        let coefficientsNum = coefficients.count
-        let parametersNum = parameters.count
-
-        if coefficientsNum != parametersNum { return nil }
-
-        let pairs = zip(coefficients, parameters).map { (arg0) -> (MetricCoefficient, MetricParameter)? in
-            let (coefficient, parameter) = arg0
-
-            if coefficient.type == parameter.type {
-                return arg0
-            } else if let parameter = parameters.first(where: { $0.type == coefficient.type }) {
-                return (coefficient, parameter)
-            }
-
-            return nil
-        }
-
-        if pairs.count == coefficientsNum,
-            pairs.count == parametersNum {
-            return pairs as? [(MetricCoefficient, MetricParameter)]
-        }
-
-        return nil
     }
 }

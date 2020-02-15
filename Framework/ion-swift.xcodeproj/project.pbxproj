@@ -16,6 +16,8 @@
 		CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA34990B23C23CF4001DEDEB /* Network.framework */; };
 		CA4AC8F423C3CA7C00692C21 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
 		CA7AFC3523F0522B00550662 /* FloodingPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFC3423F0522B00550662 /* FloodingPacket.swift */; };
+		CA80036223F8254E00BC2290 /* Metrics+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036123F8254E00BC2290 /* Metrics+Helper.swift */; };
+		CA80036423F8298000BC2290 /* Metrics+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036123F8254E00BC2290 /* Metrics+Helper.swift */; };
 		CA97904623F7F5D500B3538E /* Device+CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904523F7F5D500B3538E /* Device+CPU.swift */; };
 		CA97904A23F8014A00B3538E /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904923F8014A00B3538E /* Metrics.swift */; };
 		CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
@@ -125,6 +127,7 @@
 		CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ion-swift-example.xcodeproj"; path = "../Apps/Client/ion-swift-example/ion-swift-example.xcodeproj"; sourceTree = "<group>"; };
 		CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWParameters+Passcode.swift"; sourceTree = "<group>"; };
 		CA7AFC3423F0522B00550662 /* FloodingPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodingPacket.swift; sourceTree = "<group>"; };
+		CA80036123F8254E00BC2290 /* Metrics+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metrics+Helper.swift"; sourceTree = "<group>"; };
 		CA97904523F7F5D500B3538E /* Device+CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+CPU.swift"; sourceTree = "<group>"; };
 		CA97904923F8014A00B3538E /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
 		CA97DB9D23C2993800516B64 /* IONRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRouter.swift; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				CA97904923F8014A00B3538E /* Metrics.swift */,
+				CA80036123F8254E00BC2290 /* Metrics+Helper.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -689,6 +693,7 @@
 				CA9EAC1923C12871003DAF51 /* Router.swift in Sources */,
 				CA9EABEB23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */,
 				CA9EAC1123C12871003DAF51 /* RoutingPackets.swift in Sources */,
+				CA80036223F8254E00BC2290 /* Metrics+Helper.swift in Sources */,
 				CA9EAC0923C12871003DAF51 /* Set.swift in Sources */,
 				CA9EABF923C12871003DAF51 /* SinglePacket.swift in Sources */,
 				CA9EAC0523C12871003DAF51 /* Utils.swift in Sources */,
@@ -711,6 +716,7 @@
 				CAE5ECDF23F81310001AE99F /* MetricsTests.swift in Sources */,
 				CA9EAC2023C12871003DAF51 /* ManagedModule.swift in Sources */,
 				CA9EABFE23C12871003DAF51 /* StartStopHelper.swift in Sources */,
+				CA80036423F8298000BC2290 /* Metrics+Helper.swift in Sources */,
 				CA9EABEC23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */,
 				CA9EABFC23C12871003DAF51 /* UUID.swift in Sources */,
 				CA9EAC2823C12871003DAF51 /* UnderlyingConnection.swift in Sources */,
