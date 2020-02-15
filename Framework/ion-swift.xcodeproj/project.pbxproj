@@ -18,6 +18,7 @@
 		CA7AFC3523F0522B00550662 /* FloodingPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFC3423F0522B00550662 /* FloodingPacket.swift */; };
 		CA80036223F8254E00BC2290 /* Metrics+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036123F8254E00BC2290 /* Metrics+Helper.swift */; };
 		CA80036423F8298000BC2290 /* Metrics+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036123F8254E00BC2290 /* Metrics+Helper.swift */; };
+		CA80036923F834A100BC2290 /* IONProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036823F834A100BC2290 /* IONProtocol.swift */; };
 		CA97904623F7F5D500B3538E /* Device+CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904523F7F5D500B3538E /* Device+CPU.swift */; };
 		CA97904A23F8014A00B3538E /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904923F8014A00B3538E /* Metrics.swift */; };
 		CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
@@ -128,6 +129,7 @@
 		CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWParameters+Passcode.swift"; sourceTree = "<group>"; };
 		CA7AFC3423F0522B00550662 /* FloodingPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodingPacket.swift; sourceTree = "<group>"; };
 		CA80036123F8254E00BC2290 /* Metrics+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metrics+Helper.swift"; sourceTree = "<group>"; };
+		CA80036823F834A100BC2290 /* IONProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONProtocol.swift; sourceTree = "<group>"; };
 		CA97904523F7F5D500B3538E /* Device+CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+CPU.swift"; sourceTree = "<group>"; };
 		CA97904923F8014A00B3538E /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
 		CA97DB9D23C2993800516B64 /* IONRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRouter.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
 				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
 				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
+				CA80036823F834A100BC2290 /* IONProtocol.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA80036923F834A100BC2290 /* IONProtocol.swift in Sources */,
 				CAA2915723F7E92F00AB224C /* Node+Metrics.swift in Sources */,
 				CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */,
 				CA97904A23F8014A00B3538E /* Metrics.swift in Sources */,
