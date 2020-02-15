@@ -1,5 +1,5 @@
 //
-//  Connection+Metrics.swift
+//  ConnectionInfo.swift
 //  ion-swift
 //
 //  Created by Ivan Manov on 15.02.2020.
@@ -8,10 +8,14 @@
 
 import Foundation
 
-/// Connection related parameters
-struct ConnectionParameters: Codable {
+/// Connection related info
+struct ConnectionInfo: Codable {
+    /// Nodes identifiers
+    let sourceNodeId: String
+    let destinationNodeId: String
+
     /// Range: 0..1. More is better.
-    /// Calculated based on (Received / Transmitted) num of packets during the connection probe
+    /// Calculated based on (Received / Transmitted) num of data during the connection probe
     var lossRatio: Float?
     /// Range: 0..Inf. In milliseconds. Less is better.
     /// Calculated based on average delay of packet transmission during the connection probe

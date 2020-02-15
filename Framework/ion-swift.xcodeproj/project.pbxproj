@@ -19,6 +19,11 @@
 		CA80036223F8254E00BC2290 /* Metrics+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036123F8254E00BC2290 /* Metrics+Helper.swift */; };
 		CA80036423F8298000BC2290 /* Metrics+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036123F8254E00BC2290 /* Metrics+Helper.swift */; };
 		CA80036923F834A100BC2290 /* IONProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036823F834A100BC2290 /* IONProtocol.swift */; };
+		CA80036E23F88D6800BC2290 /* LossParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036D23F88D6800BC2290 /* LossParameter.swift */; };
+		CA80037023F8904900BC2290 /* TimeParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80036F23F8904900BC2290 /* TimeParameter.swift */; };
+		CA80037223F891C000BC2290 /* BandwidthParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80037123F891C000BC2290 /* BandwidthParameter.swift */; };
+		CA80037423F8938F00BC2290 /* ComputationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80037323F8938F00BC2290 /* ComputationParameter.swift */; };
+		CA80037623F8958600BC2290 /* EnergyParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80037523F8958600BC2290 /* EnergyParameter.swift */; };
 		CA97904623F7F5D500B3538E /* Device+CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904523F7F5D500B3538E /* Device+CPU.swift */; };
 		CA97904A23F8014A00B3538E /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904923F8014A00B3538E /* Metrics.swift */; };
 		CA97DB9E23C2993800516B64 /* IONRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97DB9D23C2993800516B64 /* IONRouter.swift */; };
@@ -92,8 +97,8 @@
 		CA9EAC2D23C12871003DAF51 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDD23C12871003DAF51 /* Connection.swift */; };
 		CA9EAC3123C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
 		CAA2915323F7E72600AB224C /* Device+Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915223F7E72600AB224C /* Device+Battery.swift */; };
-		CAA2915723F7E92F00AB224C /* Node+Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915623F7E92F00AB224C /* Node+Metrics.swift */; };
-		CAA2915923F7E94A00AB224C /* Connection+Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915823F7E94A00AB224C /* Connection+Metrics.swift */; };
+		CAA2915723F7E92F00AB224C /* NodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915623F7E92F00AB224C /* NodeInfo.swift */; };
+		CAA2915923F7E94A00AB224C /* ConnectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915823F7E94A00AB224C /* ConnectionInfo.swift */; };
 		CAA2915D23F7EFCC00AB224C /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915C23F7EFCC00AB224C /* Device.swift */; };
 		CAE5ECDC23F812EA001AE99F /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904923F8014A00B3538E /* Metrics.swift */; };
 		CAE5ECDF23F81310001AE99F /* MetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ECDE23F81310001AE99F /* MetricsTests.swift */; };
@@ -130,6 +135,11 @@
 		CA7AFC3423F0522B00550662 /* FloodingPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodingPacket.swift; sourceTree = "<group>"; };
 		CA80036123F8254E00BC2290 /* Metrics+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metrics+Helper.swift"; sourceTree = "<group>"; };
 		CA80036823F834A100BC2290 /* IONProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONProtocol.swift; sourceTree = "<group>"; };
+		CA80036D23F88D6800BC2290 /* LossParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LossParameter.swift; sourceTree = "<group>"; };
+		CA80036F23F8904900BC2290 /* TimeParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeParameter.swift; sourceTree = "<group>"; };
+		CA80037123F891C000BC2290 /* BandwidthParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandwidthParameter.swift; sourceTree = "<group>"; };
+		CA80037323F8938F00BC2290 /* ComputationParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputationParameter.swift; sourceTree = "<group>"; };
+		CA80037523F8958600BC2290 /* EnergyParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyParameter.swift; sourceTree = "<group>"; };
 		CA97904523F7F5D500B3538E /* Device+CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+CPU.swift"; sourceTree = "<group>"; };
 		CA97904923F8014A00B3538E /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
 		CA97DB9D23C2993800516B64 /* IONRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONRouter.swift; sourceTree = "<group>"; };
@@ -179,8 +189,8 @@
 		CA9EABDD23C12871003DAF51 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		CA9EABDF23C12871003DAF51 /* Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		CAA2915223F7E72600AB224C /* Device+Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Battery.swift"; sourceTree = "<group>"; };
-		CAA2915623F7E92F00AB224C /* Node+Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Metrics.swift"; sourceTree = "<group>"; };
-		CAA2915823F7E94A00AB224C /* Connection+Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection+Metrics.swift"; sourceTree = "<group>"; };
+		CAA2915623F7E92F00AB224C /* NodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeInfo.swift; sourceTree = "<group>"; };
+		CAA2915823F7E94A00AB224C /* ConnectionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionInfo.swift; sourceTree = "<group>"; };
 		CAA2915C23F7EFCC00AB224C /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		CAE5ECDE23F81310001AE99F /* MetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,11 +297,35 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CA80036A23F88B6300BC2290 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				CAA2915823F7E94A00AB224C /* ConnectionInfo.swift */,
+				CAA2915623F7E92F00AB224C /* NodeInfo.swift */,
+				CAA2915B23F7EFC100AB224C /* Device */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		CA80036C23F88D4900BC2290 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				CA80036D23F88D6800BC2290 /* LossParameter.swift */,
+				CA80036F23F8904900BC2290 /* TimeParameter.swift */,
+				CA80037123F891C000BC2290 /* BandwidthParameter.swift */,
+				CA80037323F8938F00BC2290 /* ComputationParameter.swift */,
+				CA80037523F8958600BC2290 /* EnergyParameter.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
 		CA97904723F8010400B3538E /* Metrics */ = {
 			isa = PBXGroup;
 			children = (
-				CAA2915523F7E90400AB224C /* Connection */,
-				CAA2915423F7E8FE00AB224C /* Node */,
+				CA97904923F8014A00B3538E /* Metrics.swift */,
+				CA80036123F8254E00BC2290 /* Metrics+Helper.swift */,
+				CA80036C23F88D4900BC2290 /* Parameters */,
+				CA80036A23F88B6300BC2290 /* Info */,
 			);
 			path = Metrics;
 			sourceTree = "<group>";
@@ -299,8 +333,7 @@
 		CA97904823F8012500B3538E /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
-				CA97904923F8014A00B3538E /* Metrics.swift */,
-				CA80036123F8254E00BC2290 /* Metrics+Helper.swift */,
+				CA97904723F8010400B3538E /* Metrics */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -436,26 +469,8 @@
 			isa = PBXGroup;
 			children = (
 				CA97904823F8012500B3538E /* Algorithm */,
-				CA97904723F8010400B3538E /* Metrics */,
 			);
 			path = Routing;
-			sourceTree = "<group>";
-		};
-		CAA2915423F7E8FE00AB224C /* Node */ = {
-			isa = PBXGroup;
-			children = (
-				CAA2915B23F7EFC100AB224C /* Device */,
-				CAA2915623F7E92F00AB224C /* Node+Metrics.swift */,
-			);
-			path = Node;
-			sourceTree = "<group>";
-		};
-		CAA2915523F7E90400AB224C /* Connection */ = {
-			isa = PBXGroup;
-			children = (
-				CAA2915823F7E94A00AB224C /* Connection+Metrics.swift */,
-			);
-			path = Connection;
 			sourceTree = "<group>";
 		};
 		CAA2915A23F7E9CB00AB224C /* API */ = {
@@ -648,20 +663,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA80036923F834A100BC2290 /* IONProtocol.swift in Sources */,
-				CAA2915723F7E92F00AB224C /* Node+Metrics.swift in Sources */,
+				CAA2915723F7E92F00AB224C /* NodeInfo.swift in Sources */,
 				CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */,
 				CA97904A23F8014A00B3538E /* Metrics.swift in Sources */,
 				CAA2915323F7E72600AB224C /* Device+Battery.swift in Sources */,
 				CA9EAC1F23C12871003DAF51 /* ManagedModule.swift in Sources */,
 				CA34990123C23BE9001DEDEB /* IONAdvertiser.swift in Sources */,
-				CAA2915923F7E94A00AB224C /* Connection+Metrics.swift in Sources */,
+				CAA2915923F7E94A00AB224C /* ConnectionInfo.swift in Sources */,
 				CA3498FB23C23BE9001DEDEB /* IONAddress.swift in Sources */,
 				CA9EABE123C12871003DAF51 /* ReliabilityManager.swift in Sources */,
+				CA80036E23F88D6800BC2290 /* LossParameter.swift in Sources */,
 				CA9EAC2123C12871003DAF51 /* Node.swift in Sources */,
 				CA9EABE323C12871003DAF51 /* PacketConnection.swift in Sources */,
 				CA9EABFD23C12871003DAF51 /* StartStopHelper.swift in Sources */,
+				CA80037023F8904900BC2290 /* TimeParameter.swift in Sources */,
 				CA9EAC1323C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */,
 				CA9EAC2923C12871003DAF51 /* Browser.swift in Sources */,
+				CA80037423F8938F00BC2290 /* ComputationParameter.swift in Sources */,
 				CA9EABED23C12871003DAF51 /* Graph.swift in Sources */,
 				CA9EAC2B23C12871003DAF51 /* Module.swift in Sources */,
 				CA9EAC1D23C12871003DAF51 /* MulticastConnection.swift in Sources */,
@@ -682,6 +700,7 @@
 				CA34990523C23BE9001DEDEB /* IONLocalPeer.swift in Sources */,
 				CA9EAC1723C12871003DAF51 /* ForwardingConnection.swift in Sources */,
 				CA97DBA023C2A16700516B64 /* IONRemotePeer.swift in Sources */,
+				CA80037223F891C000BC2290 /* BandwidthParameter.swift in Sources */,
 				CAA2915D23F7EFCC00AB224C /* Device.swift in Sources */,
 				CA9EABFF23C12871003DAF51 /* Timer.swift in Sources */,
 				CA9EABFB23C12871003DAF51 /* UUID.swift in Sources */,
@@ -696,6 +715,7 @@
 				CA9EABE723C12871003DAF51 /* InTransfer.swift in Sources */,
 				CA9EAC1923C12871003DAF51 /* Router.swift in Sources */,
 				CA9EABEB23C12871003DAF51 /* MinimumSteinerTreeApproximation.swift in Sources */,
+				CA80037623F8958600BC2290 /* EnergyParameter.swift in Sources */,
 				CA9EAC1123C12871003DAF51 /* RoutingPackets.swift in Sources */,
 				CA80036223F8254E00BC2290 /* Metrics+Helper.swift in Sources */,
 				CA9EAC0923C12871003DAF51 /* Set.swift in Sources */,

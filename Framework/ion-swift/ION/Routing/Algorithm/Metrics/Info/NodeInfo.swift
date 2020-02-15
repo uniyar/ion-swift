@@ -1,5 +1,5 @@
 //
-//  Node+Metrics.swift
+//  NodeInfo.swift
 //  ion-swift
 //
 //  Created by Ivan Manov on 15.02.2020.
@@ -8,8 +8,11 @@
 
 import Foundation
 
-/// Node related parameters
-struct NodeParameters: Codable {
+/// Node related info
+struct NodeInfo: Codable {
+    /// Node identifier. Source of info
+    var id: String
+
     // MARK: Computation info
 
     /// Range: 0..1. Less is better.

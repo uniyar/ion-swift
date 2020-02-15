@@ -12,9 +12,7 @@ extension Device {
     internal func subscribeCPUChanges() {
         self.cpuUpdateTimer =
             Timer.repeatAction(interval: 5, action: { _, _ in
-                let load = self.cpuLoad()
-                print(load)
-                self.cpuLoadChanged?(load)
+                self.cpuLoadChanged?(self.cpuLoad())
             })
         self.cpuUpdateTimer?.fire()
     }
