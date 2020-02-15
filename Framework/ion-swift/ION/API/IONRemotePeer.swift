@@ -22,12 +22,11 @@ public class IONRemotePeer: NSObject {
     public var stringIdentifier: String {
         return self.identifier.UUIDString
     }
-    
+
     /// Establishes a connection to this peer.
     public func connect() -> Connection {
         return self.localPeer.connect([self])
     }
-
 
     // MARK: Internal
 

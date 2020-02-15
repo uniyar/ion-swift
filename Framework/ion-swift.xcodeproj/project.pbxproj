@@ -105,6 +105,9 @@
 		CA9EAC2E23C12871003DAF51 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDD23C12871003DAF51 /* Connection.swift */; };
 		CA9EAC3123C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
 		CA9EAC3223C12871003DAF51 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EABDF23C12871003DAF51 /* Transfer.swift */; };
+		CAA2915323F7E72600AB224C /* Device+Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915223F7E72600AB224C /* Device+Battery.swift */; };
+		CAA2915723F7E92F00AB224C /* Node+Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915623F7E92F00AB224C /* Node+Metrics.swift */; };
+		CAA2915923F7E94A00AB224C /* Connection+Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915823F7E94A00AB224C /* Connection+Metrics.swift */; };
 		CAF129F823C412C000E87103 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +186,9 @@
 		CA9EABDC23C12871003DAF51 /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		CA9EABDD23C12871003DAF51 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		CA9EABDF23C12871003DAF51 /* Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
+		CAA2915223F7E72600AB224C /* Device+Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Battery.swift"; sourceTree = "<group>"; };
+		CAA2915623F7E92F00AB224C /* Node+Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Node+Metrics.swift"; sourceTree = "<group>"; };
+		CAA2915823F7E94A00AB224C /* Connection+Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection+Metrics.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,14 +214,8 @@
 		CA3498F423C23BE9001DEDEB /* ION */ = {
 			isa = PBXGroup;
 			children = (
-				CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */,
-				CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */,
-				CA97DB9D23C2993800516B64 /* IONRouter.swift */,
-				CA3498F623C23BE9001DEDEB /* IONModule.swift */,
-				CA3498F723C23BE9001DEDEB /* IONBrowser.swift */,
-				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
-				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
-				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
+				CAA2915A23F7E9CB00AB224C /* API */,
+				CAA2915123F7E6E800AB224C /* Routing */,
 				CA4AC8F623C3CF4700692C21 /* Extensions */,
 			);
 			path = ION;
@@ -420,6 +420,47 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		CAA2915123F7E6E800AB224C /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				CAA2915523F7E90400AB224C /* Connection */,
+				CAA2915423F7E8FE00AB224C /* Node */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		CAA2915423F7E8FE00AB224C /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				CAA2915223F7E72600AB224C /* Device+Battery.swift */,
+				CAA2915623F7E92F00AB224C /* Node+Metrics.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		CAA2915523F7E90400AB224C /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				CAA2915823F7E94A00AB224C /* Connection+Metrics.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		CAA2915A23F7E9CB00AB224C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */,
+				CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */,
+				CA97DB9D23C2993800516B64 /* IONRouter.swift */,
+				CA3498F623C23BE9001DEDEB /* IONModule.swift */,
+				CA3498F723C23BE9001DEDEB /* IONBrowser.swift */,
+				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
+				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
+				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -567,9 +608,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA2915723F7E92F00AB224C /* Node+Metrics.swift in Sources */,
 				CA9EAC1523C12871003DAF51 /* CompositeBrowser.swift in Sources */,
+				CAA2915323F7E72600AB224C /* Device+Battery.swift in Sources */,
 				CA9EAC1F23C12871003DAF51 /* ManagedModule.swift in Sources */,
 				CA34990123C23BE9001DEDEB /* IONAdvertiser.swift in Sources */,
+				CAA2915923F7E94A00AB224C /* Connection+Metrics.swift in Sources */,
 				CA3498FB23C23BE9001DEDEB /* IONAddress.swift in Sources */,
 				CA9EABE123C12871003DAF51 /* ReliabilityManager.swift in Sources */,
 				CA9EAC2123C12871003DAF51 /* Node.swift in Sources */,

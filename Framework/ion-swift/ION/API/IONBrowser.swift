@@ -10,7 +10,10 @@ import Foundation
 import Network
 
 class IONBrowser: Browser {
-    var isBrowsing: Bool = false
+    var isBrowsing: Bool {
+        return self.browser.state == .ready
+    }
+
     weak var browserDelegate: BrowserDelegate?
 
     let browser: NWBrowser
@@ -32,10 +35,8 @@ class IONBrowser: Browser {
             changes.forEach { change in
                 switch change {
                 case let .added(result):
-                    print("Added \(result.endpoint)")
                     self.addEndpoint(result.endpoint)
                 case let .removed(result):
-                    print("Removed \(result.endpoint)")
                     self.removeEndpoint(result.endpoint)
 
 //                case let .changed(oldResult, newResult, flags):
@@ -72,20 +73,18 @@ class IONBrowser: Browser {
 
         self.browser.stateUpdateHandler = { newState in
             switch newState {
-            case .ready:
-                self.isBrowsing = true
             case let .failed(error):
                 print("Browser failed with \(error), restarting...")
-                self.isBrowsing = false
                 self.restartBrowsing()
-            default:
-                self.isBrowsing = false
+            default: break
             }
         }
     }
 
     private func addEndpoint(_ endpoint: NWEndpoint) {
         switch endpoint {
+        case let .hostPort(host, port):
+            print("Host: \(host):\(port) added")
         case let .service(name, _, _, _):
             let address = IONAddress(
                 hostName: name,
