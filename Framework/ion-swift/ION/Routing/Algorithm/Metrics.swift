@@ -8,6 +8,23 @@
 
 import Foundation
 
+class Metric {
+    /// Calculate metric
+    /// - Parameters:
+    ///   - coefficients: coefficients vector
+    ///   - parameters: parameters vector
+    static func calculate(with coefficients: [MetricCoefficient],
+                          for parameters: [MetricParameter]) -> Float {
+        if let pairs = Metric.retrievePairs(of: coefficients, to: parameters) {
+            let metricResult: Float = pairs.map { $0.0.value * $0.1.value }.reduce(0, +)
+
+            return metricResult
+        }
+
+        return 0
+    }
+}
+
 enum MetricParameterType: CaseIterable {
     case loss
     case time
@@ -31,21 +48,4 @@ struct MetricParameterPriority {
 protocol MetricParameter {
     var type: MetricParameterType { get }
     var value: Float { get }
-}
-
-class Metric {
-    /// Calculate metric
-    /// - Parameters:
-    ///   - coefficients: coefficients vector
-    ///   - parameters: parameters vector
-    static func calculate(with coefficients: [MetricCoefficient],
-                          for parameters: [MetricParameter]) -> Float {
-        if let pairs = Metric.retreivePairs(of: coefficients, to: parameters) {
-            let metricResult: Float = pairs.map { $0.0.value * $0.1.value }.reduce(0, +)
-
-            return metricResult
-        }
-
-        return 0
-    }
 }

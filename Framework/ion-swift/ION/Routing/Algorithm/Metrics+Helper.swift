@@ -44,7 +44,7 @@ extension Metric {
     }
 
     /// Check coefficients and parameters vectors are full and return their pairs
-    static func retreivePairs(
+    static func retrievePairs(
         of coefficients: [MetricCoefficient],
         to parameters: [MetricParameter]
     ) -> [(MetricCoefficient, MetricParameter)]? {
