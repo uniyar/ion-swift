@@ -8,14 +8,23 @@
 
 import UIKit
 
-public class Device {
-    public static let shared = Device()
+/// Current device battery state
+public enum DeviceBatteryState: Int, Codable {
+    /// if monitoring disabled
+    case unknown = -1
+    /// If device is unplugged from the power source
+    case unplugged = 0
+    /// If device is charging
+    case charging = 1
+    /// If device is fully charged. Could be in charging state also, but w/o charging
+    case full = 2
+    /// If tvOS / car play case. Take as infinity power source
+    case notApplicable = 3
+}
 
-    private let systemDevice = UIDevice.current
-
-    // MARK: Overrided functions
-
-    public init() {
+/// Battery info
+extension Device {
+    internal func subscribeBatteryChanges() {
         self.systemDevice.isBatteryMonitoringEnabled = true
 
         NotificationCenter.default.addObserver(
@@ -33,41 +42,21 @@ public class Device {
         )
     }
 
-    // MARK: Public variables
+    internal func unsubscribeBatteryChanges() {
+        self.systemDevice.isBatteryMonitoringEnabled = false
 
-    public var batteryStateChanged: ((_ batteryState: DeviceBatteryState) -> Void)?
-    public var batteryLevelChanged: ((_ batteryLevel: Float) -> Void)?
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIDevice.batteryStateDidChangeNotification,
+            object: self.systemDevice
+        )
 
-    /// Device name. e.g. "My iPhone"
-    public var name: String {
-        return self.systemDevice.name
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIDevice.batteryLevelDidChangeNotification,
+            object: self.systemDevice
+        )
     }
-
-    /// a UUID that may be used to uniquely identify the device, same across apps from a single vendor.
-    public var identifier: String {
-        return self.systemDevice.identifierForVendor!.uuidString
-    }
-
-    /// System version. e.g. @"12.1"
-    public var systemVersion: String {
-        return self.systemDevice.systemVersion
-    }
-}
-
-// MARK: Battery info
-
-extension Device {
-    public enum DeviceBatteryState: Int {
-        // if monitoring disabled
-        case unknown
-        case unplugged
-        case charging
-        case full
-        // if tvOS / car play case. Take as infinity power source
-        case notApplicable
-    }
-
-    // MARK: Public variables
 
     /// Battery info availability
     public var batteryInfoAvailability: Bool {
@@ -100,11 +89,13 @@ extension Device {
         return self.systemDevice.batteryLevel
     }
 
-    @objc private func batteryStateDidChange(_: Notification) {
+    // MARK: Notifications
+
+    @objc internal func batteryStateDidChange(_: Notification) {
         self.batteryStateChanged?(self.batteryState)
     }
 
-    @objc private func batteryLevelDidChange(_: Notification) {
+    @objc internal func batteryLevelDidChange(_: Notification) {
         self.batteryLevelChanged?(self.batteryLevel)
     }
 }
