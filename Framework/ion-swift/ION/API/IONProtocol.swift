@@ -13,6 +13,7 @@ import Network
 enum IONMessageType: UInt32 {
     case invalid = 0
     case metrics = 1
+    case core = 2
 }
 
 // Create a class that implements a framing protocol.
@@ -96,7 +97,7 @@ class IONProtocol: NWProtocolFramerImplementation {
 extension NWProtocolFramer.Message {
     convenience init(ionMessageType: IONMessageType) {
         self.init(definition: IONProtocol.definition)
-        
+
         self.ionMessageType = ionMessageType
     }
 

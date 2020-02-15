@@ -40,6 +40,10 @@ extension NWParameters {
 
         // Enable using a peer-to-peer link.
         self.includePeerToPeer = true
+
+        // Add ion protocol to support protocol messages.
+        let protocolOptions = NWProtocolFramer.Options(definition: IONProtocol.definition)
+        self.defaultProtocolStack.applicationProtocols.insert(protocolOptions, at: 0)
     }
 
     // Create TLS options using a passcode to derive a pre-shared key.

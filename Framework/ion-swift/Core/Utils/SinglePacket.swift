@@ -92,9 +92,7 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
         self.failBlock()
     }
 
-    func didReceiveData(_ connection: UnderlyingConnection, data: Data) {
-        print("Did receive data from: \(connection)")
-
+    func didReceiveData(_: UnderlyingConnection, data: Data) {
         self.packetsReceived += 1
 
         if self.packetsReceived == self.packetCount {

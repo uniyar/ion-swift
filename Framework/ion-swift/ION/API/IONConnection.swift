@@ -31,8 +31,9 @@ class IONConnection {
     init(with endpoint: NWEndpoint,
          dispatchQueue: DispatchQueue) {
         self.initiatedConnection = true
-        let connection = NWConnection(to: endpoint, using: IONLocalPeer.dafaultParemeters)
         self.dispatchQueue = dispatchQueue
+
+        let connection = NWConnection(to: endpoint, using: IONLocalPeer.dafaultParemeters)
         self.connection = connection
 
         self.handleConnectipnUpdates()
@@ -54,10 +55,8 @@ class IONConnection {
         connection.stateUpdateHandler = { newState in
             switch newState {
             case .ready:
-                print("\(connection) established")
-
-                // When the connection is ready, start receiving messages.
-                self.receiveNextMessage()
+                // When the connection is ready, start receiving data.
+                self.receiveProtocolMessage()
 
                 // Notify your delegate that the connection is ready.
                 if let delegate = self.delegate {
@@ -67,7 +66,6 @@ class IONConnection {
                 self.connectionHandler?(true, nil)
             case let .failed(error):
                 let message = "\(connection) failed with \(error)"
-                print(message)
 
                 // Cancel the connection upon a failure.
                 connection.cancel()
@@ -78,28 +76,7 @@ class IONConnection {
                 }
 
                 self.connectionHandler?(false, message as AnyObject)
-            default:
-                break
-            }
-        }
-    }
-
-    // Receive a message, deliver it to your delegate, and continue receiving more messages.
-    private func receiveNextMessage() {
-        let connection = self.connection
-
-        connection.receive(
-            minimumIncompleteLength: 0,
-            maximumLength: self.recommendedPacketSize
-        ) { data, _, _, error in
-            if error == nil, let data = data {
-                print("-- IONConnection: Did receive data")
-                self.delegate?.didReceiveData(self, data: data)
-            }
-
-            if error == nil {
-                // Continue to receive more messages until you receive and error.
-                self.receiveNextMessage()
+            default: break
             }
         }
     }
@@ -127,14 +104,52 @@ extension IONConnection: UnderlyingConnection {
     func writeData(_ data: Data) {
         if !self.isConnected { return }
 
+        self.send(core: data)
+    }
+}
+
+// MARK: Framing protocol
+
+extension IONConnection {
+    func send(core data: Data) {
+        let message = NWProtocolFramer.Message(ionMessageType: .core)
+        let context = NWConnection.ContentContext(
+            identifier: "Core",
+            metadata: [message]
+        )
+
+        // Send the application content along with the message.
         self.connection.send(
             content: data,
-            completion: .contentProcessed { error in
-                if error == nil {
-                    print("-- IONConnection: Did send data")
-                    self.delegate?.didSendData(self)
+            contentContext: context,
+            isComplete: true,
+            completion: .idempotent
+        )
+        print("-- IONConnection: Did send core data")
+    }
+
+    // Receive a message, deliver it to your delegate, and continue receiving more messages.
+    func receiveProtocolMessage() {
+        self.connection.receiveMessage { content, context, _, error in
+            let message = context?.protocolMetadata(definition: IONProtocol.definition)
+                as? NWProtocolFramer.Message
+
+            // Extract your message type from the received context.
+            if let ionMessage = message, let data = content {
+                print("DID RECEIVE PROTOCOL MESSAGE: ", ionMessage.ionMessageType)
+                switch ionMessage.ionMessageType {
+                case .metrics: break
+                case .core:
+                    self.delegate?.didReceiveData(self, data: data)
+                    print("-- IONConnection: Did receive core data")
+                default: break
                 }
             }
-        )
+
+            if error == nil {
+                // Continue to receive more protocol messages until you receive and error.
+                self.receiveProtocolMessage()
+            }
+        }
     }
 }
