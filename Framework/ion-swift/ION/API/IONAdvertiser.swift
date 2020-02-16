@@ -16,7 +16,7 @@ class IONAdvertiser: Advertiser {
     let type: String
     var listener: NWListener?
     let dispatchQueue: DispatchQueue
-    var connections: [IONConnection] = []
+    var connections: [IONUnderlyingConnection] = []
 
     init(type prefix: String, dispatchQueue: DispatchQueue) {
         self.type = "_\(prefix)._tcp"
@@ -55,7 +55,7 @@ class IONAdvertiser: Advertiser {
 
         listener.newConnectionHandler = { newConnection in
             if let delegate = self.advertiserDelegate {
-                let connection = IONConnection(with: newConnection, dispatchQueue: self.dispatchQueue)
+                let connection = IONUnderlyingConnection(with: newConnection, dispatchQueue: self.dispatchQueue)
                 connection.connect()
                 connection.connectionHandler = { connected, _ in
                     if connected {

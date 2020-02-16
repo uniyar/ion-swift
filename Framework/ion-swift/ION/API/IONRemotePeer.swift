@@ -16,17 +16,17 @@ public class IONRemotePeer: NSObject {
     public let identifier: UUID
     /// This peer's name.
     public let name: String?
-    /// Set this property if you want to handle incoming connections on a per-peer basis.
-//    public var onConnection: PeerConnectionClosure?
     /// Returns the UUID identifier as string to bridge to Objective-C Code
     public var stringIdentifier: String {
         return self.identifier.UUIDString
     }
 
+    /// Set this property if you want to handle incoming connections on a per-peer basis.
+    public var onConnection: ConnectionClosure?
     /// Establishes a connection to this peer.
-//    public func connect() -> Connection {
-//        return self.localPeer.connect([self])
-//    }
+    public func connect() -> Connection {
+        return self.localPeer.connect([self])
+    }
 
     // MARK: Internal
 
@@ -35,7 +35,7 @@ public class IONRemotePeer: NSObject {
     /// The LocalPeer that created this peer
     let localPeer: IONLocalPeer
     /// Stores all connections established by this peer
-    var connections: [UUID: PacketConnection] = [:]
+    internal var connections: [UUID: PacketConnection] = [:]
 
     /**
      * Private initializer. See the class documentation about how to obtain RemotePeer instances.

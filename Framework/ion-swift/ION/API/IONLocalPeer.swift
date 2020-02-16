@@ -15,6 +15,8 @@ public typealias PeerDiscoveredClosure = (_ peer: IONRemotePeer) -> Void
 /// Used to notify about removed peers.
 public typealias PeerRemovedClosure = (_ peer: IONRemotePeer) -> Void
 
+public typealias ConnectionClosure = (_ peer: IONRemotePeer, _ connection: Connection) -> Void
+
 /// A LocalPeer advertises the local peer in the network and browses for other peers.
 /// It requires one or more Modules to accomplish this. Two Modules that come with Reto are the WlanModule and the RemoteP2P module.
 /// The LocalPeer can also be used to establish multicast connections to multiple other peers.
@@ -40,6 +42,7 @@ public class IONLocalPeer {
 
     /// Available peers
     public var peers: [IONRemotePeer] = []
+    public var connections: [Connection] = []
 
     /// Peers update closure
     public var onPeersUpdate: PeersUpdateClosure?
@@ -47,6 +50,7 @@ public class IONLocalPeer {
     public var onPeerDiscovered: PeerDiscoveredClosure?
     /// Peer removed closure
     public var onPeerRemoved: PeerRemovedClosure?
+    var onConnection: ConnectionClosure?
 
     // MARK: Private properties
 
@@ -147,5 +151,119 @@ extension IONLocalPeer: RouterHandler {
                                    node: Node,
                                    connection: UnderlyingConnection) {
         print("--- Local peer: handleConnection, ", node, connection)
+        _ = readSinglePacket(connection: connection, onPacket: { data in
+            if let packet = ManagedConnectionHandshake.deserialize(data) {
+                self.handleConnection(
+                    node: node,
+                    connection: connection,
+                    connectionIdentifier: packet.connectionIdentifier
+                )
+            } else {
+                log(.low, info: "Expected ManagedConnectionHandshake.")
+            }
+        }, onFail: {
+            log(.high, info: "Connection closed before receiving ManagedConnectionHandshake")
+        })
     }
+}
+
+// MARK: Remote peers connection methods / ConnectionManager protocol
+
+extension IONLocalPeer: ConnectionManager {
+    private func createConnection(peer: IONRemotePeer,
+                                  connection: UnderlyingConnection,
+                                  connectionIdentifier: UUID) {
+        let packetConnection = PacketConnection(connection: connection,
+                                                connectionIdentifier: connectionIdentifier,
+                                                destinations: [peer.node])
+        peer.connections[connectionIdentifier] = packetConnection
+
+        let transferConnection = Connection(
+            packetConnection: packetConnection,
+            localIdentifier: self.identifier,
+            dispatchQueue: self.dispatchQueue,
+            isConnectionEstablisher: false,
+            connectionManager: self
+        )
+
+        if let connectionClosure = peer.onConnection {
+            connectionClosure(peer, transferConnection)
+        } else if let connectionClosure = self.onConnection {
+            connectionClosure(peer, transferConnection)
+        } else {
+            log(.high, warning: "An incoming connection was received, but onConnection is not set. Set it either in your LocalPeer instance (\(self)), or in the RemotePeer which established the connection (\(peer)).")
+        }
+    }
+
+    private func handleConnection(node: Node,
+                                  connection: UnderlyingConnection,
+                                  connectionIdentifier: UUID) {
+        var remotePeer: IONRemotePeer!
+
+        if let peer = self.peers.first(where: { $0.stringIdentifier == node.identifier.UUIDString }) {
+            remotePeer = peer
+        } else {
+            remotePeer = self.createPeer(with: node)
+            self.addPeer(with: node)
+        }
+
+        if let packetConnection = remotePeer.connections[connectionIdentifier] {
+            packetConnection.swapUnderlyingConnection(connection)
+        } else {
+            self.createConnection(
+                peer: remotePeer,
+                connection: connection,
+                connectionIdentifier: connectionIdentifier
+            )
+        }
+    }
+
+    internal func connect(_ destinations: Set<IONRemotePeer>) -> Connection {
+        let destinations = Set(destinations.map { $0.node })
+        let identifier = randomUUID()
+
+        let packetConnection = PacketConnection(
+            connection: nil,
+            connectionIdentifier: identifier,
+            destinations: destinations
+        )
+
+        let transferConnection = Connection(
+            packetConnection: packetConnection,
+            localIdentifier: self.identifier,
+            dispatchQueue: self.dispatchQueue,
+            isConnectionEstablisher: true,
+            connectionManager: self
+        )
+
+        transferConnection.reconnect()
+
+        return transferConnection
+    }
+
+    // ConnectionManager protocol
+
+    func establishUnderlyingConnection(_ packetConnection: PacketConnection) {
+        self.router.establishMulticastConnection(
+            destinations: packetConnection.destinations,
+            onConnection: { connection in
+                _ = writeSinglePacket(
+                    connection: connection,
+                    packet: ManagedConnectionHandshake(
+                        connectionIdentifier: packetConnection.connectionIdentifier
+                    ),
+                    onSuccess: {
+                        packetConnection.swapUnderlyingConnection(connection)
+                    },
+                    onFail: {
+                        log(.medium, error: "Failed to send ManagedConnectionHandshake.")
+                    }
+                )
+            }, onFail: {
+                log(.medium, error: "Failed to establish connection.")
+            }
+        )
+    }
+
+    func notifyConnectionClose(_: PacketConnection) {}
 }

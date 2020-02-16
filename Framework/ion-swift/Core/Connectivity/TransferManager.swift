@@ -200,7 +200,7 @@ class TransferManager: PacketHandler {
 
     /** Called when a transfer is started. */
     fileprivate func handleStartedTransfer(_ packet: StartedTransferPacket) {
-        assert(self.currentInTransfer == nil, "Received started transfer packet, but there is still an active in tansfer")
+//        assert(self.currentInTransfer == nil, "Received started transfer packet, but there is still an active in tansfer")
         self.currentInTransfer = InTransfer(manager: self, length: Int(packet.transferLength), identifier: packet.transferIdentifier)
         self.delegate?.notifyTransferStarted(self.currentInTransfer!)
         self.currentInTransfer?.confirmStart()
@@ -224,7 +224,7 @@ class TransferManager: PacketHandler {
 
     /** Handles a data packet. */
     fileprivate func handleData(_ packet: DataPacket) {
-        assert(self.currentInTransfer != nil, "Received data, but there is no incoming transfer")
+//        assert(self.currentInTransfer == nil, "Received data, but there is no incoming transfer")
 
         if let transfer = self.currentInTransfer {
             transfer.updateWithReceivedData(packet.data)

@@ -9,7 +9,7 @@
 import Foundation
 import Network
 
-class IONConnection {
+class IONUnderlyingConnection {
     let connection: NWConnection
     var connectionHandler: ConnectionHandler?
     let dispatchQueue: DispatchQueue
@@ -84,9 +84,12 @@ class IONConnection {
 
 // MARK: UnderlyingConnectionDelegate
 
-extension IONConnection: UnderlyingConnection {
+extension IONUnderlyingConnection: UnderlyingConnection {
     func connect() {
-        if self.isConnected { return }
+        if self.isConnected {
+            self.connectionHandler?(true, nil)
+            return
+        }
 
         // Start the connection establishment.
         self.connection.start(queue: self.dispatchQueue)
@@ -110,22 +113,25 @@ extension IONConnection: UnderlyingConnection {
 
 // MARK: Framing protocol
 
-extension IONConnection {
-    func send(core data: Data) {
-        let message = NWProtocolFramer.Message(ionMessageType: .core)
-        let context = NWConnection.ContentContext(
-            identifier: "Core",
-            metadata: [message]
-        )
+extension IONUnderlyingConnection {
+    func send(core data: Foundation.Data) {
+        self.dispatchQueue.async {
+            let message = NWProtocolFramer.Message(ionMessageType: .core)
+            let context = NWConnection.ContentContext(
+                identifier: "Core",
+                metadata: [message]
+            )
 
-        // Send the application content along with the message.
-        self.connection.send(
-            content: data,
-            contentContext: context,
-            isComplete: true,
-            completion: .idempotent
-        )
-        print("-- IONConnection: Did send core data")
+            // Send the application content along with the message.
+            self.connection.send(
+                content: data,
+                contentContext: context,
+                isComplete: true,
+                completion: .idempotent
+            )
+            self.delegate?.didSendData(self)
+            print("-- IONConnection: Did send core data")
+        }
     }
 
     // Receive a message, deliver it to your delegate, and continue receiving more messages.

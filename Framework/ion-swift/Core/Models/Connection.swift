@@ -158,11 +158,21 @@ import Foundation
      *           connection establisher is responsible for any reconnect attempts.
      * @param connectionManager The connection's manager. If a reconnect is required, it is responsible to establish a new underlying connection.
      */
-    init(packetConnection: PacketConnection, localIdentifier: UUID, dispatchQueue: DispatchQueue, isConnectionEstablisher: Bool, connectionManager: ConnectionManager) {
+    init(packetConnection: PacketConnection,
+         localIdentifier: UUID,
+         dispatchQueue: DispatchQueue,
+         isConnectionEstablisher: Bool,
+         connectionManager: ConnectionManager) {
         self.dispatchQueue = dispatchQueue
 
         self.transferManager = TransferManager(packetConnection: packetConnection)
-        self.reliabilityManager = ReliabilityManager(packetConnection: packetConnection, connectionManager: connectionManager, isExpectedToReconnect: isConnectionEstablisher, localIdentifier: localIdentifier, dispatchQueue: dispatchQueue)
+        self.reliabilityManager = ReliabilityManager(
+            packetConnection: packetConnection,
+            connectionManager: connectionManager,
+            isExpectedToReconnect: isConnectionEstablisher,
+            localIdentifier: localIdentifier,
+            dispatchQueue: dispatchQueue
+        )
 
         super.init()
 
@@ -183,6 +193,7 @@ import Foundation
         transfer.onCompleteData = {
             _, data in
             self.onData?(data as Data)
+
             return
         }
         transfer.onComplete = {

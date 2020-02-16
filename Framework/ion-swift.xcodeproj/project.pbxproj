@@ -11,7 +11,7 @@
 		CA3498FD23C23BE9001DEDEB /* IONModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F623C23BE9001DEDEB /* IONModule.swift */; };
 		CA3498FF23C23BE9001DEDEB /* IONBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F723C23BE9001DEDEB /* IONBrowser.swift */; };
 		CA34990123C23BE9001DEDEB /* IONAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */; };
-		CA34990323C23BE9001DEDEB /* IONConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F923C23BE9001DEDEB /* IONConnection.swift */; };
+		CA34990323C23BE9001DEDEB /* IONUnderlyingConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F923C23BE9001DEDEB /* IONUnderlyingConnection.swift */; };
 		CA34990523C23BE9001DEDEB /* IONLocalPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */; };
 		CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA34990B23C23CF4001DEDEB /* Network.framework */; };
 		CA4AC8F423C3CA7C00692C21 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
@@ -127,7 +127,7 @@
 		CA3498F623C23BE9001DEDEB /* IONModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONModule.swift; sourceTree = "<group>"; };
 		CA3498F723C23BE9001DEDEB /* IONBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONBrowser.swift; sourceTree = "<group>"; };
 		CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONAdvertiser.swift; sourceTree = "<group>"; };
-		CA3498F923C23BE9001DEDEB /* IONConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONConnection.swift; sourceTree = "<group>"; };
+		CA3498F923C23BE9001DEDEB /* IONUnderlyingConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONUnderlyingConnection.swift; sourceTree = "<group>"; };
 		CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONLocalPeer.swift; sourceTree = "<group>"; };
 		CA34990B23C23CF4001DEDEB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ion-swift-example.xcodeproj"; path = "../Apps/Client/ion-swift-example/ion-swift-example.xcodeproj"; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 				CA3498F723C23BE9001DEDEB /* IONBrowser.swift */,
 				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
 				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
-				CA3498F923C23BE9001DEDEB /* IONConnection.swift */,
+				CA3498F923C23BE9001DEDEB /* IONUnderlyingConnection.swift */,
 				CA80036823F834A100BC2290 /* IONProtocol.swift */,
 			);
 			path = API;
@@ -683,7 +683,7 @@
 				CA9EABED23C12871003DAF51 /* Graph.swift in Sources */,
 				CA9EAC2B23C12871003DAF51 /* Module.swift in Sources */,
 				CA9EAC1D23C12871003DAF51 /* MulticastConnection.swift in Sources */,
-				CA34990323C23BE9001DEDEB /* IONConnection.swift in Sources */,
+				CA34990323C23BE9001DEDEB /* IONUnderlyingConnection.swift in Sources */,
 				CA9EABF523C12871003DAF51 /* Logging.swift in Sources */,
 				CA3498FD23C23BE9001DEDEB /* IONModule.swift in Sources */,
 				CA9EAC0323C12871003DAF51 /* PriorityQueue.swift in Sources */,

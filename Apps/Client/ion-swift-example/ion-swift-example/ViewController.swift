@@ -21,6 +21,32 @@ class ViewController: UIViewController {
                 "--- ion-swift-example. Peers update: ",
                 peers.map { "\($0.name ?? "Unk"):\($0.stringIdentifier)" }
             )
+
+            self.handlePeers(peers)
+        }
+    }
+
+    func handlePeers(_ peers: [IONRemotePeer]) {
+        if peers.count > 0, let peer = peers.first {
+            peer.onConnection = { _, connection in
+                connection.onData = { data in
+                    print("Data received: ", String(data: data, encoding: .utf8) ?? "")
+                }
+            }
+
+            self.sendTest(to: peer)
+        }
+    }
+
+    func sendTest(to peer: IONRemotePeer) {
+        let connection = peer.connect()
+        let transfer = connection.send(data: "TEST".data(using: .utf8)!)
+        transfer.onProgress = { transfer in
+            let progress = (transfer.progress * 100) / transfer.length
+            print("Progress: ", progress)
+        }
+        transfer.onEnd = { _ in
+            print("Transfer ended")
         }
     }
 }
