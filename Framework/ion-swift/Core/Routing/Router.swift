@@ -154,7 +154,9 @@ class Router {
                     cost: Double(bestAddress.cost)
                 ))
         } else {
-            self.updateNodesWithRoutingTableChange(self.routingTable.getRoutingTableChangeForNeighborRemoval(nodeIdentifier))
+            self.updateNodesWithRoutingTableChange(
+                self.routingTable.getRoutingTableChangeForNeighborRemoval(nodeIdentifier)
+            )
         }
     }
 

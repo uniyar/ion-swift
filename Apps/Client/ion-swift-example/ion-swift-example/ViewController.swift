@@ -14,12 +14,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let localPeer = IONLocalPeer(appId: "example", dispatchQueue: .main)
-        localPeer.start(onPeerDiscovered: { peer in
-            print("Added: " + peer.identifier.UUIDString)
-        }, onPeerRemoved: { peer in
-            print("Removed: " + peer.identifier.UUIDString)
-        }) { peer, _ in
-            print("Incoming onnection from peer: " + peer.identifier.UUIDString)
-        }
+        localPeer.start()
     }
 }

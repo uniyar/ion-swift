@@ -93,7 +93,7 @@ class Node: Hashable, PacketHandler {
 
     /** Removes a direct address from this node */
     func removeAddress(_ address: Address) {
-        self.directAddresses = self.directAddresses.filter { $0 !== address }
+        self.directAddresses = self.directAddresses.filter { $0.hostName != address.hostName }
     }
 
     // MARK: Routing Connections (for routing information exchange)
