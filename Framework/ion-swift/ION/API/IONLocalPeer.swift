@@ -9,6 +9,7 @@
 import Network
 import UIKit
 
+public typealias PeersUpdateClosure = (_ peers: [IONRemotePeer]) -> Void
 /// Used to notify about discovered peers.
 public typealias PeerDiscoveredClosure = (_ peer: IONRemotePeer) -> Void
 /// Used to notify about removed peers.
@@ -37,6 +38,11 @@ public class IONLocalPeer {
         return UIDevice.current.name
     }
 
+    /// Available peers
+    public var peers: [IONRemotePeer] = []
+
+    /// Peers update closure
+    public var onPeersUpdate: PeersUpdateClosure?
     /// Peer discovery closure
     public var onPeerDiscovered: PeerDiscoveredClosure?
     /// Peer removed closure
@@ -100,6 +106,23 @@ public class IONLocalPeer {
     private func startRouter() {
         self.router.start()
     }
+
+    // MARK: Private methods
+
+    private func createPeer(with node: Node) -> IONRemotePeer {
+        return IONRemotePeer(node: node, localPeer: self, dispatchQueue: self.dispatchQueue)
+    }
+
+    private func addPeer(with node: Node) {
+        self.peers.removeAll(where: { $0.stringIdentifier == node.identifier.UUIDString })
+        self.peers.append(self.createPeer(with: node))
+        self.onPeersUpdate?(self.peers)
+    }
+
+    private func removePeer(with node: Node) {
+        self.peers.removeAll(where: { $0.stringIdentifier == node.identifier.UUIDString })
+        self.onPeersUpdate?(self.peers)
+    }
 }
 
 // MARK: RouterHandler protocol implementation
@@ -107,14 +130,17 @@ public class IONLocalPeer {
 extension IONLocalPeer: RouterHandler {
     internal func didFindNode(_: Router, node: Node) {
         print("--- Local peer: didFindNode, ", node)
+        self.addPeer(with: node)
     }
 
     internal func didImproveRoute(_: Router, node: Node) {
         print("--- Local peer: didImproveRoute, ", node)
+        self.addPeer(with: node)
     }
 
     internal func didLoseNode(_: Router, node: Node) {
         print("--- Local peer: didLoseNode, ", node)
+        self.removePeer(with: node)
     }
 
     internal func handleConnection(_: Router,

@@ -15,5 +15,9 @@ class ViewController: UIViewController {
 
         let localPeer = IONLocalPeer(appId: "example", dispatchQueue: .main)
         localPeer.start()
+
+        localPeer.onPeersUpdate = { peers in
+            print("--- ion-swift-example. Peers update: ", peers.map { $0.stringIdentifier })
+        }
     }
 }
