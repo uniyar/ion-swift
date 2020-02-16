@@ -17,7 +17,10 @@ class ViewController: UIViewController {
         localPeer.start()
 
         localPeer.onPeersUpdate = { peers in
-            print("--- ion-swift-example. Peers update: ", peers.map { $0.stringIdentifier })
+            print(
+                "--- ion-swift-example. Peers update: ",
+                peers.map { "\($0.name ?? "Unk"):\($0.stringIdentifier)" }
+            )
         }
     }
 }

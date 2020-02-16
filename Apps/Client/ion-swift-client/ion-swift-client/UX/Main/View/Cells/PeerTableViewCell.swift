@@ -1,5 +1,5 @@
 //
-//  NodeTableViewCell.swift
+//  PeerTableViewCell.swift
 //  ion-swift-client
 //
 //  Created by Ivan Manov on 27.12.2019.
@@ -9,7 +9,7 @@
 import IONSwift
 import TableKit
 
-class NodeTableViewCell: UITableViewCell {
+class PeerTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var addressLabel: UILabel?
     @IBOutlet weak var costLabel: UILabel!
@@ -26,9 +26,9 @@ class NodeTableViewCell: UITableViewCell {
     }
 }
 
-extension NodeTableViewCell: ConfigurableCell {
-    func configure(with _: Any) { // Node) {
-//        self.nameLabel?.text = node.name
+extension PeerTableViewCell: ConfigurableCell {
+    func configure(with peer: IONRemotePeer) {
+        self.nameLabel?.text = peer.name
 //        if let bestAddress = node.bestAddress {
 //            self.addressLabel?.text = ("via: " + bestAddress.hostName + ", cost: \(bestAddress.cost.description)")
 //        }

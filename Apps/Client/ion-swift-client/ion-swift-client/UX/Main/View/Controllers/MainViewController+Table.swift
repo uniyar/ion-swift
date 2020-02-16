@@ -18,23 +18,21 @@ extension MainViewController {
     }
 
     private func peersSection() -> TableSection {
-        let tableSection = TableSection()
+        let section = TableSection()
 
-//        IONManager.shared.nodesSubject
-//            .subscribe(onNext: { [weak self] nodes in
-//                guard let self = self else { return }
-//                tableSection.clear()
-//
-//                nodes.values.forEach { node in
-//                    if node.isReachable {
-//                        let nodeRow = TableRow<NodeTableViewCell>(item: node)
-//                        tableSection.append(row: nodeRow)
-//                    }
-//                }
-//
-//                self.tableDirector?.reload()
-//            }).disposed(by: self.disposeBag)
+        IONManager.shared.peersSubject
+            .subscribe(onNext: { peers in
+                section.clear()
 
-        return tableSection
+                let rows = peers.map { (peer) -> TableRow<PeerTableViewCell> in
+                    TableRow<PeerTableViewCell>(item: peer)
+                }
+
+                section.append(rows: rows)
+
+                self.tableDirector?.reload()
+            }).disposed(by: self.disposeBag)
+
+        return section
     }
 }

@@ -24,15 +24,5 @@ class MainViewController: UIViewController {
         self.prepareTable()
     }
 
-    func bindViewModel() {
-        IONManager.shared.discoveredPeerSubject
-            .subscribe(onNext: { remotePeer in
-                print(remotePeer.stringIdentifier + " discovered")
-            }).disposed(by: self.disposeBag)
-
-        IONManager.shared.removedPeerSubject
-            .subscribe(onNext: { remotePeer in
-                print(remotePeer.stringIdentifier + " removed")
-            }).disposed(by: self.disposeBag)
-    }
+    func bindViewModel() {}
 }

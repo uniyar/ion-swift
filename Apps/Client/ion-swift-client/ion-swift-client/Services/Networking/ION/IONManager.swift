@@ -14,9 +14,7 @@ class IONManager {
 
     private let disposeBag = DisposeBag()
 
-    let connectedPeersSubject = BehaviorSubject<[IONRemotePeer]>(value: [])
-    let discoveredPeerSubject = PublishSubject<IONRemotePeer>()
-    let removedPeerSubject = PublishSubject<IONRemotePeer>()
+    let peersSubject = PublishSubject<[IONRemotePeer]>()
 
     init() {
         self.setupION()
@@ -30,10 +28,9 @@ class IONManager {
 
         localPeer.start()
 
-//        localPeer.start(onPeerDiscovered: { remotePeer in
-//            self.discoveredPeerSubject.onNext(remotePeer)
-//        }, onPeerRemoved: { remotePeer in
-//            self.removedPeerSubject.onNext(remotePeer)
-//        })
+        localPeer.onPeersUpdate = { peers in
+            self.peersSubject.onNext(peers)
+            print(peers.map { $0.stringIdentifier })
+        }
     }
 }

@@ -203,7 +203,8 @@ class Router {
             }
             underlyingConnection.connect()
         } else {
-            log(.medium, error: "Failed to establish direct connection as no direct addresses are known for this node.")
+            log(.medium,
+                error: "Failed to establish direct connection as no direct addresses are known for this node.")
             onFail()
         }
     }

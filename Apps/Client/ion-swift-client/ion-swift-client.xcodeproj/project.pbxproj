@@ -28,8 +28,8 @@
 		CA5BC00F23B14C96005C484A /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5BC00E23B14C96005C484A /* AppRepository.swift */; };
 		CAC76F0223B54B6B00BB1F11 /* Set+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0123B54B6B00BB1F11 /* Set+Array.swift */; };
 		CAC76F0823B5681800BB1F11 /* MainViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */; };
-		CAC76F0C23B5698B00BB1F11 /* NodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0A23B5698B00BB1F11 /* NodeTableViewCell.swift */; };
-		CAC76F0D23B5698B00BB1F11 /* NodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC76F0B23B5698B00BB1F11 /* NodeTableViewCell.xib */; };
+		CAC76F0C23B5698B00BB1F11 /* PeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0A23B5698B00BB1F11 /* PeerTableViewCell.swift */; };
+		CAC76F0D23B5698B00BB1F11 /* PeerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC76F0B23B5698B00BB1F11 /* PeerTableViewCell.xib */; };
 		CAF16CB623B14536006BECAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF16CB523B14536006BECAA /* AppDelegate.swift */; };
 		CAF16CBD23B14536006BECAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF16CBB23B14536006BECAA /* Main.storyboard */; };
 		CAF16CBF23B14539006BECAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAF16CBE23B14539006BECAA /* Assets.xcassets */; };
@@ -60,8 +60,8 @@
 		CA5BC00E23B14C96005C484A /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
 		CAC76F0123B54B6B00BB1F11 /* Set+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Array.swift"; sourceTree = "<group>"; };
 		CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Table.swift"; sourceTree = "<group>"; };
-		CAC76F0A23B5698B00BB1F11 /* NodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTableViewCell.swift; sourceTree = "<group>"; };
-		CAC76F0B23B5698B00BB1F11 /* NodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeTableViewCell.xib; sourceTree = "<group>"; };
+		CAC76F0A23B5698B00BB1F11 /* PeerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerTableViewCell.swift; sourceTree = "<group>"; };
+		CAC76F0B23B5698B00BB1F11 /* PeerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerTableViewCell.xib; sourceTree = "<group>"; };
 		CAF16CB223B14536006BECAA /* ION Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ION Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAF16CB523B14536006BECAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAF16CBC23B14536006BECAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 		CAC76F0923B5695800BB1F11 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CAC76F0A23B5698B00BB1F11 /* NodeTableViewCell.swift */,
-				CAC76F0B23B5698B00BB1F11 /* NodeTableViewCell.xib */,
+				CAC76F0A23B5698B00BB1F11 /* PeerTableViewCell.swift */,
+				CAC76F0B23B5698B00BB1F11 /* PeerTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -444,7 +444,7 @@
 				CAF16CC223B14539006BECAA /* LaunchScreen.storyboard in Resources */,
 				CAF16CBF23B14539006BECAA /* Assets.xcassets in Resources */,
 				CA39FA0223B2BD3400D596D0 /* Start.storyboard in Resources */,
-				CAC76F0D23B5698B00BB1F11 /* NodeTableViewCell.xib in Resources */,
+				CAC76F0D23B5698B00BB1F11 /* PeerTableViewCell.xib in Resources */,
 				CA39F9E223B2B9E100D596D0 /* Podfile in Resources */,
 				CAF16CBD23B14536006BECAA /* Main.storyboard in Resources */,
 			);
@@ -528,7 +528,7 @@
 				CA39F9FB23B2BC9000D596D0 /* StartRoute.swift in Sources */,
 				CA39FA0523B2BD4A00D596D0 /* StartViewController.swift in Sources */,
 				CA5BC00F23B14C96005C484A /* AppRepository.swift in Sources */,
-				CAC76F0C23B5698B00BB1F11 /* NodeTableViewCell.swift in Sources */,
+				CAC76F0C23B5698B00BB1F11 /* PeerTableViewCell.swift in Sources */,
 				CA39F9FD23B2BC9C00D596D0 /* MainRoute.swift in Sources */,
 				CA39F9F423B2BBEB00D596D0 /* ModalTransition.swift in Sources */,
 				CA39FA0D23B2CF9500D596D0 /* StartViewModel.swift in Sources */,
