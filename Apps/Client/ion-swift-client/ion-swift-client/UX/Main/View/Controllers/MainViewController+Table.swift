@@ -25,7 +25,12 @@ extension MainViewController {
                 section.clear()
 
                 let rows = peers.map { (peer) -> TableRow<PeerTableViewCell> in
-                    TableRow<PeerTableViewCell>(item: peer)
+                    let row = TableRow<PeerTableViewCell>(item: peer)
+                    row.on(.click) { _ in
+                        AppRouter.shared.viewController = self
+                        AppRouter.shared.openChat(with: peer.stringIdentifier)
+                    }
+                    return row
                 }
 
                 section.append(rows: rows)

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0DA1F235F35CC0C57C71BFCB /* Pods_ion_swift_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD27F6866CDADA936C41CA6A /* Pods_ion_swift_client.framework */; };
+		CA037AE523F93DC600EAEA22 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA037AE423F93DC600EAEA22 /* ChatViewModel.swift */; };
+		CA037AE723F93DD900EAEA22 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA037AE623F93DD900EAEA22 /* ChatViewController.swift */; };
+		CA30F53C23F942500029E67B /* ChatRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA30F53B23F942500029E67B /* ChatRoute.swift */; };
 		CA39F9E223B2B9E100D596D0 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CA39F9E123B2B9E100D596D0 /* Podfile */; };
 		CA39F9E623B2BA6500D596D0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA39F9E523B2BA6500D596D0 /* MainViewModel.swift */; };
 		CA39F9E923B2BB6900D596D0 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA39F9E823B2BB6900D596D0 /* AppManager.swift */; };
@@ -26,6 +29,7 @@
 		CA39FA0D23B2CF9500D596D0 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA39FA0C23B2CF9500D596D0 /* StartViewModel.swift */; };
 		CA5BC00D23B14C2B005C484A /* IONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5BC00C23B14C2B005C484A /* IONManager.swift */; };
 		CA5BC00F23B14C96005C484A /* AppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5BC00E23B14C96005C484A /* AppRepository.swift */; };
+		CABCD0CB23F94AA700793FD8 /* CameraHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABCD0CA23F94AA700793FD8 /* CameraHelper.swift */; };
 		CAC76F0223B54B6B00BB1F11 /* Set+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0123B54B6B00BB1F11 /* Set+Array.swift */; };
 		CAC76F0823B5681800BB1F11 /* MainViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */; };
 		CAC76F0C23B5698B00BB1F11 /* PeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC76F0A23B5698B00BB1F11 /* PeerTableViewCell.swift */; };
@@ -40,6 +44,9 @@
 /* Begin PBXFileReference section */
 		3DB075B76F3BF8C3EDB7CA61 /* Pods-ion-swift-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ion-swift-client.release.xcconfig"; path = "Target Support Files/Pods-ion-swift-client/Pods-ion-swift-client.release.xcconfig"; sourceTree = "<group>"; };
 		78A0B775FC7D752C2C7748EA /* Pods-ion-swift-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ion-swift-client.debug.xcconfig"; path = "Target Support Files/Pods-ion-swift-client/Pods-ion-swift-client.debug.xcconfig"; sourceTree = "<group>"; };
+		CA037AE423F93DC600EAEA22 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		CA037AE623F93DD900EAEA22 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CA30F53B23F942500029E67B /* ChatRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoute.swift; sourceTree = "<group>"; };
 		CA39F9E123B2B9E100D596D0 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CA39F9E523B2BA6500D596D0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		CA39F9E823B2BB6900D596D0 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -58,6 +65,7 @@
 		CA39FA0C23B2CF9500D596D0 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		CA5BC00C23B14C2B005C484A /* IONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONManager.swift; sourceTree = "<group>"; };
 		CA5BC00E23B14C96005C484A /* AppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRepository.swift; sourceTree = "<group>"; };
+		CABCD0CA23F94AA700793FD8 /* CameraHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelper.swift; sourceTree = "<group>"; };
 		CAC76F0123B54B6B00BB1F11 /* Set+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Array.swift"; sourceTree = "<group>"; };
 		CAC76F0723B5681800BB1F11 /* MainViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Table.swift"; sourceTree = "<group>"; };
 		CAC76F0A23B5698B00BB1F11 /* PeerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +101,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA037AE123F93DAA00EAEA22 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				CA037AE223F93DB600EAEA22 /* ViewModel */,
+				CA037AE323F93DBB00EAEA22 /* View */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		CA037AE223F93DB600EAEA22 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA037AE423F93DC600EAEA22 /* ChatViewModel.swift */,
+				CABCD0CA23F94AA700793FD8 /* CameraHelper.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CA037AE323F93DBB00EAEA22 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA037AE823F93DDB00EAEA22 /* Controllers */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CA037AE823F93DDB00EAEA22 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA037AE623F93DD900EAEA22 /* ChatViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		CA2A6EC6500490E364389CF1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,17 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				CA39F9FF23B2BCEC00D596D0 /* ScreenFactory.swift */,
-				CA39F9EA23B2BBC900D596D0 /* Routing */,
-			);
-			path = Screen;
-			sourceTree = "<group>";
-		};
-		CA39F9EA23B2BBC900D596D0 /* Routing */ = {
-			isa = PBXGroup;
-			children = (
 				CA39F9F723B2BBEF00D596D0 /* Routes */,
 			);
-			path = Routing;
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		CA39F9EB23B2BBEB00D596D0 /* Screen */ = {
@@ -161,6 +195,7 @@
 			children = (
 				CA39F9FA23B2BC9000D596D0 /* StartRoute.swift */,
 				CA39F9FC23B2BC9C00D596D0 /* MainRoute.swift */,
+				CA30F53B23F942500029E67B /* ChatRoute.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -336,6 +371,7 @@
 			children = (
 				CA39FA0323B2BD3D00D596D0 /* Start */,
 				CAF16CD223B1476F006BECAA /* Main */,
+				CA037AE123F93DAA00EAEA22 /* Chat */,
 			);
 			path = UX;
 			sourceTree = "<group>";
@@ -517,11 +553,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA39F9F223B2BBEB00D596D0 /* Router.swift in Sources */,
+				CA30F53C23F942500029E67B /* ChatRoute.swift in Sources */,
 				CA39F9E923B2BB6900D596D0 /* AppManager.swift in Sources */,
 				CAF16CB623B14536006BECAA /* AppDelegate.swift in Sources */,
 				CA5BC00D23B14C2B005C484A /* IONManager.swift in Sources */,
 				CAC76F0223B54B6B00BB1F11 /* Set+Array.swift in Sources */,
 				CA39F9F523B2BBEB00D596D0 /* Transition.swift in Sources */,
+				CABCD0CB23F94AA700793FD8 /* CameraHelper.swift in Sources */,
 				CA39FA0023B2BCEC00D596D0 /* ScreenFactory.swift in Sources */,
 				CAF16CD423B1477F006BECAA /* MainViewController.swift in Sources */,
 				CA39F9F323B2BBEB00D596D0 /* Animator.swift in Sources */,
@@ -532,10 +570,12 @@
 				CA39F9FD23B2BC9C00D596D0 /* MainRoute.swift in Sources */,
 				CA39F9F423B2BBEB00D596D0 /* ModalTransition.swift in Sources */,
 				CA39FA0D23B2CF9500D596D0 /* StartViewModel.swift in Sources */,
+				CA037AE723F93DD900EAEA22 /* ChatViewController.swift in Sources */,
 				CAC76F0823B5681800BB1F11 /* MainViewController+Table.swift in Sources */,
 				CA39F9F923B2BC1500D596D0 /* AppRouter.swift in Sources */,
 				CA39F9F623B2BBEB00D596D0 /* PushTransition.swift in Sources */,
 				CA39F9E623B2BA6500D596D0 /* MainViewModel.swift in Sources */,
+				CA037AE523F93DC600EAEA22 /* ChatViewModel.swift in Sources */,
 				CA39FA0923B2C4D800D596D0 /* UIWindow+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

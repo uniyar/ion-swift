@@ -16,7 +16,8 @@ final class AppRouter: Router<UIViewController>, AppRouter.Routes {
 
     typealias Routes =
         StartRoute &
-        MainRoute
+        MainRoute &
+        ChatRoute
 
     /// Present viewController in current visible context as Modal
     /// - Parameter viewController: controller to present to

@@ -29,14 +29,5 @@ class PeerTableViewCell: UITableViewCell {
 extension PeerTableViewCell: ConfigurableCell {
     func configure(with peer: IONRemotePeer) {
         self.nameLabel?.text = peer.name
-//        if let bestAddress = node.bestAddress {
-//            self.addressLabel?.text = ("via: " + bestAddress.hostName + ", cost: \(bestAddress.cost.description)")
-//        }
-//        self.costLabel?.text = ""
-//        for address in node.directAddresses {
-//            self.costLabel?.text! += ("via: " + address.hostName + ", cost: \(address.cost.description)" + "\n")
-//        }
-//        self.neighborLabel.text = node.isNeighbor ? "Yes" : "No"
-//        self.reachableLabel.text = node.isReachable ? "Yes" : "No"
     }
 }

@@ -36,4 +36,12 @@ class ScreenFactory {
 
         return UINavigationController(rootViewController: self.mainVC ?? UIViewController())
     }
+
+    func prepareChat(with peerId: String) -> UIViewController {
+        let chatCV = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "chat") as? ChatViewController
+        chatCV?.viewModel = ChatViewModel(with: peerId)
+
+        return chatCV ?? UIViewController()
+    }
 }
