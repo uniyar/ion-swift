@@ -22,7 +22,7 @@ public typealias ConnectionClosure = (_ peer: IONRemotePeer, _ connection: Conne
 /// The LocalPeer can also be used to establish multicast connections to multiple other peers.
 public class IONLocalPeer {
     static var dafaultParemeters: NWParameters {
-        return NWParameters(passcode: "ion") // NWParameters.defaultParams()
+        return NWParameters(passcode: "ion")
     }
 
     // MARK: Public properties

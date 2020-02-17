@@ -81,12 +81,12 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
 
     // MARK: UnderlyingConnectionDelegate
 
-    func didConnect(_ connection: UnderlyingConnection) {
-        print("Did connect: \(connection)")
+    func didConnect(_: UnderlyingConnection) {
+//        print("Did connect: \(connection)")
     }
 
     func didClose(_ connection: UnderlyingConnection, error _: AnyObject?) {
-        print("Did close: \(connection)")
+//        print("Did close: \(connection)")
         self.underlyingConnection?.delegate = nil
         self.underlyingConnection = nil
         self.failBlock()
@@ -107,8 +107,8 @@ class SinglePacketReader: NSObject, UnderlyingConnectionDelegate {
         }
     }
 
-    func didSendData(_ connection: UnderlyingConnection) {
-        print("Did send data from: \(connection)")
+    func didSendData(_: UnderlyingConnection) {
+//        print("Did send data from: \(connection)")
     }
 }
 

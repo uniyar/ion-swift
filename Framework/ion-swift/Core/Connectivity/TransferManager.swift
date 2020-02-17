@@ -71,8 +71,15 @@ class TransferManager: PacketHandler {
      * @param dataProvider A function that returns data for a given range.
      * @return An OutTransfer object.
      */
-    func startTransfer(_ dataLength: Int, dataProvider: @escaping (_ range: Range<Data.Index>) -> Data) -> OutTransfer {
-        let outTransfer = OutTransfer(manager: self, dataLength: dataLength, dataProvider: dataProvider, identifier: randomUUID())
+    func startTransfer(_ dataLength: Int,
+                       dataProvider: @escaping (_ range: Range<Data.Index>) -> Data) -> OutTransfer {
+        let outTransfer = OutTransfer(
+            manager: self,
+            dataLength: dataLength,
+            dataProvider: dataProvider,
+            identifier: randomUUID()
+        )
+        
         self.outTransferQueue.enqueue(outTransfer)
         self.packetConnection.write()
 
@@ -81,8 +88,9 @@ class TransferManager: PacketHandler {
 
     /** Cancels an incoming transfer. */
     func cancel(_ transfer: InTransfer) {
-        if transfer === self.currentInTransfer { self.packetConnection.write(CancelledTransferPacket(transferIdentifier: transfer.identifier)) }
-        else { log(.high, error: "Could not cancel unknown in transfer.") }
+        if transfer === self.currentInTransfer {
+            self.packetConnection.write(CancelledTransferPacket(transferIdentifier: transfer.identifier))
+        } else { log(.high, error: "Could not cancel unknown in transfer.") }
 
         self.packetConnection.write()
     }
@@ -145,7 +153,12 @@ class TransferManager: PacketHandler {
         } else if let nextTransfer = self.outTransferQueue.dequeue() {
             self.currentOutTransfer = nextTransfer
             nextTransfer.confirmStart()
-            self.packetConnection.write(StartedTransferPacket(transferIdentifier: nextTransfer.identifier, transferLength: Int32(nextTransfer.length)))
+            self.packetConnection.write(
+                StartedTransferPacket(
+                    transferIdentifier: nextTransfer.identifier,
+                    transferLength: Int32(nextTransfer.length)
+                )
+            )
         }
     }
 

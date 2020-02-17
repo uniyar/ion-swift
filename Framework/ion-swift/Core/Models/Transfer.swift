@@ -96,7 +96,7 @@ open class Transfer {
 
     /** Updates the transfer's progress. */
     internal func updateProgress(_ numberOfBytes: Int) {
-        assert(self.length >= self.progress + numberOfBytes, "Can not update the transfer's progress beyond its length.")
+//        assert(self.length >= self.progress + numberOfBytes, "Can not update the transfer's progress beyond its length.")
 
         self.progress += numberOfBytes
     }

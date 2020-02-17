@@ -16,7 +16,12 @@ class ChatViewModel {
     let inputFrameSubject = PublishSubject<UIImage>()
     private let disposeBag = DisposeBag()
 
-    var peer: IONRemotePeer?
+    var connection: Connection?
+    var peer: IONRemotePeer? {
+        didSet {
+            self.handlePeer()
+        }
+    }
 
     private var cameraCaptureHelper: CameraCaptureHelper?
 
@@ -24,9 +29,11 @@ class ChatViewModel {
         self.peerId = peerId
 
         IONManager.shared.peersSubject
-            .subscribe(onNext: { peers in
-                self.peer = peers.first(where: { $0.stringIdentifier == self.peerId })
+            .subscribe(onNext: { _ in
+                self.updatePeer()
             }).disposed(by: self.disposeBag)
+
+        self.updatePeer()
     }
 
     // MARK: Public methods
@@ -43,8 +50,35 @@ class ChatViewModel {
 
     // MARK: Private methods
 
+    private func updatePeer() {
+        self.peer = IONManager.shared.peers.first(where: { $0.stringIdentifier == self.peerId })
+    }
+
     private func handleNewOutput(frame: UIImage) {
         self.outputFrameSubject.onNext(frame)
+
+        DispatchQueue.global(qos: .default).async {
+            if let data = frame.jpegData(compressionQuality: 1.0) {
+                _ = self.connection?.send(data: data)
+            }
+        }
+    }
+
+    private func handleNewInput(data: Data) {
+        DispatchQueue.global(qos: .default).async {
+            if let inputFrame = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.inputFrameSubject.onNext(inputFrame)
+                }
+            }
+        }
+    }
+
+    private func handlePeer() {
+        guard let peer = self.peer else { return }
+
+        self.connection = IONManager.shared.connect(to: peer)
+        connection?.onData = { [unowned self] in self.handleNewInput(data: $0) }
     }
 }
 

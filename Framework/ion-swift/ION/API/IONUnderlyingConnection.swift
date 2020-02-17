@@ -21,7 +21,7 @@ class IONUnderlyingConnection {
         return self.connection.state == .ready
     }
 
-    var recommendedPacketSize: Int = 1024
+    var recommendedPacketSize: Int = Int.max
 
     // ---
 
@@ -130,7 +130,6 @@ extension IONUnderlyingConnection {
                 completion: .idempotent
             )
             self.delegate?.didSendData(self)
-            print("-- IONConnection: Did send core data")
         }
     }
 
@@ -142,12 +141,10 @@ extension IONUnderlyingConnection {
 
             // Extract your message type from the received context.
             if let ionMessage = message, let data = content {
-                print("DID RECEIVE PROTOCOL MESSAGE: ", ionMessage.ionMessageType)
                 switch ionMessage.ionMessageType {
                 case .metrics: break
                 case .core:
                     self.delegate?.didReceiveData(self, data: data)
-                    print("-- IONConnection: Did receive core data")
                 default: break
                 }
             }
