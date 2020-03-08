@@ -10,6 +10,7 @@ import Foundation
 
 struct TimeParameter: MetricParameter {
     /// Average delay on connection
+    /// Range: 0..Inf. In milliseconds. Less is better.
     let delay: Float
     /// Max target delay based on metric rules
     let maxDelay: Float
@@ -18,6 +19,7 @@ struct TimeParameter: MetricParameter {
 
     let type: MetricParameterType = .time
 
+    /// Calculated based on average delay of packet transmission during the connection probe
     var value: Float {
         if self.delay == 0, self.maxDelay == 0 { return 1 }
         if self.delay < 0 || self.maxDelay <= 0 { return 0 }

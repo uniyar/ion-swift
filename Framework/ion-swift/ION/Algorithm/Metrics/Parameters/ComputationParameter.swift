@@ -11,8 +11,10 @@ import Foundation
 /// Computation efficiency parameter
 struct ComputationParameter: MetricParameter {
     /// Current load of node / device
+    /// Range: 0..1. Less is better.
     let load: Float
     /// Max target load based on metric rules
+    /// Range: 0..1. Less is better.
     let maxLoad: Float
 
     // MARK: MetricParameter protocol

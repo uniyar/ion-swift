@@ -20,6 +20,8 @@ struct LossParameter: MetricParameter {
 
     let type: MetricParameterType = .loss
 
+    /// Range: 0..1. More is better.
+    /// Calculated based on (Received / Transmitted) num of data during the connection probe
     var value: Float {
         if let received = self.received,
             let transmitted = self.transmitted, transmitted > 0 {

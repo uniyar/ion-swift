@@ -25,7 +25,7 @@ class Metric {
     }
 }
 
-enum MetricParameterType: CaseIterable {
+enum MetricParameterType: String, Codable, CaseIterable {
     case loss
     case time
     case bandwidth
@@ -33,19 +33,19 @@ enum MetricParameterType: CaseIterable {
     case energy
 }
 
-struct MetricCoefficient {
+struct MetricCoefficient: Codable {
     let type: MetricParameterType
     let value: Float
 }
 
 /// Subjective priority in percent based on parameter contribution into metric
-struct MetricParameterPriority {
+struct MetricParameterPriority: Codable {
     let type: MetricParameterType
     /// Range: 0..100. In percents. If higher then parameter contribution would be also higher.
     let value: Int
 }
 
-protocol MetricParameter {
+protocol MetricParameter: Codable {
     var type: MetricParameterType { get }
     var value: Float { get }
 }
