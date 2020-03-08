@@ -103,6 +103,7 @@
 		CAA2915D23F7EFCC00AB224C /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA2915C23F7EFCC00AB224C /* Device.swift */; };
 		CAE5ECDC23F812EA001AE99F /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA97904923F8014A00B3538E /* Metrics.swift */; };
 		CAE5ECDF23F81310001AE99F /* MetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ECDE23F81310001AE99F /* MetricsTests.swift */; };
+		CAE63BF4241546B30080E998 /* EnergyMetricProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE63BF3241546B30080E998 /* EnergyMetricProvider.swift */; };
 		CAF129F823C412C000E87103 /* NWParameters+Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AC8F323C3CA7C00692C21 /* NWParameters+Passcode.swift */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +196,7 @@
 		CAA2915223F7E72600AB224C /* Device+Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Battery.swift"; sourceTree = "<group>"; };
 		CAA2915C23F7EFCC00AB224C /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		CAE5ECDE23F81310001AE99F /* MetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsTests.swift; sourceTree = "<group>"; };
+		CAE63BF3241546B30080E998 /* EnergyMetricProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyMetricProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +234,6 @@
 				CA43274824152BAE00713B2D /* Protocol */,
 				CA97904823F8012500B3538E /* Algorithm */,
 				CA4AC8F623C3CF4700692C21 /* Extensions */,
-				CAA2915B23F7EFC100AB224C /* Device */,
 			);
 			path = ION;
 			sourceTree = "<group>";
@@ -352,6 +353,7 @@
 		CA97904823F8012500B3538E /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				CAE63BF6241547140080E998 /* Providers */,
 				CA97904723F8010400B3538E /* Metrics */,
 			);
 			path = Algorithm;
@@ -484,14 +486,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		CAA2915B23F7EFC100AB224C /* Device */ = {
+		CAA2915B23F7EFC100AB224C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				CAA2915C23F7EFCC00AB224C /* Device.swift */,
 				CAA2915223F7E72600AB224C /* Device+Battery.swift */,
 				CA97904523F7F5D500B3538E /* Device+CPU.swift */,
 			);
-			path = Device;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CAE5ECE123F81477001AE99F /* Routing */ = {
@@ -508,6 +510,15 @@
 				CAE5ECDE23F81310001AE99F /* MetricsTests.swift */,
 			);
 			path = Algorithm;
+			sourceTree = "<group>";
+		};
+		CAE63BF6241547140080E998 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				CAE63BF3241546B30080E998 /* EnergyMetricProvider.swift */,
+				CAA2915B23F7EFC100AB224C /* Helpers */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -671,6 +682,7 @@
 				CA9EABFD23C12871003DAF51 /* StartStopHelper.swift in Sources */,
 				CA80037023F8904900BC2290 /* TimeParameter.swift in Sources */,
 				CA9EAC1323C12871003DAF51 /* LinkStateRoutingTable.swift in Sources */,
+				CAE63BF4241546B30080E998 /* EnergyMetricProvider.swift in Sources */,
 				CA9EAC2923C12871003DAF51 /* Browser.swift in Sources */,
 				CA80037423F8938F00BC2290 /* ComputationParameter.swift in Sources */,
 				CA9EABED23C12871003DAF51 /* Graph.swift in Sources */,
