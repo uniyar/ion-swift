@@ -14,6 +14,17 @@ enum IONMessageType: UInt32 {
     case invalid = 0
     case metrics = 1
     case core = 2
+
+    var identifier: String {
+        switch self {
+        case .core:
+            return "core"
+        case .metrics:
+            return "metrics"
+        default:
+            return "unk"
+        }
+    }
 }
 
 // Create a class that implements a framing protocol.

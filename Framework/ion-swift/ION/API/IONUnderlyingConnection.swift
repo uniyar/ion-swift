@@ -107,18 +107,18 @@ extension IONUnderlyingConnection: UnderlyingConnection {
     func writeData(_ data: Data) {
         if !self.isConnected { return }
 
-        self.send(core: data)
+        self.send(protocol: data, type: .core)
     }
 }
 
 // MARK: Framing protocol
 
 extension IONUnderlyingConnection {
-    func send(core data: Foundation.Data) {
+    func send(protocol data: Foundation.Data, type: IONMessageType) {
         self.dispatchQueue.async {
-            let message = NWProtocolFramer.Message(ionMessageType: .core)
+            let message = NWProtocolFramer.Message(ionMessageType: type)
             let context = NWConnection.ContentContext(
-                identifier: "Core",
+                identifier: type.identifier,
                 metadata: [message]
             )
 
