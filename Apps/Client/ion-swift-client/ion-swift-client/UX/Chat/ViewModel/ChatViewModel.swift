@@ -55,35 +55,37 @@ class ChatViewModel {
     }
 
     private func handleNewOutput(frame: UIImage) {
-        self.outputFrameSubject.onNext(frame)
+        DispatchQueue.main.async {
+            self.outputFrameSubject.onNext(frame)
+        }
 
-        DispatchQueue.global(qos: .default).async {
-            if let data = frame.jpegData(compressionQuality: 1.0) {
-                _ = self.connection?.send(data: data)
-            }
+        if let data = frame.jpegData(compressionQuality: 0.4) {
+            _ = self.connection?.send(data: data)
         }
     }
 
     private func handleNewInput(data: Data) {
-        DispatchQueue.global(qos: .default).async {
-            if let inputFrame = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.inputFrameSubject.onNext(inputFrame)
-                }
+        if let inputFrame = UIImage(data: data) {
+            DispatchQueue.main.async {
+                self.inputFrameSubject.onNext(inputFrame)
             }
         }
     }
 
     private func handlePeer() {
         guard let peer = self.peer else { return }
-
         self.connection = IONManager.shared.connect(to: peer)
-        connection?.onData = { [unowned self] in self.handleNewInput(data: $0) }
+
+        DispatchQueue.global(qos: .default).async {
+            self.connection?.onData = { [unowned self] in self.handleNewInput(data: $0) }
+        }
     }
 }
 
 extension ChatViewModel: CameraCaptureHelperDelegate {
     func newCameraImage(_: CameraCaptureHelper, image: UIImage) {
-        self.handleNewOutput(frame: image)
+        DispatchQueue.global(qos: .default).async {
+            self.handleNewOutput(frame: image)
+        }
     }
 }

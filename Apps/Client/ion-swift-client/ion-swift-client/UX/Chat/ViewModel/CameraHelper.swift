@@ -19,17 +19,34 @@ class CameraCaptureHelper: NSObject {
 
         super.init()
 
-        initialiseCaptureSession()
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized: // The user has previously granted access to the camera.
+            self.initialiseCaptureSession()
+
+        case .notDetermined: // The user has not yet been asked for camera access.
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if granted {
+                    self.initialiseCaptureSession()
+                }
+            }
+
+        case .denied: // The user has previously denied access.
+            return
+
+        case .restricted: // The user can't grant access due to restrictions.
+            return
+        default: break
+        }
     }
 
     fileprivate func initialiseCaptureSession() {
-        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        self.captureSession.sessionPreset = AVCaptureSession.Preset.photo
 
-        guard let camera = AVCaptureDevice.devices(for: AVMediaType.video)
-            .filter({ $0.position == cameraPosition })
-            .first else {
-            fatalError("Unable to access camera")
-        }
+        guard let camera = AVCaptureDevice.default(
+            .builtInWideAngleCamera,
+            for: AVMediaType.video,
+            position: .front
+        ) else { return }
 
         do {
             let input = try AVCaptureDeviceInput(device: camera)

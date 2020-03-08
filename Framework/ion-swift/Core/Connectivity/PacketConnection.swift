@@ -201,9 +201,9 @@ class PacketConnection: UnderlyingConnectionDelegate {
      * Attempts to write any buffered packets, or notifies it's delegates that all packes have been written.
      */
     func write() {
-        if self.isSendingPacket {
-            return
-        }
+//        if self.isSendingPacket {
+//            return
+//        }
         if let underlyingConnection = self.underlyingConnection {
             if !underlyingConnection.isConnected {
                 return

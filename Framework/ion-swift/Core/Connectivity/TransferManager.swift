@@ -79,7 +79,7 @@ class TransferManager: PacketHandler {
             dataProvider: dataProvider,
             identifier: randomUUID()
         )
-        
+
         self.outTransferQueue.enqueue(outTransfer)
         self.packetConnection.write()
 
