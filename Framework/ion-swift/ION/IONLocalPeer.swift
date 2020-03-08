@@ -21,6 +21,8 @@ public typealias ConnectionClosure = (_ peer: IONRemotePeer, _ connection: Conne
 /// It requires one or more Modules to accomplish this. Two Modules that come with Reto are the WlanModule and the RemoteP2P module.
 /// The LocalPeer can also be used to establish multicast connections to multiple other peers.
 public class IONLocalPeer {
+    static var shared = IONLocalPeer()
+
     static var dafaultParemeters: NWParameters {
         return NWParameters(passcode: "ion")
     }
@@ -86,6 +88,8 @@ public class IONLocalPeer {
         self.dispatchQueue.async {
             self.router.delegate = self
         }
+
+        IONLocalPeer.shared = self
     }
 
     // MARK: Public methods

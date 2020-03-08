@@ -142,7 +142,10 @@ extension IONUnderlyingConnection {
             // Extract your message type from the received context.
             if let ionMessage = message, let data = content {
                 switch ionMessage.ionMessageType {
-                case .metrics: break
+                case .metrics:
+                    if let message = try? JSONDecoder().decode(IONMetricsMessage.self, from: data) {
+                        IONProtocolManager.shared.proceed(metrics: message)
+                    }
                 case .core:
                     self.delegate?.didReceiveData(self, data: data)
                 default: break
