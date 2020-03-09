@@ -20,6 +20,18 @@ public class IONRemotePeer: NSObject {
     public var stringIdentifier: String {
         return self.identifier.UUIDString
     }
+    public var bestAddress: Address? {
+        return self.node.bestAddress
+    }
+    public var addresses: [Address]? {
+        return self.node.directAddresses
+    }
+    public var isNeighbor: Bool {
+        return self.node.isNeighbor
+    }
+    public var isReachable: Bool {
+        return self.node.isReachable
+    }
 
     /// Set this property if you want to handle incoming connections on a per-peer basis.
     public var onConnection: ConnectionClosure?
