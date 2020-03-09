@@ -8,8 +8,8 @@
 
 import Foundation
 
-class IONProtocolManager {
-    static let shared = IONProtocolManager()
+internal class IONProtocolManager {
+    internal static let shared = IONProtocolManager()
 
     let metricsInfo = [IONMetricParameter]()
 
@@ -23,8 +23,12 @@ class IONProtocolManager {
 
     // MARK: Public methods
 
-    func proceed(metrics message: IONMetricsMessage) {
-        print(message)
+    func cost(for _: String) -> Int {
+        return 100 - Int.random(in: 0 ... 100)
+    }
+
+    func proceed(metrics _: IONMetricsMessage) {
+//        print(message)
         // TODO: Update metricsInfo based on date
     }
 
@@ -53,8 +57,8 @@ class IONProtocolManager {
         return IONMetricsMessage(parameters: parameters)
     }
 
-    private func pull(metrics message: IONMetricsMessage) {
-        print(message)
+    private func pull(metrics _: IONMetricsMessage) {
+//        print(message)
     }
 }
 
@@ -67,7 +71,7 @@ extension IONProtocolManager {
         let energy = IONMetricParameter(
             createdDate: Date(),
             sourceId: nil,
-            destinationId: IONLocalPeer.shared.identifier.UUIDString,
+            destinationId: IONLocalPeer.shared?.identifier.UUIDString,
             type: .energy,
             value: energyMetric.value
         )
@@ -79,7 +83,7 @@ extension IONProtocolManager {
         let computation = IONMetricParameter(
             createdDate: Date(),
             sourceId: nil,
-            destinationId: IONLocalPeer.shared.identifier.UUIDString,
+            destinationId: IONLocalPeer.shared?.identifier.UUIDString,
             type: .computation,
             value: Float.random(in: 0 ... 1) // TODO: Last known value
         )

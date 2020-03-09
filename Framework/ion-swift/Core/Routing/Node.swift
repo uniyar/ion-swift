@@ -78,12 +78,30 @@ class Node: Hashable, PacketHandler {
         return reachableVia?.nextHop
     }
 
+    var updateTimer: Timer?
+    var updateClosure: (() -> Void)?
+
     /** Initializes a Node object */
-    init(identifier: UUID, localIdentifier: UUID, name: String?, linkStatePacketManager: FloodingPacketManager?) {
+    init(identifier: UUID,
+         localIdentifier: UUID,
+         name: String?,
+         linkStatePacketManager: FloodingPacketManager?) {
         self.identifier = identifier
         self.localIdentifier = localIdentifier
         self.name = name
         self.linkStatePacketManager = linkStatePacketManager
+    }
+
+    func startUpdate() {
+        self.updateTimer = Timer.repeatAction(interval: 10) { _, _ in
+            self.updateClosure?()
+        }
+        self.updateTimer?.fire()
+    }
+
+    func stopUpdate() {
+        self.updateTimer?.stop()
+        self.updateTimer = nil
     }
 
     /** Adds a direct address to this node */

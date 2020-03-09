@@ -129,13 +129,14 @@ class Router {
         let node = self.provideNode(nodeIdentifier, nodeName: nodeName)
         node.addAddress(address)
         node.establishRoutingConnection()
-
-        self.updateNodesWithRoutingTableChange(
-            self.routingTable.getRoutingTableChangeForNeighborUpdate(
-                nodeIdentifier,
-                cost: Double(node.bestAddress?.cost ?? 1000)
+        node.updateClosure = {
+            self.updateNodesWithRoutingTableChange(
+                self.routingTable.getRoutingTableChangeForNeighborUpdate(
+                    nodeIdentifier,
+                    cost: Double(node.bestAddress?.cost ?? 1000)
+                )
             )
-        )
+        }
     }
 
     /**
@@ -186,25 +187,29 @@ class Router {
                             connectionPurpose: purpose
                         ),
                         onSuccess: {
-                            log(.low, info: "Connection was established.")
+//                            log(.low, info: "Connection was established.")
                             onConnection(underlyingConnection)
                         },
                         onFail: {
-                            log(.medium, error: "Failed to establish direct connection.")
+//                            log(.medium, error: "Failed to establish direct connection.")
                             onFail()
                         }
                     )
                 } else {
-                    self.establishDirectConnection(destination: destination,
-                                                   purpose: purpose,
-                                                   onConnection: onConnection,
-                                                   onFail: onFail)
+                    self.establishDirectConnection(
+                        destination: destination,
+                        purpose: purpose,
+                        onConnection: onConnection,
+                        onFail: onFail
+                    )
                 }
             }
             underlyingConnection.connect()
         } else {
-            log(.medium,
-                error: "Failed to establish direct connection as no direct addresses are known for this node.")
+            log(
+                .medium,
+                error: "Failed to establish direct connection as no direct addresses are known for this node."
+            )
             onFail()
         }
     }
@@ -511,7 +516,6 @@ class Router {
             return
         }
 
-        log(.low, info: " -- Peer Discovery Information -- ")
         if change.nowReachable.isEmpty {
             log(.low, info: " - No new nodes reachable.")
         } else {
@@ -527,6 +531,7 @@ class Router {
             log(.low, info: "\t\(discovered) (via \(nextHop), cost: \(cost))")
 
             self.delegate?.didFindNode(self, node: discoveredNode)
+            discoveredNode.startUpdate()
         }
 
         if change.nowUnreachable.isEmpty {
@@ -543,6 +548,7 @@ class Router {
             log(.low, info: "\t\(unreachable)")
 
             self.delegate?.didLoseNode(self, node: unreachableNode)
+            unreachableNode.stopUpdate()
         }
 
         if change.routeChanged.isEmpty {

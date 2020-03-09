@@ -10,7 +10,10 @@ import Foundation
 import Network
 
 class IONAddress: Address {
-    var cost: Int = 0
+    var cost: Int {
+        return IONProtocolManager.shared.cost(for: self.hostName)
+    }
+
     var hostName: String = ""
 
     let endpoint: NWEndpoint

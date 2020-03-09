@@ -22,6 +22,8 @@
 	<string>public.app-category.developer-tools</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Let me spy on you</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Let me spy on you</string>
 	<key>UILaunchStoryboardName</key>

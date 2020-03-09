@@ -14,6 +14,7 @@
 		CA34990323C23BE9001DEDEB /* IONUnderlyingConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498F923C23BE9001DEDEB /* IONUnderlyingConnection.swift */; };
 		CA34990523C23BE9001DEDEB /* IONLocalPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */; };
 		CA34990C23C23CF4001DEDEB /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA34990B23C23CF4001DEDEB /* Network.framework */; };
+		CA41B47524164CD5008DC15B /* IONSwift.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CA41B47324164CD5008DC15B /* IONSwift.podspec */; };
 		CA43274B24152BF200713B2D /* IONMetricsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43274A24152BF200713B2D /* IONMetricsMessage.swift */; };
 		CA43274E24152F6600713B2D /* IONProtocolMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43274D24152F6600713B2D /* IONProtocolMessage.swift */; };
 		CA432750241533BC00713B2D /* IONProtocolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43274F241533BC00713B2D /* IONProtocolManager.swift */; };
@@ -133,6 +134,7 @@
 		CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONLocalPeer.swift; sourceTree = "<group>"; };
 		CA34990B23C23CF4001DEDEB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		CA34993723C253CC001DEDEB /* ion-swift-example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ion-swift-example.xcodeproj"; path = "../Apps/Client/ion-swift-example/ion-swift-example.xcodeproj"; sourceTree = "<group>"; };
+		CA41B47324164CD5008DC15B /* IONSwift.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IONSwift.podspec; path = ../../../IONSwift.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CA43274A24152BF200713B2D /* IONMetricsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONMetricsMessage.swift; sourceTree = "<group>"; };
 		CA43274D24152F6600713B2D /* IONProtocolMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONProtocolMessage.swift; sourceTree = "<group>"; };
 		CA43274F241533BC00713B2D /* IONProtocolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IONProtocolManager.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		CA3498F423C23BE9001DEDEB /* ION */ = {
 			isa = PBXGroup;
 			children = (
+				CA41B47324164CD5008DC15B /* IONSwift.podspec */,
 				CA3498FA23C23BE9001DEDEB /* IONLocalPeer.swift */,
 				CA97DB9F23C2A16700516B64 /* IONRemotePeer.swift */,
 				CA97DB9D23C2993800516B64 /* IONRouter.swift */,
@@ -230,7 +233,6 @@
 				CA3498F823C23BE9001DEDEB /* IONAdvertiser.swift */,
 				CA3498F523C23BE9001DEDEB /* IONAddress.swift */,
 				CA3498F923C23BE9001DEDEB /* IONUnderlyingConnection.swift */,
-				CA43274F241533BC00713B2D /* IONProtocolManager.swift */,
 				CA43274824152BAE00713B2D /* Protocol */,
 				CA97904823F8012500B3538E /* Algorithm */,
 				CA4AC8F623C3CF4700692C21 /* Extensions */,
@@ -272,6 +274,7 @@
 		CA43274824152BAE00713B2D /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				CA43274F241533BC00713B2D /* IONProtocolManager.swift */,
 				CA80036823F834A100BC2290 /* IONProtocol.swift */,
 				CA43274C24152F3A00713B2D /* Messages */,
 			);
@@ -631,6 +634,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA41B47524164CD5008DC15B /* IONSwift.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
